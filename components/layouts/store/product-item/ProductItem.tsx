@@ -28,7 +28,7 @@ const ProductItem: FC<IProductItemProps> = ({
         { src: '/product-1.png', alt: ''},
         { src: '/product-2.png', alt: ''},
     ],
-    name = 'Ghế màu trắng',
+    name = 'Ghế Tròn Hiện Đại',
     category = 'Ghế ngồi',
     description = 'Ghế 80 x 90 x 100 cm, thiết kế sang trọng với tông màu trắng.',
     oldPrice = 990000,

@@ -2,14 +2,12 @@
 
 ._container
     width: 100%
+    height: fit-content
     display: grid
     gap: 15px
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
-    padding: 20px
-    background: get-color-level($main-color, 5)
 
     @media ( max-width: 450px )
-        padding: 20px 10px
         gap: 10px
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr))
         

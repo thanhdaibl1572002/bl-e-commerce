@@ -1,0 +1,25 @@
+@import ../../variables/variables
+
+._container
+    width: 100vw
+    padding: 40px
+    height: fit-content
+    display: grid
+    grid-template-columns: 2fr 8fr
+    background: get-color-level($main-color, 5)
+    gap: 20px
+
+    @media ( max-width: 1000px )
+        grid-template-columns: 1fr
+    @media ( max-width: 500px )
+        padding: 20px 10px
+
+    ._filter
+        box-shadow: $main-boxshadow
+        background: $white-color
+        padding: 20px
+        border-radius: 5px
+
+
+    ._grid
+        // padding: 0 20px

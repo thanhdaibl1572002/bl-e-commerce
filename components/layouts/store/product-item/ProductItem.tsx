@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from '@/components/layouts/store/product-item/product-item.module.sass'
 import { IoCartOutline, IoEyeOutline, IoHeartOutline, IoSearchOutline, IoStar, IoStarHalf, IoStarHalfOutline, IoStarOutline } from 'react-icons/io5'
 import Image from 'next/image'
@@ -80,4 +80,4 @@ const ProductItem: FC<IProductItemProps> = ({
   )
 }
 
-export default ProductItem
+export default memo(ProductItem)

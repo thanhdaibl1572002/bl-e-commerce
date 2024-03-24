@@ -1,4 +1,79 @@
 @import ../../../../variables/variables
 
 ._container
+    width: 100%
+    flex-direction: column
 
+    ._list
+        width: 100%
+        display: grid
+        column-gap: 50px
+        row-gap: 50px
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+
+        ._item
+            flex-direction: column
+            row-gap: 20px
+
+            ._title
+                text-transform: uppercase
+                font-weight: 500
+                font-size: 20px
+
+            ._is__color__options
+                gap: 15px
+                flex-wrap: wrap
+
+                ._color
+                    width: 30px
+                    height: 30px
+                    justify-content: center
+                    align-items: center
+                    border-radius: 50%
+                    color: $white-color
+                    cursor: pointer
+
+                    &:hover
+                        color: $white-color
+
+
+
+
+            ._options
+                flex-direction: column
+                row-gap: 20px
+
+                li
+                    cursor: pointer
+                    align-items: center
+                    column-gap: 10px
+                    font-size: 15px
+                    text-transform: capitalize
+                    background: $white-color
+                    transition: 0.2s
+                    width: fit-content
+
+                    &:hover
+                        color: $main-color
+
+                    ._label
+                        align-items: center
+                        column-gap: 10px
+
+                        span
+                            width: 15px
+                            height: 15px
+                            border-radius: 50%
+                            border: 1px solid get-color-level($main-color, 20)
+
+                    ._check
+                        width: 16px
+                        height: 16px
+                        border: 1px solid get-color-level($main-color, 40)
+                        border-radius: 2px
+                        // background: $main-gradient-color
+
+                        svg
+                            font-size: 14px
+                            color: $white-color
+                            

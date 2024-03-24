@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from '@/components/layouts/store/product-grid/product-grid.module.sass'
 import ProductItem from '../product-item/ProductItem'
 
@@ -23,4 +23,4 @@ const ProductGrid: FC<IProductGridProps> = ({
   )
 }
 
-export default ProductGrid
+export default memo(ProductGrid)

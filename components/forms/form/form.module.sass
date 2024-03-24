@@ -1,0 +1,19 @@
+@import ../../../variables/variables
+
+._container
+    width: 800px
+    height: fit-content
+    column-gap: 10px
+    row-gap: 20px
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+    background: $white-color
+    padding: 20px
+
+    ._item
+        flex-direction: column
+        row-gap: 3px
+
+        ._error
+            font-size: 13px
+            color: $red-color

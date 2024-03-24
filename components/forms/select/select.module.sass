@@ -1,0 +1,90 @@
+@import ../../../variables/variables
+
+._container
+    flex-direction: column
+    height: fit-content
+    position: relative
+
+    ._label
+        position: absolute
+        top: -8px
+        left: 10px
+        font-size: 12.5px
+        background: $white-color
+        padding: 0 8px
+        color: $main-color
+
+    ._selected
+        width: 100%
+        height: 100%
+        padding: 10px
+        background: $white-color
+        border: $main-border
+        font-size: 14px
+        border-radius: 5px
+        cursor: pointer
+        justify-content: space-between
+        align-items: center
+        white-space: nowrap
+
+        ._selected__content
+            width: 100%
+            column-gap: 5px
+            align-items: center
+
+            ._selected__icon
+                font-size: 18px
+
+
+        ._selected__arrow
+            font-size: 13px
+
+    ._required
+        position: absolute
+        font-size: 12px
+        color: $red-color
+        position: absolute
+        top: -8px
+        left: 10px
+        background: $white-color
+        padding: 0 5px
+
+    ._options, ._options__error
+        width: 100%
+        max-height: 195px
+        overflow-y: scroll
+        flex-direction: column
+        position: absolute
+        top: calc(100% + 1px)
+        left: 0
+        background: $white-color
+        border: $main-border
+        box-shadow: $main-boxshadow
+        border-radius: 5px
+        z-index: 100
+        
+        li
+            padding: 10px
+            cursor: pointer
+            font-size: 14px
+            column-gap: 5px
+            align-items: center
+
+            &:hover
+                background: get-color-level($main-color, 10)
+                color: $main-color
+
+    ._options__error 
+        &::-webkit-scrollbar-thumb 
+            background: get-color-level($red-color, $level: 30)
+            border-radius: 30px
+
+        &::-webkit-scrollbar-thumb
+            &:hover
+                background: $red-gradient-color
+
+        li
+            &:hover
+                background: get-color-level($red-color, 10)
+                color: $red-color
+        

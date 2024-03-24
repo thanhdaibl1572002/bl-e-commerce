@@ -8,18 +8,67 @@
     grid-template-columns: 2fr 8fr
     background: get-color-level($main-color, 5)
     gap: 20px
+    position: relative
 
     @media ( max-width: 1000px )
         grid-template-columns: 1fr
+
     @media ( max-width: 500px )
         padding: 20px 10px
 
-    ._filter
+    ._filter, ._filter__mobile
         box-shadow: $main-boxshadow
         background: $white-color
         padding: 20px
         border-radius: 5px
 
+    ._filter__mobile
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        overflow-y: scroll
+        z-index: 100
+
+        ._hidden__filter
+            position: absolute
+            top: 10px
+            right: 10px
+            z-index: 101
+            width: 40px
+            height: 40px
+            font-size: 40px
+            background: $white-color
+            color: $main-color
+            cursor: pointer
 
     ._grid
-        // padding: 0 20px
+        flex-direction: column
+        row-gap: 15px
+
+        ._tool
+            width: 100%
+            justify-content: space-between
+
+            ._tool__right
+                align-items: center
+                column-gap: 10px
+
+                button
+                    width: 40px
+                    height: 40px
+                    font-size: 22px
+                    border-radius: 5px
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    background: $white-color
+                    color: $main-color
+                    box-shadow: $main-boxshadow
+                    cursor: pointer
+                    transition: 0.2s
+
+                    &:hover
+                        background: $main-gradient-color
+                        color: $white-color

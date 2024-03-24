@@ -1,7 +1,7 @@
 'use client'
 import { FC, memo, useState } from 'react'
 import styles from '@/components/layouts/store/product-filter/product-filter.module.sass'
-import { IoCheckboxOutline, IoCheckmark, IoCheckmarkOutline } from 'react-icons/io5'
+import { IoCheckmarkOutline } from 'react-icons/io5'
 import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, mainColor, redGradientColor, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
 
 interface IOption {

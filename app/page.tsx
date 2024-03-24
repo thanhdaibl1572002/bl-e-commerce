@@ -6,7 +6,7 @@ import ProductGrid from '@/components/layouts/store/product-grid/ProductGrid'
 const DashBoard: FC = () => {
   return (
     <main className={styles._container}>
-      <ProductGrid />
+      {/* <ProductGrid /> */}
     </main>
   )
 }

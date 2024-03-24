@@ -1,4 +1,5 @@
-import { FC, memo } from 'react'
+'use client'
+import { FC, memo, useState } from 'react'
 import styles from '@/components/layouts/store/product-filter/product-filter.module.sass'
 import { IoCheckboxOutline, IoCheckmark, IoCheckmarkOutline } from 'react-icons/io5'
 import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, mainColor, redGradientColor, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
@@ -9,43 +10,80 @@ interface IOption {
   isWhiteColor?: boolean
 }
 
-interface IProductFilterProps {
-  colors?: IOption[]
-  materials?: IOption[]
-  types?: IOption[]
-  brands?: IOption[]
+interface IFilterValues {
+  colors: Array<string>
+  materials: Array<string>
+  types: Array<string>
+  brands: Array<string>
 }
 
-const OptionList: FC<{ title: string, options: IOption[], isColor?: boolean }> = ({ title, options, isColor }) => (
-  <div className={styles._item}>
-    <h3 className={styles._title}>{title}</h3>
-    <ul className={styles[isColor ? '_is__color__options' : '_options']}>
-      {options && options.length > 0 && options.map((option, index) => (
-        isColor ? (
-          <li 
-            className={styles._color} 
-            key={index} 
-            style={{ 
-              background: option.value, 
-              color: option.isWhiteColor ? mainColor : whiteColor,
-              border: option.isWhiteColor ? `1px solid ${getColorLevel(mainColor, 20)}` : 'none'
-            }}
-            title={option.label}
-          >
-            {/* <IoCheckmarkOutline /> */}
-          </li>
-        ) : (
-          <li key={index}>
-            <div className={styles._check}>
-              {/* <IoCheckmarkOutline /> */}
-            </div>
-            <div className={styles._label}>{option.label}</div>
-          </li>
-        )
-      ))}
-    </ul>
-  </div>
-)
+interface IProductFilterProps {
+  colors?: Array<IOption>
+  materials?: Array<IOption>
+  types?: Array<IOption>
+  brands?: Array<IOption>
+  onChange?: (values: IFilterValues) => void
+}
+
+interface IOptionListProps {
+  title: string
+  options: Array<IOption>
+  isColor?: boolean
+  onChange?: (values: Array<string>) => void
+}
+
+const OptionList: FC<IOptionListProps> = ({
+  title,
+  options,
+  isColor,
+  onChange,
+}) => {
+
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
+
+  const handleOptionChange = (value: string) => {
+    const newSelectedOptions = selectedOptions.includes(value)
+      ? selectedOptions.filter((option) => option !== value)
+      : [...selectedOptions, value]
+    setSelectedOptions(newSelectedOptions)
+    onChange && onChange(newSelectedOptions)
+  }
+
+  return (
+    <div className={styles._item}>
+      <h3 className={styles._title}>{title}</h3>
+      <ul className={styles[isColor ? '_is__color__options' : '_options']}>
+        {options && options.length > 0 && options.map((option, index) => (
+          isColor ? (
+            <li
+              className={styles._color}
+              key={index}
+              style={{
+                background: option.value,
+                color: option.isWhiteColor ? mainColor : whiteColor,
+                border: option.isWhiteColor ? `1px solid ${getColorLevel(mainColor, 20)}` : 'none'
+              }}
+              title={option.label}
+              onClick={() => handleOptionChange(option.label)}
+            >
+              {selectedOptions.find(selectedOption => selectedOption === option.label) && <IoCheckmarkOutline />}
+            </li>
+          ) : (
+            <li
+              key={index}
+              onClick={() => handleOptionChange(option.label)}
+            >
+              <div className={styles[selectedOptions.find(selectedOption => selectedOption === option.value) ? '_checked' : '_check']}>
+                {selectedOptions.find(selectedOption => selectedOption === option.value) && <IoCheckmarkOutline />}
+              </div>
+              <div className={styles._label}>{option.label}</div>
+            </li>
+          )
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 const ProductFilter: FC<IProductFilterProps> = ({
   colors = [
@@ -78,14 +116,31 @@ const ProductFilter: FC<IProductFilterProps> = ({
     { label: 'American Becker', value: 'American Becker' },
     { label: 'Daz Chairs', value: 'Daz Chairs' },
     { label: 'Furniture Heritage', value: 'Furniture Heritage' },
-  ], }) => {
+  ],
+  onChange, 
+}) => {
+
+  const [currentValues, setCurrentValues] = useState<IFilterValues>({
+    colors: [],
+    materials: [],
+    types: [],
+    brands: [],
+  })
+
+  const handleChange = (values: Array<string>, key: keyof IFilterValues): void => {
+    setCurrentValues(prevValues => ({ ...prevValues, [key]: values }))
+    onChange && onChange({ ...currentValues, [key]: values })
+  }
+
+  console.log(currentValues)
+
   return (
     <div className={styles._container}>
       <div className={styles._list}>
-        <OptionList title="Màu sắc" options={colors || []} isColor />
-        <OptionList title="Chất liệu" options={materials || []} />
-        <OptionList title="Kiểu dáng" options={types || []} />
-        <OptionList title="Nhãn hiệu" options={brands || []} />
+        <OptionList title="Màu sắc" options={colors || []} isColor onChange={values => handleChange(values, 'colors')} />
+        <OptionList title="Chất liệu" options={materials || []} onChange={values => handleChange(values, 'materials')} />
+        <OptionList title="Kiểu dáng" options={types || []} onChange={values => handleChange(values, 'types')} />
+        <OptionList title="Nhãn hiệu" options={brands || []} onChange={values => handleChange(values, 'brands')} />
       </div>
       <div className={styles._actions}></div>
     </div>

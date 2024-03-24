@@ -8,7 +8,7 @@
         width: 100%
         display: grid
         column-gap: 50px
-        row-gap: 50px
+        row-gap: 40px
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
 
         ._item
@@ -35,8 +35,6 @@
 
                     &:hover
                         color: $white-color
-
-
 
 
             ._options
@@ -66,12 +64,17 @@
                             border-radius: 50%
                             border: 1px solid get-color-level($main-color, 20)
 
-                    ._check
+                    ._check, ._checked
                         width: 16px
                         height: 16px
                         border: 1px solid get-color-level($main-color, 40)
                         border-radius: 2px
-                        // background: $main-gradient-color
+
+                    ._checked
+                        border: none
+                        background: $main-gradient-color
+                        justify-content: center
+                        align-items: center
 
                         svg
                             font-size: 14px

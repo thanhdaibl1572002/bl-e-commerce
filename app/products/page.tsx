@@ -3,28 +3,13 @@ import { FC, useRef, useEffect, useState } from 'react'
 import styles from '@/app/products/products.module.sass'
 import ProductFilter from '@/components/layouts/store/product-filter/ProductFilter'
 import ProductGrid from '@/components/layouts/store/product-grid/ProductGrid'
-import { IoCloseOutline, IoGrid, IoGridOutline, IoOptionsOutline } from 'react-icons/io5'
+import { IoCloseOutline, IoGridOutline, IoOptionsOutline } from 'react-icons/io5'
 import useMediaScreen from '@/hooks/useMediaScreen'
 
 const Products: FC = () => {
     const filterRef = useRef<HTMLDivElement>(null)
     const screenWidth = useMediaScreen()
     const [isShowFilter, setIsShowFilter] = useState<boolean>(false)
-
-    useEffect(() => {
-        const handleResize = () => {
-            console.log(window.innerWidth)
-        }
-    
-        window.addEventListener('resize', handleResize)
-    
-        // Cleanup
-        return () => {
-            window.removeEventListener('resize', handleResize)
-        }
-    }, [])
-
-    console.log(isShowFilter)
 
     return (
         <div className={styles._container}>

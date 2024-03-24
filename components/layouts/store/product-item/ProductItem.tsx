@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { FC } from 'react'
 import styles from '@/components/layouts/store/product-item/product-item.module.sass'
 import { IoCartOutline, IoEyeOutline, IoHeartOutline, IoSearchOutline, IoStar, IoStarHalf, IoStarHalfOutline, IoStarOutline } from 'react-icons/io5'
@@ -40,10 +41,8 @@ const ProductItem: FC<IProductItemProps> = ({
         <div className={styles._images}>
             <div className={styles._slides}>
                 {images && images.length > 0 && images.slice(0, 2).map((image, imageIndex) => (
-                    <Image 
+                    <img 
                         key={imageIndex} 
-                        width={200} 
-                        height={200} 
                         src={image.src} 
                         alt={image.alt || ''}  
                     />

@@ -35,13 +35,15 @@
                 img
                     &:nth-child(1)
                         position: absolute
-                        top: 0
-                        right: 100%
+                        top: 50%
+                        left: -100%
+                        transform: translateY(-50%)
                         opacity: 0
 
                     &:nth-child(2)
+                        top: 50%
                         left: 50%
-                        transform: translateX(-50%)
+                        transform: translate(-50%, -50%)
                         opacity: 1
 
         ._slides
@@ -51,19 +53,28 @@
             align-items: center
             position: relative
 
+            @media ( max-width: 450px )
+                min-height: 160px
+
+                img
+                    width: 150px
+
+            img
+                width: 200px
             img
                 &:nth-child(1)
                     position: absolute
-                    top: 0
-                    right: 50%
-                    transform: translateX(50%)
+                    top: 50%
+                    left: 50%
+                    transform: translate(-50%, -50%)
                     opacity: 1
                     transition: 0.3s
 
                 &:nth-child(2)
                     position: absolute
-                    top: 0
+                    top: 50%
                     left: 100%
+                    transform: translateY(-50%)
                     opacity: 0
                     transition: 0.3s
 

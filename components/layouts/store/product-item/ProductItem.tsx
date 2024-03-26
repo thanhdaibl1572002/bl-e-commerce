@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC, memo } from 'react'
 import styles from '@/components/layouts/store/product-item/product-item.module.sass'
-import { IoCartOutline, IoEyeOutline, IoHeartOutline, IoSearchOutline, IoStar, IoStarHalf, IoStarHalfOutline, IoStarOutline } from 'react-icons/io5'
-import Image from 'next/image'
+import { IoCartOutline, IoEyeOutline, IoHeartOutline, IoStar, IoStarHalfOutline, IoStarOutline } from 'react-icons/io5'
 import Link from 'next/link'
-import { formatVND } from '@/utils'
+import { formatVND } from '@/utils/format'
 
 interface IProductItemProps {
     off?: number

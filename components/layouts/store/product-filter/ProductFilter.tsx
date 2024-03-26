@@ -3,6 +3,7 @@ import { FC, memo, useState } from 'react'
 import styles from '@/components/layouts/store/product-filter/product-filter.module.sass'
 import { IoCheckmarkOutline } from 'react-icons/io5'
 import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, mainColor, redGradientColor, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
+import { useTranslation } from '@/utils/i18n'
 
 interface IOption {
   label: string
@@ -132,15 +133,13 @@ const ProductFilter: FC<IProductFilterProps> = ({
     onChange && onChange({ ...currentValues, [key]: values })
   }
 
-  console.log(currentValues)
-
   return (
     <div className={styles._container}>
       <div className={styles._list}>
-        <OptionList title="Màu sắc" options={colors || []} isColor onChange={values => handleChange(values, 'colors')} />
-        <OptionList title="Chất liệu" options={materials || []} onChange={values => handleChange(values, 'materials')} />
-        <OptionList title="Kiểu dáng" options={types || []} onChange={values => handleChange(values, 'types')} />
-        <OptionList title="Nhãn hiệu" options={brands || []} onChange={values => handleChange(values, 'brands')} />
+        <OptionList title='Màu sắc' options={colors || []} isColor onChange={values => handleChange(values, 'colors')} />
+        <OptionList title='Chất liệu' options={materials || []} onChange={values => handleChange(values, 'materials')} />
+        <OptionList title='Kiểu dáng' options={types || []} onChange={values => handleChange(values, 'types')} />
+        <OptionList title='Nhãn hiệu' options={brands || []} onChange={values => handleChange(values, 'brands')} />
       </div>
       <div className={styles._actions}></div>
     </div>
@@ -148,3 +147,4 @@ const ProductFilter: FC<IProductFilterProps> = ({
 }
 
 export default memo(ProductFilter)
+

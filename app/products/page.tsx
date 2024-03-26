@@ -6,15 +6,15 @@ import ProductGrid from '@/components/layouts/store/product-grid/ProductGrid'
 import { IoCloseOutline, IoGridOutline, IoOptionsOutline } from 'react-icons/io5'
 import useMediaScreen from '@/hooks/useMediaScreen'
 import { useTranslation } from '@/utils/i18n' 
+import { useAppSelector } from '@/redux'
 
 const Products: FC = () => {
     const filterRef = useRef<HTMLDivElement>(null)
     const screenWidth = useMediaScreen()
     const [isShowFilter, setIsShowFilter] = useState<boolean>(false)
 
-    const [t, i18n] = useTranslation()
-    console.log(t('color.value'))
-
+    // const [t, i18n] = useTranslation()
+    // console.log(t('color.value')
 
     return (
         <div className={styles._container}>

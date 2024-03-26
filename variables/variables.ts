@@ -8,7 +8,7 @@ export const greenColor = 'rgb(50, 255, 126)'
 export const blueColor = 'rgb(24, 220, 255)'
 
 export const mainGradientColor = 'linear-gradient( 109.6deg,  rgba(39,142,255,1) 11.2%, rgba(98,113,255,0.78) 100.2% )'
-export const whiteGradientColor = 'linear-gradient( 359.3deg,  rgb(255, 255, 255) 1%, rgb(255, 255, 255) 70.9% )'
+export const whiteGradientColor = 'linear-gradient( 109.6deg,  rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1% )'
 export const blackGradientColor = 'linear-gradient( 109.6deg,  rgba(20,30,48,1) 11.2%, rgba(36,59,85,1) 91.1% )'
 export const violetGradientColor = 'linear-gradient( 68.6deg,  rgba(57,67,248,1) 38.1%, rgba(192,0,255,1) 93.1% )'
 export const yellowGradientColor = 'linear-gradient( 108.5deg,  rgba(255,185,0,1) 21.1%, rgba(255,237,0,1) 80.4% )'

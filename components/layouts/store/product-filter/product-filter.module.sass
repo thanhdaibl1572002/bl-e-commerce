@@ -1,6 +1,7 @@
 @import ../../../../variables/variables
 
-._container
+._container__theme__light,
+._container__theme__dark
     width: 100%
     height: fit-content
     flex-direction: column
@@ -21,9 +22,10 @@
                 font-weight: 400
                 font-size: 20px
 
-            ._is__color__options
-                gap: 15px
+            ._options
+                display: flex
                 flex-wrap: wrap
+                gap: 15px
                 padding: 0 10px
 
                 ._color
@@ -35,43 +37,116 @@
                     color: $white-color
                     cursor: pointer
 
-                    &:hover
+                    svg
+                        font-size: 17px
                         color: $white-color
 
-
-            ._options
-                flex-direction: column
-                row-gap: 18px
-                padding: 0 10px
-
-                li
-                    cursor: pointer
+                ._check
+                    width: 100%
                     align-items: center
                     column-gap: 10px
-                    font-size: 14px
-                    text-transform: capitalize
-                    background: $white-color
-                    color: get-color-level($black-color, 80)
-                    transition: 0.2s
-                    width: fit-content
+                    font-size: 15px
+                    cursor: pointer
 
-                    ._label
-                        align-items: center
-                        column-gap: 10px
-
-                    ._check, ._checked
-                        width: 14px
-                        height: 14px
+                    svg
                         border: 1px solid get-color-level($main-color, 40)
                         border-radius: 2px
+                        background: $white-color
+                        color: $white-color
+                        padding: 1.5px
 
-                    ._checked
-                        border: none
-                        background: $main-gradient-color
-                        justify-content: center
-                        align-items: center
+                ._image
+                    width: calc( 50% - 7.5px )
+                    column-gap: 10px
+                    cursor: pointer
 
-                        svg
-                            font-size: 14px
-                            color: $white-color
+._container__theme__light
+    background: $white-color
+
+    ._list
+        ._item
+            ._title
+
+._container__theme__dark
+    background: $black-color
+
+    ._list
+        ._item
+            ._title
+
+
+// ._container
+//     width: 100%
+//     height: fit-content
+//     flex-direction: column
+
+    // ._list
+    //     width: 100%
+    //     display: grid
+    //     column-gap: 50px
+    //     row-gap: 40px
+    //     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+
+    //     ._item
+    //         flex-direction: column
+    //         row-gap: 20px
+
+    //         ._title
+    //             text-transform: uppercase
+    //             font-weight: 400
+    //             font-size: 20px
+
+//             ._is__color__options
+//                 gap: 15px
+//                 flex-wrap: wrap
+//                 padding: 0 10px
+
+//                 ._color
+                    // width: 30px
+                    // height: 30px
+                    // justify-content: center
+                    // align-items: center
+                    // border-radius: 50%
+                    // color: $white-color
+                    // cursor: pointer
+
+//                     &:hover
+//                         color: $white-color
+
+
+//             ._options
+//                 flex-direction: column
+//                 row-gap: 18px
+//                 padding: 0 10px
+
+//                 li
+//                     cursor: pointer
+//                     align-items: center
+//                     column-gap: 10px
+//                     font-size: 14px
+//                     text-transform: capitalize
+//                     background: $white-color
+//                     color: get-color-level($black-color, 80)
+//                     transition: 0.2s
+//                     width: fit-content
+
+//                     ._label
+//                         align-items: center
+//                         column-gap: 10px
+
+//                     ._check, ._checked
+//                         width: 14px
+//                         height: 14px
+//                         border: 1px solid get-color-level($main-color, 40)
+//                         border-radius: 2px
+
+//                     ._checked
+//                         border: none
+//                         background: $main-gradient-color
+//                         justify-content: center
+//                         align-items: center
+
+//                         svg
+//                             font-size: 14px
+//                             color: $white-color
                             

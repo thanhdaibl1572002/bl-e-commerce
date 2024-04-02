@@ -3,7 +3,6 @@ import { FC, memo } from 'react'
 import styles from '@/components/layouts/store/product-item/product-item.module.sass'
 import { IoCartOutline, IoEyeOutline, IoHeartOutline, IoStar, IoStarHalfOutline, IoStarOutline } from 'react-icons/io5'
 import Link from 'next/link'
-import { formatVND } from '@/utils/format'
 
 interface IProductItemProps {
     off?: number
@@ -16,9 +15,7 @@ interface IProductItemProps {
     description?: string
     oldPrice?: number
     price?: number
-    stars?: string
-
-    
+    stars?: string    
 }
 
 const ProductItem: FC<IProductItemProps> = ({
@@ -68,9 +65,9 @@ const ProductItem: FC<IProductItemProps> = ({
             )}
             {price && (
                 <strong className={styles._price}>
-                    {formatVND(price)} 
+                    {price} 
                     {oldPrice && (
-                        <span className={styles._old__price}>{formatVND(oldPrice)}</span>
+                        <span className={styles._old__price}>{oldPrice}</span>
                     )}
                 </strong>
             )}

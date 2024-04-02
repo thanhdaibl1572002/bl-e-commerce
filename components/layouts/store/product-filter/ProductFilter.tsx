@@ -20,7 +20,7 @@ interface IFilterValues {
 
 type ColorOption = { code: string, value: string, isColor: true }
 type CheckOption = { label: string, value: string, isCheck: true }
-type RangeOption = { max: number, min: number, step: number, isRange: true }
+type RangeOption = { max: number, min: number, step?: number, isRange: true }
 type ImageOption = { label: string, value: string, src: string, isImage: true }
 
 interface IOptionListProps {
@@ -72,7 +72,11 @@ const OptionList: FC<IOptionListProps> = ({ title, options, onChange }) => {
       const { min, max, step } = options
       return (
         <div className={styles._range}>
-          <DoubleRange />
+          <DoubleRange 
+            doubleRangeMinValue={min} 
+            doubleRangeMaxValue={max}
+            doubleRangeStep={step}
+          />
         </div>
       )
     } else {
@@ -137,7 +141,7 @@ const ProductFilter: FC<IProductFilterProps> = ({
     { label: 'Daz Chairs', value: 'Daz Chairs', isCheck: true },
     { label: 'Furniture Heritage', value: 'Furniture Heritage', isCheck: true },
   ],
-  price = { max: 1, min: 100, step: 1, isRange: true },
+  price = { min: 1, max: 100, isRange: true },
   onChange,
 }) => {
 

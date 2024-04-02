@@ -1,8 +1,8 @@
 
-export const formatVND = (amount: number) => {
-    return new Intl.NumberFormat('vi-VN', {
+export const formatCurrency = (amount: number, countryCode: string, currencyCode: string): string => {
+    return new Intl.NumberFormat(countryCode, {
         style: 'currency',
-        currency: 'VND',
+        currency: currencyCode,
         maximumFractionDigits: 0
     }).format(amount)
 }

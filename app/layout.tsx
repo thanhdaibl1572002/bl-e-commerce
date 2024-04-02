@@ -2,7 +2,7 @@
 import { FC, ReactElement, ReactNode } from 'react'
 import '@/app/globals.sass'
 import { Provider, store } from '@/redux/index'
-import i18n, { I18nextProvider } from '@/utils/i18n'
+import i18n, { I18nextProvider } from '@/languages'
 
 interface IRootLayoutProps {
   children: ReactNode | ReactElement

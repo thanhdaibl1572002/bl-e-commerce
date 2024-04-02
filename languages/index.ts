@@ -1,32 +1,27 @@
 import i18n from 'i18next'
 import { initReactI18next, I18nextProvider, useTranslation } from 'react-i18next'
+import { productsVI, productsEN, productsZH } from '@/languages/product'
 
 i18n.use(initReactI18next).init({
     resources: {
         vi: {
             translation: {
-                products: {
-                    value: 'Đỏ'
-                }
+                products: productsVI
             }
         },
         en: {
             translation: {
-                products: {
-                    value: 'Red'
-                }
+                products: productsEN
             }
         },
         zh: {
             translation: {
-                products: {
-                    value: 'Đỏ Trung'
-                }
+                products: productsZH
             }
         }
     },
     lng: 'vi',
-    fallbackLng: 'vi',
+    fallbackLng: 'en',
     interpolation: {
         escapeValue: false
     }

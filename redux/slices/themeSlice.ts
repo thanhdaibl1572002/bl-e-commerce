@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@/redux/index'
 
-type Theme = 'theme__light' | 'theme__dark'
+export type Theme = 'theme__light' | 'theme__dark'
 
 interface ThemeState {
     value: Theme

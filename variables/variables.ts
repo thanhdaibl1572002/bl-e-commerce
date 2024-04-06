@@ -48,4 +48,6 @@ export const getColorLevel = (color: string, level: number = 100): string => {
 }
 
 export const mainBoxshadow = `0 0 5px 0 ${getColorLevel(mainColor, 10)}`
+export const blackBoxshadow = `0 0 5px 0 ${getColorLevel(blackColor, 10)}`
+export const whiteBoxshadow = `0 0 5px 0 ${getColorLevel(whiteColor, 10)}`
 export const mainBorder = `1px solid ${getColorLevel(mainColor, 10)}`

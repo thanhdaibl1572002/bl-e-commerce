@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import { FC, memo, useState } from 'react'
+import { FC } from 'react'
 import styles from '@/components/layouts/store/product-filter/product-filter.module.sass'
 import { IoCheckmarkOutline } from 'react-icons/io5'
 import { blackGradientColor, blueGradientColor, greenGradientColor, redGradientColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
@@ -146,19 +146,18 @@ const ProductFilter: FC<IProductFilterProps> = ({
 }) => {
 
   const theme = useAppSelector(state => state.theme.value)
-  console.log(theme)
 
-  const [t, i18n] = useTranslation()
+  const [t] = useTranslation()
 
   return (
     <div className={styles[`_container__${theme}`]}>
       <div className={styles._list}>
-        <OptionList title={t('products.filter.categories.title')} options={categories} />
-        <OptionList title={t('products.filter.colors.title')} options={colors} />
-        <OptionList title={t('products.filter.price.title')} options={price} />
-        <OptionList title={t('products.filter.materials.title')} options={materials} />
-        <OptionList title={t('products.filter.types.title')} options={types} />
-        <OptionList title={t('products.filter.brands.title')} options={brands} />
+        <OptionList title={t('shop.filter.categories.title')} options={categories} />
+        <OptionList title={t('shop.filter.colors.title')} options={colors} />
+        <OptionList title={t('shop.filter.price.title')} options={price} />
+        <OptionList title={t('shop.filter.materials.title')} options={materials} />
+        <OptionList title={t('shop.filter.types.title')} options={types} />
+        <OptionList title={t('shop.filter.brands.title')} options={brands} />
       </div>
     </div>
   )

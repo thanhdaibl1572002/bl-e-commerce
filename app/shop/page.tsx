@@ -1,29 +1,32 @@
 'use client'
-import { FC, useRef, useEffect, useState, ChangeEvent } from 'react'
+import { FC, useRef, useState, ChangeEvent } from 'react'
 import styles from '@/app/shop/shop.module.sass'
 import ProductFilter from '@/components/layouts/store/product-filter/ProductFilter'
 import ProductGrid from '@/components/layouts/store/product-grid/ProductGrid'
 import { IoCloseOutline, IoGridOutline, IoOptionsOutline } from 'react-icons/io5'
-import useMediaScreen from '@/hooks/useMediaScreen'
 import { useTranslation } from '@/languages' 
-import { useAppSelector } from '@/redux'
+import { useAppSelector, useAppDispatch } from '@/redux'
+import { Theme, setTheme } from '@/redux/slices/themeSlice'
 import Button from '@/components/forms/Button'
 import { mainColor, whiteColor } from '@/variables/variables'
 
-const Products: FC = () => {
+const Shop: FC = () => {
     const filterRef = useRef<HTMLDivElement>(null)
-    // const screenWidth = useMediaScreen()
-    // const [isShowFilter, setIsShowFilter] = useState<boolean>(false)
+    const [t, i18n] = useTranslation()
 
-    // const [t, i18n] = useTranslation()
-    // console.log(t('products.value'))
+    const theme = useAppSelector(state => state.theme.value)
+    const dispatch = useAppDispatch()
 
     // const [lang, setLang] = useState('vi')
 
-    // const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    // const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
     //     setLang(e.target.value)
     //     i18n.changeLanguage(e.target.value)
     // }
+
+    const handleThemeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setTheme(e.target.value as Theme))
+    }
 
     const handleShowFilter = (): void => {
         filterRef && filterRef.current && (filterRef.current.style.right = '0')
@@ -34,7 +37,7 @@ const Products: FC = () => {
     }
 
     return (
-        <div className={styles._container}>
+        <div className={styles[`_container__${theme}`]}>
             <div ref={filterRef} className={styles._filter}>
                 <IoCloseOutline
                     className={styles._hidden__filter}
@@ -46,11 +49,15 @@ const Products: FC = () => {
             <div className={styles._grid}>
                 <div className={styles._tool}>
                     <div className={styles._tool__left}>
-                        {/* <select onChange={handleChange}>
+                        {/* <select onChange={handleLanguageChange}>
                             <option>vi</option>
                             <option>en</option>
                             <option>zh</option>
                         </select> */}
+                        <select onChange={handleThemeChange}>
+                            <option>theme__light</option>
+                            <option>theme__dark</option>
+                        </select>
                     </div>
                     <div className={styles._tool__right}>
                         <Button 
@@ -75,4 +82,4 @@ const Products: FC = () => {
     )
 }
 
-export default Products
+export default Shop

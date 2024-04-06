@@ -1,37 +1,16 @@
 @import ../../variables/variables
 
-._container
+._container__theme__light,
+._container__theme__dark
     width: 100vw
     padding: 40px
     height: fit-content
     display: grid
     grid-template-columns: 2fr 8fr
-    background: get-color-level($main-color, 5)
     gap: 20px
     position: relative
 
-    @media ( max-width: 1000px )
-        grid-template-columns: 1fr
-
-        ._filter
-            position: fixed
-            width: 100%
-            height: 100%
-            top: 0
-            right: 100%
-            z-index: 100
-            overflow-y: scroll
-
-            &::-webkit-scrollbar
-                width: 0
-                height: 0
-
-    @media ( max-width: 500px )
-        padding: 20px 10px
-
     ._filter
-        box-shadow: $main-boxshadow
-        background: $white-color
         padding: 20px
         border-radius: 5px
         transition: 0.3s
@@ -65,3 +44,38 @@
                     display: none
                     @media ( max-width: 1000px )
                         display: flex
+
+    @media ( max-width: 1000px )
+        grid-template-columns: 1fr
+
+        ._filter
+            position: fixed
+            width: 100%
+            height: 100%
+            top: 0
+            right: 100%
+            z-index: 100
+            overflow-y: scroll
+
+            &::-webkit-scrollbar
+                width: 0
+                height: 0
+
+    @media ( max-width: 500px )
+        padding: 20px 10px
+
+._container__theme__light
+    background: get-color-level($main-color, 5)
+    color: $black-color
+
+    ._filter
+        box-shadow: $main-boxshadow
+        background: $white-color
+
+._container__theme__dark
+    background: get-color-level($black-color, 90)
+    color: $white-color
+
+    ._filter
+        box-shadow: $white-boxshadow
+        background: $black-color

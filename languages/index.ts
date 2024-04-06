@@ -1,22 +1,22 @@
 import i18n from 'i18next'
 import { initReactI18next, I18nextProvider, useTranslation } from 'react-i18next'
-import { productsVI, productsEN, productsZH } from '@/languages/product'
+import { shopVI, shopEN, shopZH } from '@/languages/shop'
 
 i18n.use(initReactI18next).init({
     resources: {
         vi: {
             translation: {
-                products: productsVI
+                shop: shopVI
             }
         },
         en: {
             translation: {
-                products: productsEN
+                shop: shopEN
             }
         },
         zh: {
             translation: {
-                products: productsZH
+                shop: shopZH
             }
         }
     },

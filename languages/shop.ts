@@ -1,4 +1,4 @@
-export const productsVI = {
+export const shopVI = {
     filter: {
         categories: {
             title: 'Danh Mục',
@@ -21,7 +21,7 @@ export const productsVI = {
     }
 }
 
-export const productsEN = {
+export const shopEN = {
     filter: {
         categories: {
             title: 'Categories',
@@ -44,25 +44,25 @@ export const productsEN = {
     }
 }
 
-export const productsZH = {
+export const shopZH = {
     filter: {
         categories: {
-            title: '分类',
+            title: '分 类',
         },
         colors: {
-            title: '颜色',
+            title: '颜 色',
         },
         price: {
-            title: '价格',
+            title: '价 格',
         },
         materials: {
-            title: '材质',
+            title: '材 质',
         },
         types: {
-            title: '款式',
+            title: '款 式',
         },
         brands: {
-            title: '品牌'
+            title: '品 牌'
         }
     }
 }

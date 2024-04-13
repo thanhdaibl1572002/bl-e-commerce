@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { IoStarSharp } from 'react-icons/io5'
 import Link from 'next/link'
 import ThemeButton from '@/components/themes/ThemeButton'
-import { PiArrowsCounterClockwiseLight, PiEyeLight, PiHandbag, PiHeartStraightLight } from 'react-icons/pi'
+import { PiArrowsCounterClockwise, PiArrowsCounterClockwiseLight, PiEye, PiEyeLight, PiHandbag, PiHeartStraight, PiHeartStraightLight } from 'react-icons/pi'
 import Button from '@/components/forms/Button'
 import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
 import useMediaScreen from '@/hooks/useMediaScreen'
@@ -29,42 +29,9 @@ const Product: FC<IProduct> = ({
                 <Image src={'/images/product-1.png'} alt='' width={imageWidth} height={imageHeight} />
                 <span>-20%</span>
                 <ul>
-                    <li>
-                        <Button
-                            width={30}
-                            height={30}
-                            icon={useMemo(() => <PiHeartStraightLight />, [])}
-                            iconSize={20}
-                            iconColor={themeColors[theme]}
-                            border={`1px solid ${getColorLevel(themeColors[theme], 8)}`}
-                            background={whiteColor}
-                            bubbleColor={themeColors[theme]}
-                        />
-                    </li>
-                    <li>
-                        <Button
-                            width={30}
-                            height={30}
-                            icon={useMemo(() => <PiArrowsCounterClockwiseLight />, [])}
-                            iconSize={20}
-                            iconColor={themeColors[theme]}
-                            border={`1px solid ${getColorLevel(themeColors[theme], 8)}`}
-                            background={whiteColor}
-                            bubbleColor={themeColors[theme]}
-                        />
-                    </li>
-                    <li>
-                        <Button
-                            width={30}
-                            height={30}
-                            icon={useMemo(() => <PiEyeLight />, [])}
-                            iconSize={20}
-                            iconColor={themeColors[theme]}
-                            border={`1px solid ${getColorLevel(themeColors[theme], 8)}`}
-                            background={whiteColor}
-                            bubbleColor={themeColors[theme]}
-                        />
-                    </li>
+                    <li><PiHeartStraight /></li>
+                    <li><PiArrowsCounterClockwise /></li>
+                    <li><PiEye /></li>
                 </ul>
             </div>
             <div className={styles._bottom}>

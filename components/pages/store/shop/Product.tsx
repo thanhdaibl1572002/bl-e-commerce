@@ -81,7 +81,7 @@ const Product: FC<IProduct> = ({
                 <strong>19.900.000đ <span>21.900.000đ</span></strong>
                 <ol>
                     <li>27-inch (diagonal) Retina 5K display</li>
-                    <li>{'AMD Radeon Pro 5300 graphics'.slice(0, 20)}<span>...More</span></li>
+                    <li>{'AMD Radeon Pro 5300 graphics'.slice(0, 20)}</li>
                 </ol>
                 <ThemeButton
                     theme={theme}

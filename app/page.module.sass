@@ -1,5 +1,10 @@
 @import ../variables/variables
 
-._container
-    width: 100%
-    height: fit-content
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        width: 100%
+        height: fit-content
+        background: get-color-level($theme-color, 3)
+        padding: 50px 30px
+            

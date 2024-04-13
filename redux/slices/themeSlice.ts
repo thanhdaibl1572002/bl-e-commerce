@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@/redux/index'
 
-export type Theme = 'theme__light' | 'theme__dark'
+export type Theme = 'blue' | 'violet' | 'green'
 
 interface ThemeState {
-    value: Theme
+    theme: Theme
 }
 
 const initialState: ThemeState = {
-    value: 'theme__light'
+    theme: 'violet'
 }
 
 const themeSlice = createSlice({
@@ -15,7 +15,7 @@ const themeSlice = createSlice({
     initialState,
     reducers: {
         setTheme(state, action: PayloadAction<Theme>) {
-            state.value = action.payload
+            state.theme = action.payload
         },
     }
 })

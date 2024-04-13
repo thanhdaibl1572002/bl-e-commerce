@@ -1,0 +1,94 @@
+@import ../../../../variables/variables
+
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        flex-direction: column
+        background: $white-color
+        padding: 15px 10px
+        border-radius: 10px
+        border: 1px solid get-color-level($theme-color, 5)
+
+        ._top
+            justify-content: center
+            align-items: center
+            position: relative
+            padding: 10px 0
+            
+            span
+                position: absolute
+                top: 0
+                left: 0
+                font-size: 12px
+                font-weight: 500
+                background: $theme-gradient-color
+                color: $white-color
+                padding: 2px 5px
+                border-radius: 30px
+
+            ul
+                position: absolute
+                top: 0
+                right: 0
+                flex-direction: column
+                row-gap: 7px
+
+        ._bottom
+            flex-direction: column
+            row-gap: 15px
+
+            label
+                font-size: 13px
+                font-weight: 500
+                color: get-color-level($black-color, 50)
+
+            h3
+                font-size: 16px
+                font-weight: 500
+
+                @media ( max-width: 650px )
+                    font-size: 15px
+
+            ul
+                column-gap: 3px
+                li
+                    font-size: 12px
+                    svg
+                        font-size: 14px
+                        color: $theme-color
+
+            ol
+                flex-direction: column
+                row-gap: 5px
+                padding: 10px
+                border-radius: 5px
+                background-color: get-color-level($theme-color, 5)
+
+                li
+                    font-size: 12px
+                    column-gap: 3px
+                    @media ( max-width: 650px )
+                        font-size: 11px
+                    
+                    span
+                        font-weight: 500
+                        cursor: pointer
+                        color: get-color-level($theme-color, 70)
+                    
+
+            strong
+                font-size: 17px
+                font-weight: 500
+                align-items: center
+                column-gap: 10px
+                @media ( max-width: 650px )
+                    font-size: 15px
+
+                span
+                    font-size: 15px
+                    font-weight: 300
+                    color: get-color-level($black-color, 70)
+                    text-decoration: line-through 0.5px get-color-level($black-color, 50)
+                    @media ( max-width: 650px )
+                        font-size: 13px

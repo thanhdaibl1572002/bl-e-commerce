@@ -1,0 +1,75 @@
+@import ../../../../variables/variables
+
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        width: 100%
+        justify-content: space-between
+        align-items: center
+        padding: 10px 30px
+        border-bottom: 1px solid get-color-level($theme-color, 10)
+
+        ul
+            align-items: center
+
+        ._menu
+            column-gap: 50px
+
+            li
+                a
+                    font-size: 16px
+                    text-transform: capitalize
+                    transition: 0.1s
+                    position: relative
+                    align-items: center
+                    column-gap: 3px
+
+                    &:hover
+                        color: $theme-color
+
+                    svg
+                        font-size: 13px
+                        color: $theme-color
+
+                    label
+                        position: absolute
+                        top: -15px
+                        right: -55px
+                        font-size: 10px
+                        font-weight: 500
+                        color: $white-color
+                        white-space: nowrap
+                        padding: 3px 5px
+                        border-radius: 2px 2px 2px 0
+                        background: $theme-gradient-color
+
+        ._navigation
+            column-gap: 20px
+            li
+                position: relative
+                cursor: pointer
+                span
+                    position: absolute
+                    top: -2px
+                    right: -5px
+                    font-size: 9px
+                    font-weight: 500
+                    color: $white-color
+                    background: $theme-color
+                    border-radius: 50%
+                    padding: 1px
+                svg
+                    font-size: 30px
+                    color: $theme-color
+                    
+
+                            
+
+
+                        
+
+                            
+                                
+
+           

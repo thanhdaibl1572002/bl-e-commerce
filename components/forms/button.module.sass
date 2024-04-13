@@ -1,25 +1,17 @@
-@import ../../variables/variables
-
 ._container
     display: flex
     justify-content: center
     align-items: center
     position: relative
-    padding: 10px
-    column-gap: 5px
     cursor: pointer
-    background: $main-gradient-color
-    border-radius: 5px
     overflow: hidden
-    box-shadow: $main-boxshadow
-    height: 40px
 
     &:disabled
         opacity: 0.7
+        cursor: default
 
     ._icon, ._loading
         font-size: 20px
-        color: $white-color
 
     ._loading
         animation: loading_animation 0.35s ease-in-out infinite
@@ -32,13 +24,11 @@
 
     ._text
         font-size: 16px
-        color: $white-color
         margin-top: 2px
 
     ._bubble
         position: absolute
         border-radius: 50%
-        background: $white-color
         animation: bubble_animation
         animation-duration: calc( var(--animate-duration) + 10ms )
         animation-timing-function: ease-out

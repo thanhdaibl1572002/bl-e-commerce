@@ -1,14 +1,16 @@
+'use client'
 import { FC } from 'react'
 import styles from '@/app/page.module.sass'
-import ProductItem from '@/components/layouts/store/product-item/ProductItem'
-import ProductGrid from '@/components/layouts/store/product-grid/ProductGrid'
+import Advertisement from '@/components/pages/store/home/Advertisement'
+import { useAppSelector } from '@/redux'
 
-const DashBoard: FC = () => {
+const Home: FC = () => {
+  const { theme } = useAppSelector(state => state.theme)
   return (
-    <main className={styles._container}>
-      {/* <ProductGrid /> */}
+    <main className={styles[`_container__${theme}`]}>
+      <Advertisement />
     </main>
   )
 }
 
-export default DashBoard
+export default Home

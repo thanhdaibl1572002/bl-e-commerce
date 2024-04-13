@@ -3,51 +3,57 @@ import { ButtonHTMLAttributes, FC, ReactElement, ReactNode, MouseEvent, useState
 import styles from '@/components/forms/button.module.sass'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { getColorLevel, whiteColor } from '@/variables/variables'
+import { useRouter } from 'next/navigation'
 
-interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    buttonWidth?: string | number
-    buttonHeight?: string | number
-    buttonText?: string
-    buttonTextSize?: number
-    buttonTextColor?: string
-    buttonTextWeight?: number
-    buttonIcon?: ReactNode | ReactElement
-    buttonIconSize?: number
-    buttonIconColor?: string
-    buttonIconPosition?: 'left' | 'right'
-    buttonBorder?: string
-    buttonBorderRadius?: string
-    buttonBoxShadow?: string
-    buttonIsLoading?: boolean
-    buttonBackground?: string
-    buttonBubbleColor?: string
-    buttonAnimateDuration?: number
-    buttonClassName?: string
+export interface IButtonProps {
+    width?: number | string
+    height?: number | string
+    padding?: number
+    gap?: number
+    text?: string
+    textSize?: number
+    textColor?: string
+    textWeight?: number
+    icon?: ReactNode | ReactElement
+    iconSize?: number
+    iconColor?: string
+    iconPosition?: 'left' | 'right'
+    border?: string
+    borderRadius?: string
+    boxShadow?: string
+    isLoading?: boolean
+    background?: string
+    bubbleColor?: string
+    animateDuration?: number
+    link?: string
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
-const Button: FC<IButtonProps> = ({ 
-    buttonWidth,
-    buttonHeight,
-    buttonText,
-    buttonTextSize,
-    buttonTextColor,
-    buttonTextWeight,
-    buttonIcon,
-    buttonIconSize,
-    buttonIconColor,
-    buttonIconPosition = 'left',
-    buttonBorder,
-    buttonBorderRadius,
-    buttonBoxShadow,
-    buttonIsLoading,
-    buttonBackground,
-    buttonBubbleColor = whiteColor,
-    buttonAnimateDuration = 400,
-    buttonClassName,
-    onClick, 
-    ...rest 
+const Button: FC<IButtonProps> = ({
+    width,
+    height,
+    padding = 10,
+    gap = 5,
+    text,
+    textSize = 15,
+    textColor = 'rgb(255, 255, 255)',
+    textWeight = 400,
+    icon,
+    iconSize = 18,
+    iconColor = 'rgb(255, 255, 255)',
+    iconPosition = 'left',
+    border,
+    borderRadius = 5,
+    boxShadow,
+    isLoading,
+    background = 'rgb(39, 142, 255)',
+    bubbleColor = 'rgb(255, 255, 255)',
+    animateDuration = 400,
+    link,
+    onClick
 }) => {
+
+    const router = useRouter()
 
     const [bubbles, setBubbles] = useState<{ x: number, y: number }[]>([])
 
@@ -56,9 +62,9 @@ const Button: FC<IButtonProps> = ({
 
     useEffect(() => {
         if (bubbleRef.current) {
-            bubbleRef.current.style.setProperty('--animate-duration', `${buttonAnimateDuration}ms`)
+            bubbleRef.current.style.setProperty('--animate-duration', `${animateDuration}ms`)
         }
-    }, [buttonAnimateDuration, bubbles])
+    }, [animateDuration, bubbles])
 
     const handleClick = useCallback(
         async (event: MouseEvent<HTMLButtonElement>): Promise<void> => {
@@ -66,36 +72,38 @@ const Button: FC<IButtonProps> = ({
             const x: number = event.clientX - rect.left
             const y: number = event.clientY - rect.top
             setBubbles([...bubbles, { x, y }])
-            setTimeout(() => setBubbles(bubbles.slice(1)), buttonAnimateDuration)
+            setTimeout(() => setBubbles(bubbles.slice(1)),animateDuration)
             onClick && onClick(event)
-        }, 
-        [onClick, bubbles, buttonAnimateDuration]
+            link && router.push(link)
+        },
+        [onClick, bubbles,animateDuration]
     )
 
     return (
         <button
-            className={`${styles._container} ${buttonClassName || ''}`.trim()}
+            className={styles._container}
             style={{
-                width: buttonWidth,
-                height: buttonHeight,
-                border: buttonBorder,
-                borderRadius: buttonBorderRadius,
-                background: buttonBackground,
-                boxShadow: buttonBoxShadow,
-                flexDirection: buttonIconPosition === 'left' ? 'row' : 'row-reverse',
+                width: width,
+                height: height,
+                padding: padding,
+                gap: gap,
+                border: border,
+                borderRadius: borderRadius,
+                background: background,
+                boxShadow: boxShadow,
+                flexDirection: iconPosition === 'left' ? 'row' : 'row-reverse',
             }}
             onClick={handleClick}
             ref={buttonRef}
-            {...rest}
         >
-            {buttonIcon &&
-                <div className={buttonIsLoading ? styles._loading : styles._icon} style={{ fontSize: buttonIconSize, color: buttonIconColor }}>
-                    { buttonIsLoading ? <AiOutlineLoading /> : buttonIcon}
+            {icon &&
+                <div className={isLoading ? styles._loading : styles._icon} style={{ fontSize: iconSize, color:iconColor }}>
+                    {isLoading ? <AiOutlineLoading /> : icon}
                 </div>
             }
-            {buttonText &&
-                <div className={styles._text} style={{ fontSize: buttonTextSize, fontWeight: buttonTextWeight, color: buttonTextColor }}>
-                    {buttonText}
+            {text &&
+                <div className={styles._text} style={{ fontSize: textSize, fontWeight: textWeight, color: textColor }}>
+                    {text}
                 </div>
             }
             {bubbles.length > 0 && bubbles.map((bubble, index) => (
@@ -108,7 +116,7 @@ const Button: FC<IButtonProps> = ({
                         height: buttonRef.current ? buttonRef.current?.clientWidth * 2.5 : undefined,
                         left: bubble.x,
                         top: bubble.y,
-                        background: getColorLevel(buttonBubbleColor, 40),
+                        background: getColorLevel(bubbleColor!, 40),
                     }}
                 >
                 </span>

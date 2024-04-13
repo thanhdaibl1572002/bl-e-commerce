@@ -4,10 +4,12 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
 import themeReducer from '@/redux/slices/themeSlice'
+import currencyReducer from '@/redux/slices/currencySlice'
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
+    currency: currencyReducer,
   },
 })
 

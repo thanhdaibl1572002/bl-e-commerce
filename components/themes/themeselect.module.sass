@@ -1,0 +1,12 @@
+@import ../../variables/variables
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        ul
+            background: $white-color !important
+            li
+                transition: 0.1s
+                &:hover
+                    color: $theme-color !important
+                    background: get-color-level($theme-color, 5) !important

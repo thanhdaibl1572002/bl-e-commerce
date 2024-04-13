@@ -1,24 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap')
-$main-font-family: 'Roboto'
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@100..900&display=swap')
+$main-font-family: 'Inter'
+$logo-font-family: 'Black Ops One'
 
-$main-color: rgb(39,142,255)
 $white-color: rgb(255, 255, 255)
-$black-color: rgb(30, 39, 46)
-$violet-color: rgb(125, 95, 255)
+$black-color: rgb(3, 8, 22)
+$violet-color: rgb(119, 44, 232)
 $yellow-color: rgb(255, 242, 0)
 $red-color: rgb(255, 56, 56)
-$green-color: rgb(50, 255, 126)
-$blue-color: rgb(56, 182, 255)
+$green-color: rgb(59, 207, 166)
+$blue-color: rgb(39, 142, 255)
 
-$main-gradient-color: linear-gradient( 76.8deg,  rgb(9, 132, 227) 0.4%, rgba(0,180,253,1) 87.2% )
-$main-gradient-color: linear-gradient( 109.6deg,  rgba(39,142,255,1) 11.2%, rgba(98,113,255,0.78) 100.2% )
 $white-gradient-color: linear-gradient( 109.6deg,  rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1% )
 $black-gradient-color: linear-gradient( 109.6deg,  rgba(20,30,48,1) 11.2%, rgba(36,59,85,1) 91.1% )
-$violet-gradient-color: linear-gradient( 68.6deg,  rgba(57,67,248,1) 38.1%, rgba(192,0,255,1) 93.1% )
+$violet-gradient-color: linear-gradient( 109.6deg,  rgba(119,44,232,0.68) 11.5%, rgba(119,44,232,1) 91.2% )
 $yellow-gradient-color: linear-gradient( 108.5deg,  rgba(255,185,0,1) 21.1%, rgba(255,237,0,1) 80.4% )
 $red-gradient-color: linear-gradient( 111.3deg,  rgba(252,56,56,1) 11.7%, rgba(237,13,81,1) 81.7% )
 $green-gradient-color: linear-gradient( 109.6deg,  rgba(102,203,149,1) 11.2%, rgba(39,210,175,1) 98.7% )
 $blue-gradient-color: linear-gradient( 249.1deg,  rgba(11,206,250,1) -6.5%, rgba(65,46,248,1) 100.2% )
+
+$theme-colors: ('blue': $blue-color, 'violet': $violet-color, 'green': $green-color)
+$theme-gradient-colors: ('blue': $blue-gradient-color, 'violet': $violet-gradient-color, 'green': $green-gradient-color) 
+
 
 @function get-color-level($color, $level: 100)
   @if $level < 0 or $level > 100
@@ -26,7 +28,3 @@ $blue-gradient-color: linear-gradient( 249.1deg,  rgba(11,206,250,1) -6.5%, rgba
   $alpha: $level / 100
   @return rgba($color, $alpha)
 
-$main-boxshadow: 0 0 5px 0 get-color-level($main-color, 10)
-$black-boxshadow: 0 0 5px 0 get-color-level($black-color, 10)
-$white-boxshadow: 0 0 5px 0 get-color-level($white-color, 10)
-$main-border: 1px solid get-color-level($main-color, 10)

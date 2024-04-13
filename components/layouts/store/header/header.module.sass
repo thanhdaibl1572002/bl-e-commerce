@@ -1,0 +1,13 @@
+@import ../../../../variables/variables
+
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        width: 100%
+        flex-direction: column
+        background: $white-color
+        position: fixed
+        top: 0
+        left: 0
+        z-index: 1000

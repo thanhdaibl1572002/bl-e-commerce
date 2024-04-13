@@ -1,0 +1,15 @@
+@import ../../../../variables/variables
+
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        width: 100%
+        display: grid
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
+        gap: 20px
+
+        @media ( max-width: 650px )
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+            gap: 10px
+            

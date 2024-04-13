@@ -1,0 +1,35 @@
+@import ../../../../variables/variables
+
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        width: 180px
+        max-height: 400px
+        position: absolute
+        top: calc( 100% + 20px )
+        right: 15px
+        background: $white-color
+        border-radius: 5px 0 5px 5px
+        box-shadow: 0 0 3px 0 get-color-level($theme-color, 10)
+        z-index: 99
+        transition: 0.2s
+        visibility: hidden
+        ul
+            width: 100%
+            flex-direction: column
+            li
+                width: 100%
+                a
+                    width: 100%
+                    align-items: center
+                    column-gap: 5px
+                    font-size: 14px 
+                    padding: 8px 10px
+                    transition: 0.1s
+                    &:hover
+                        background: get-color-level($theme-color, 8)
+                        color: $theme-color
+                    svg
+                        font-size: 22px !important
+                        color: $theme-color

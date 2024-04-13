@@ -1,0 +1,22 @@
+@import ../../../../variables/variables
+
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        width: 100%
+        justify-content: space-between
+        padding: 0 30px
+        border-bottom: 1px solid get-color-level($theme-color, 10)
+
+        ul
+            align-items: center
+            column-gap: 20px
+
+            li
+                a
+                    font-size: 13.5px
+                    text-transform: capitalize
+                    transition: 0.1s
+                    &:hover
+                        color: $theme-color

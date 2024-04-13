@@ -1,20 +1,33 @@
-export const mainColor = 'rgb(39,142,255)'
+export const mainFontFamily = 'Inter'
+export const logoFontFamily = 'Black Ops One'
+
 export const whiteColor = 'rgb(255, 255, 255)'
-export const blackColor = 'rgb(30, 39, 46)'
-export const violetColor = 'rgb(125, 95, 255)'
+export const blackColor = 'rgb(3, 8, 22)'
+export const violetColor = 'rgb(119, 44, 232)'
 export const yellowColor = 'rgb(255, 242, 0)'
 export const redColor = 'rgb(255, 56, 56)'
-export const greenColor = 'rgb(50, 255, 126)'
-export const blueColor = 'rgb(24, 220, 255)'
+export const greenColor = 'rgb(59, 207, 166)'
+export const blueColor = 'rgb(39, 142, 255)'
 
-export const mainGradientColor = 'linear-gradient( 109.6deg,  rgba(39,142,255,1) 11.2%, rgba(98,113,255,0.78) 100.2% )'
-export const whiteGradientColor = 'linear-gradient( 109.6deg,  rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1% )'
-export const blackGradientColor = 'linear-gradient( 109.6deg,  rgba(20,30,48,1) 11.2%, rgba(36,59,85,1) 91.1% )'
-export const violetGradientColor = 'linear-gradient( 68.6deg,  rgba(57,67,248,1) 38.1%, rgba(192,0,255,1) 93.1% )'
-export const yellowGradientColor = 'linear-gradient( 108.5deg,  rgba(255,185,0,1) 21.1%, rgba(255,237,0,1) 80.4% )'
-export const redGradientColor = 'linear-gradient( 111.3deg,  rgba(252,56,56,1) 11.7%, rgba(237,13,81,1) 81.7% )'
-export const greenGradientColor = 'linear-gradient( 109.6deg,  rgba(102,203,149,1) 11.2%, rgba(39,210,175,1) 98.7% )'
-export const blueGradientColor = 'linear-gradient( 249.1deg,  rgba(11,206,250,1) -6.5%, rgba(65,46,248,1) 100.2% )'
+export const whiteGradientColor = 'linear-gradient(109.6deg, rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1%)'
+export const blackGradientColor = 'linear-gradient(109.6deg, rgba(20,30,48,1) 11.2%, rgba(36,59,85,1) 91.1%)'
+export const violetGradientColor = 'linear-gradient( 109.6deg,  rgba(119,44,232,0.68) 11.5%, rgba(119,44,232,1) 91.2% )'
+export const yellowGradientColor = 'linear-gradient(108.5deg, rgba(255,185,0,1) 21.1%, rgba(255,237,0,1) 80.4%)'
+export const redGradientColor = 'linear-gradient(111.3deg, rgba(252,56,56,1) 11.7%, rgba(237,13,81,1) 81.7%)'
+export const greenGradientColor = 'linear-gradient(109.6deg, rgba(102,203,149,1) 11.2%, rgba(39,210,175,1) 98.7%)'
+export const blueGradientColor = 'linear-gradient(249.1deg, rgba(11,206,250,1) -6.5%, rgba(65,46,248,1) 100.2%)'
+
+export const themeColors = {
+    blue: blueColor,
+    violet: violetColor,
+    green: greenColor
+}
+
+export const themeGradientColors = {
+    blue: blueGradientColor,
+    violet: violetGradientColor,
+    green: greenGradientColor
+}
 
 export const getColorLevel = (color: string, level: number = 100): string => {
     let red: number
@@ -46,8 +59,3 @@ export const getColorLevel = (color: string, level: number = 100): string => {
     const alpha: number = level / 100
     return `rgba(${red}, ${green}, ${blue}, ${alpha})`
 }
-
-export const mainBoxshadow = `0 0 5px 0 ${getColorLevel(mainColor, 10)}`
-export const blackBoxshadow = `0 0 5px 0 ${getColorLevel(blackColor, 10)}`
-export const whiteBoxshadow = `0 0 5px 0 ${getColorLevel(whiteColor, 10)}`
-export const mainBorder = `1px solid ${getColorLevel(mainColor, 10)}`

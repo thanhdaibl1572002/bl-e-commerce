@@ -21,8 +21,8 @@ const Product: FC<IProduct> = ({
     const { theme } = useAppSelector(state => state.theme)
     const { t } = useTranslation()
     const screenWidth = useMediaScreen()
-    const imageWidth = screenWidth >= 650 ? 200 : 150
-    const imageHeight = screenWidth >= 650 ? 200 : 150
+    const imageWidth = screenWidth >= 650 ? 200 : 130
+    const imageHeight = screenWidth >= 650 ? 200 : 130
     return (
         <Link href={'#'} className={styles[`_container__${theme}`]}>
             <div className={styles._top}>

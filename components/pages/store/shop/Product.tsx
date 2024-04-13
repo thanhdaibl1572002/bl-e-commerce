@@ -26,7 +26,7 @@ const Product: FC<IProduct> = ({
     return (
         <Link href={'#'} className={styles[`_container__${theme}`]}>
             <div className={styles._top}>
-                <Image src={'/images/product-1.png'} alt='' width={imageWidth} height={imageHeight} />
+                <Image src={'/images/product-3.png'} alt='' width={imageWidth} height={imageHeight} />
                 <span>-20%</span>
                 <ul>
                     <li><PiHeartStraight /></li>

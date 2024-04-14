@@ -20,19 +20,11 @@ const Product: FC<IProduct> = ({
 }) => {
     const { theme } = useAppSelector(state => state.theme)
     const { t } = useTranslation()
-    const screenWidth = useMediaScreen()
-    const imageWidth = screenWidth >= 650 ? 200 : 130
-    const imageHeight = screenWidth >= 650 ? 200 : 130
     return (
         <Link href={'#'} className={styles[`_container__${theme}`]}>
             <div className={styles._top}>
-                <Image src={'/images/product-3.png'} alt='' width={imageWidth} height={imageHeight} />
+                <Image src={'/images/product-1.png'} alt='' width={180} height={180} />
                 <span>-20%</span>
-                <ul>
-                    <li><PiHeartStraight /></li>
-                    <li><PiArrowsCounterClockwise /></li>
-                    <li><PiEye /></li>
-                </ul>
             </div>
             <div className={styles._bottom}>
                 <label>Apple</label>
@@ -54,7 +46,7 @@ const Product: FC<IProduct> = ({
                     theme={theme}
                     width={'100%'}
                     height={40}
-                    textSize={screenWidth >= 650 ? 15 : 13.5}
+                    textSize={14.5}
                     text='Thêm Giỏ Hàng'
                     icon={useMemo(() => <PiHandbag />, [])}
                     iconSize={22}

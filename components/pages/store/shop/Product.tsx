@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import styles from '@/components/pages/store/shop/product.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from 'react-i18next'
@@ -35,13 +35,17 @@ const Product: FC<IProduct> = ({
     const { currency } = useAppSelector(state => state.currency) // VND, USD, CNY
     const { t } = useTranslation()
 
-    const formatCurrentPrice = new Intl.NumberFormat(
-        currency === 'VND' ? 'vi-VN' : currency === 'USD' ? 'en-US' : 'zh-CN', 
+    const formatCurrentPrice = currency === 'VND' 
+    ? currentPrice.toLocaleString('vi-VN').replace('.000', 'K') 
+    : new Intl.NumberFormat(
+        currency === 'USD' ? 'en-US' : 'zh-CN', 
         { style: 'currency', currency: currency }
     ).format(currentPrice)
 
-    const formatOriginalPrice = new Intl.NumberFormat(
-        currency === 'VND' ? 'vi-VN' : currency === 'USD' ? 'en-US' : 'zh-CN', 
+    const formatOriginalPrice = currency === 'VND' 
+    ? currentPrice.toLocaleString('vi-VN').replace('000', 'K') 
+    : new Intl.NumberFormat(
+        currency === 'USD' ? 'en-US' : 'zh-CN', 
         { style: 'currency', currency: currency }
     ).format(originalPrice)
 

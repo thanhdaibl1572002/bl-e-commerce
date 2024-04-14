@@ -6,49 +6,61 @@ import Image from 'next/image'
 import { IoStarSharp } from 'react-icons/io5'
 import Link from 'next/link'
 import ThemeButton from '@/components/themes/ThemeButton'
-import { PiArrowsCounterClockwise, PiArrowsCounterClockwiseLight, PiEye, PiEyeLight, PiHandbag, PiHeartStraight, PiHeartStraightLight } from 'react-icons/pi'
-import Button from '@/components/forms/Button'
-import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
-import useMediaScreen from '@/hooks/useMediaScreen'
+import { PiHandbag } from 'react-icons/pi'
 
 interface IProduct {
-
+    imageSrc: string
+    discountPercentage: number
+    brand: string
+    name: string
+    rating: number
+    ratingCount: number
+    currentPrice: number
+    originalPrice: number
+    features: string[]
 }
 
 const Product: FC<IProduct> = ({
-
+    imageSrc,
+    discountPercentage,
+    brand,
+    name,
+    rating,
+    ratingCount,
+    currentPrice,
+    originalPrice,
+    features,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
     const { t } = useTranslation()
     return (
         <Link href={'#'} className={styles[`_container__${theme}`]}>
             <div className={styles._top}>
-                <Image src={'/images/product-1.png'} alt='' width={180} height={180} />
-                <span>-20%</span>
+                <Image src={imageSrc} alt='' width={180} height={180} />
+                <span>-{discountPercentage}%</span>
             </div>
             <div className={styles._bottom}>
-                <label>Apple</label>
-                <h3>2022 Apple iMac with Retina 5K Display</h3>
+                <label>{brand}</label>
+                <h3>{name}</h3>
                 <ul>
-                    <li><IoStarSharp /></li>
-                    <li><IoStarSharp /></li>
-                    <li><IoStarSharp /></li>
-                    <li><IoStarSharp /></li>
-                    <li><IoStarSharp /></li>
-                    <li>(100)</li>
+                    {Array.from({ length: rating }, (_, index) => (
+                        <li key={index}><IoStarSharp /></li>
+                    ))}
+                    <li>({ratingCount})</li>
                 </ul>
-                <strong>19.900.000đ <span>21.900.000đ</span></strong>
+                <strong>{currentPrice}đ <span>{originalPrice}đ</span></strong>
                 <ol>
-                    <li>27-inch (diagonal) Retina 5K display</li>
-                    <li>{'AMD Radeon Pro 5300 graphics'.slice(0, 20)}</li>
+                    {features && features.length > 0 && features.map((feature, index) => (
+                        <li key={index}>{feature}</li>
+                    ))}
                 </ol>
                 <ThemeButton
                     theme={theme}
                     width={'100%'}
                     height={40}
                     textSize={14.5}
-                    text='Thêm Giỏ Hàng'
-                    icon={useMemo(() => <PiHandbag />, [])}
+                    text={'Thêm Giỏ Hàng'}
+                    icon={<PiHandbag />}
                     iconSize={22}
                     animateDuration={800}
                 />

@@ -10,7 +10,7 @@ import { PiHandbag } from 'react-icons/pi'
 
 interface IProduct {
     imageSrc: string
-    discountPercentage: number
+    discountPercentage?: number
     brand: string
     name: string
     rating: number
@@ -32,12 +32,24 @@ const Product: FC<IProduct> = ({
     features,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
+    const { currency } = useAppSelector(state => state.currency) // VND, USD, CNY
     const { t } = useTranslation()
+
+    const formatCurrentPrice = new Intl.NumberFormat(
+        currency === 'VND' ? 'vi-VN' : currency === 'USD' ? 'en-US' : 'zh-CN', 
+        { style: 'currency', currency: currency }
+    ).format(currentPrice)
+
+    const formatOriginalPrice = new Intl.NumberFormat(
+        currency === 'VND' ? 'vi-VN' : currency === 'USD' ? 'en-US' : 'zh-CN', 
+        { style: 'currency', currency: currency }
+    ).format(originalPrice)
+
     return (
         <Link href={'#'} className={styles[`_container__${theme}`]}>
             <div className={styles._top}>
                 <Image src={imageSrc} alt='' width={180} height={180} />
-                <span>-{discountPercentage}%</span>
+                {discountPercentage && <span>-{discountPercentage}%</span>}
             </div>
             <div className={styles._bottom}>
                 <label>{brand}</label>
@@ -48,7 +60,7 @@ const Product: FC<IProduct> = ({
                     ))}
                     <li>({ratingCount})</li>
                 </ul>
-                <strong>{currentPrice}đ <span>{originalPrice}đ</span></strong>
+                <strong>{formatCurrentPrice}<span>{formatOriginalPrice}</span></strong>
                 <ol>
                     {features && features.length > 0 && features.map((feature, index) => (
                         <li key={index}>{feature}</li>

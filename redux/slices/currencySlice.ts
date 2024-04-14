@@ -1,13 +1,19 @@
 import { createSlice, PayloadAction } from '@/redux/index'
 
-export type Currency = 'VND' | 'USD' | 'CNY'
+export interface Currency {
+    locales: string
+    code: string
+}
 
 interface CurrencyState {
     currency: Currency
 }
 
 const initialState: CurrencyState = {
-    currency: 'VND'
+    currency: {
+        locales: 'vi-VN',
+        code: 'VND',
+    }
 }
 
 const currencySlice = createSlice({

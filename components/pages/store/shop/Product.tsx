@@ -32,22 +32,12 @@ const Product: FC<IProduct> = ({
     features,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
-    const { currency } = useAppSelector(state => state.currency) // VND, USD, CNY
+    const { currency } = useAppSelector(state => state.currency)
     const { t } = useTranslation()
 
-    const formatCurrentPrice = currency === 'VND' 
-    ? currentPrice.toLocaleString('vi-VN').replace('.000', 'K') 
-    : new Intl.NumberFormat(
-        currency === 'USD' ? 'en-US' : 'zh-CN', 
-        { style: 'currency', currency: currency }
-    ).format(currentPrice)
+    const formatCurrentPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(currentPrice)
 
-    const formatOriginalPrice = currency === 'VND' 
-    ? currentPrice.toLocaleString('vi-VN').replace('000', 'K') 
-    : new Intl.NumberFormat(
-        currency === 'USD' ? 'en-US' : 'zh-CN', 
-        { style: 'currency', currency: currency }
-    ).format(originalPrice)
+    const formatOriginalPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(originalPrice)
 
     return (
         <Link href={'#'} className={styles[`_container__${theme}`]}>

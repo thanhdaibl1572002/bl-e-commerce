@@ -7,6 +7,29 @@
         height: fit-content
         background: get-color-level($theme-color, 3)
         padding: 50px
+        row-gap: 50px
+        flex-direction: column
 
         @media ( max-width: 650px )
             padding: 50px 10px
+
+        ._top, ._bottom
+            flex-direction: column
+            row-gap: 30px
+            
+            h2
+                font-size: 20px
+                font-weight: 500
+                text-transform: uppercase
+
+        ._bottom
+            column-gap: 20px
+
+            ._content
+                width: 100%
+
+                // ._content__left
+                //     width: 300px
+
+                ._content__right
+                    width: 100%

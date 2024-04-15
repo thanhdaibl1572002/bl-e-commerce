@@ -16,9 +16,9 @@ const RootLayout: FC<IRootLayoutProps> = ({ children }) => {
       <body>
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
-            <Header />
+            {/* <Header /> */}
               {children}
-            <Footer />
+            {/* <Footer /> */}
           </Provider>
         </I18nextProvider>
       </body>

@@ -55,11 +55,11 @@ const Shop: FC<IShopProps> = ({
 
   return (
     <main className={styles[`_container__${theme}`]}>
-      <div className={styles._top}>
+      <section className={styles._top}>
         <h2>Danh mục</h2>
         <ProductCategory categories={sampleCategories} />
-      </div>
-      <div className={styles._bottom}>
+      </section>
+      <section className={styles._bottom}>
         <h2>Sản phẩm</h2>
         <div className={styles._content}>
           <div className={styles._content__left}>
@@ -70,7 +70,7 @@ const Shop: FC<IShopProps> = ({
             <ProductGrid />
           </div>
         </div>
-      </div>
+      </section>
     </main>
   )
 }

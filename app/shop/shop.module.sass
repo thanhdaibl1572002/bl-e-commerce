@@ -29,6 +29,18 @@
 
                 ._content__left
                     width: 300px
+                    flex-direction: column
+                    @media ( max-width: 1000px )
+                        background: $white-color
+                        position: fixed
+                        top: 0
+                        left: 0
+                        width: 100vw
+                        height: 100vh
+                        z-index: 1000
+                        overflow-y: scroll
 
                 ._content__right
                     width: calc( 100% - 320px )
+                    @media ( max-width: 1000px )
+                        width: 100%

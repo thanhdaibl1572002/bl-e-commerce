@@ -75,8 +75,8 @@ const FilterCheck: FC<IFilterCheckProps> = memo(({
             <h4>{title}</h4>
             <ul>
                 {options && options.length > 0 && options.map((option, index) => (
-                    <li
-                        key={index}
+                    <li 
+                        key={index} 
                         onClick={() => handleSelect(option.value)}
                         className={selectedValues.includes(option.value) ? styles._active : ''}
                     >
@@ -102,42 +102,40 @@ const ProductFilter: FC<IProductFilter> = ({
     const { t } = useTranslation()
     return (
         <div className={styles[`_container__${theme}`]}>
-            <div className={styles._content}>
-                <FilterImage
-                    title={'Nhu cầu'}
-                    options={useMemo(() => [
-                        { src: '/images/filter-1.jpeg', label: 'Chơi game', value: 'game' },
-                        { src: '/images/filter-2.jpeg', label: 'Chụp ảnh', value: 'camera' },
-                        { src: '/images/filter-3.jpeg', label: 'Pin khủng', value: 'battery' },
-                        { src: '/images/filter-4.jpeg', label: 'Xem phim', value: 'screen' },
-                    ], [])}
-                    onChange={values => console.log(values)}
-                />
-                <FilterCheck
-                    title={'Bộ nhớ RAM'}
-                    options={useMemo(() => [
-                        { label: '2 GB', value: '2' },
-                        { label: '4 GB', value: '4' },
-                        { label: '6 GB', value: '6' },
-                        { label: '8 GB', value: '8' },
-                        { label: '12 GB', value: '12' },
-                        { label: '16 GB', value: '16' },
-                    ], [])}
-                    onChange={values => console.log(values)}
-                />
-                <FilterCheck
-                    title={'Bộ nhớ ROM'}
-                    options={useMemo(() => [
-                        { label: '16 GB', value: '16' },
-                        { label: '32 GB', value: '32' },
-                        { label: '64 GB', value: '64' },
-                        { label: '128 GB', value: '128' },
-                        { label: '256 GB', value: '256' },
-                        { label: '512 GB', value: '512' },
-                    ], [])}
-                    onChange={values => console.log(values)}
-                />
-            </div>
+            <FilterImage 
+                title={'Nhu cầu'}
+                options={useMemo(() => [
+                    { src: '/images/filter-1.jpeg', label: 'Chơi game', value: 'game' },
+                    { src: '/images/filter-2.jpeg', label: 'Chụp ảnh', value: 'camera' },
+                    { src: '/images/filter-3.jpeg', label: 'Pin khủng', value: 'battery' },
+                    { src: '/images/filter-4.jpeg', label: 'Xem phim', value: 'screen' },
+                ], [])}   
+                onChange={values => console.log(values)}       
+            />
+            <FilterCheck
+                title={'Bộ nhớ RAM'}
+                options={useMemo(() => [
+                    { label: '2 GB', value: '2' },
+                    { label: '4 GB', value: '4' },
+                    { label: '6 GB', value: '6' },
+                    { label: '8 GB', value: '8' },
+                    { label: '12 GB', value: '12' },
+                    { label: '16 GB', value: '16' },
+                ], [])}   
+                onChange={values => console.log(values)}     
+            />
+            <FilterCheck
+                title={'Bộ nhớ ROM'}
+                options={useMemo(() => [
+                    { label: '16 GB', value: '16' },
+                    { label: '32 GB', value: '32' },
+                    { label: '64 GB', value: '64' },
+                    { label: '128 GB', value: '128' },
+                    { label: '256 GB', value: '256' },
+                    { label: '512 GB', value: '512' },
+                ], [])}   
+                onChange={values => console.log(values)}     
+            />
         </div>
     )
 }

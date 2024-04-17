@@ -10,14 +10,16 @@
         padding: 20px
         border-radius: 10px
         display: grid
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
         gap: 30px
-        position: fixed
-        top: 0
-        left: 0
-        width: 100%
-        height: 100%
-        z-index: 1000
+
+        @media ( max-width: 1000px )
+            position: fixed
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            z-index: 1000
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))
 
         h4
             font-size: 17px
@@ -38,11 +40,16 @@
                     position: relative
                     border-radius: 7px
                     overflow: hidden
-
+                    @media ( max-width: 650px )
+                        width: calc( (100% / 3) - 10px )
+                        
                     img
                         
                         width: 121px
                         height: 121px
+                        @media ( max-width: 650px )
+                            width: 100%
+                            height: fit-content
 
                     span, ._active
                         position: absolute

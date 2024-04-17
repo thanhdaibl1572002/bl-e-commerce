@@ -4,6 +4,7 @@
 @each $name, $theme-color in $theme-colors
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
     ._container__#{$name}
+        width: 100%
         height: fit-content
         background: $white-color
         border: 1px solid get-color-level($theme-color, 5)
@@ -11,9 +12,9 @@
         border-radius: 10px
         display: grid
         gap: 30px
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
         @media ( max-width: 1000px )
             border: none
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
         @media ( max-width: 350px )
             grid-template-columns: repeat(auto-fit, minmax(100%, 1fr))
             padding: 10px
@@ -26,7 +27,6 @@
         ._filter__image
             flex-direction: column
             row-gap: 20px            
-
             ul
                 width: 100%
                 flex-wrap: wrap
@@ -84,8 +84,8 @@
                     position: relative
                     overflow: hidden
                     font-size: 13.5px
-                    padding: 8px 15px
-                    border-radius: 3px
+                    padding: 8px 16px
+                    border-radius: 30px
                     color: $black-color
                     background: $white-color
                     box-shadow: 0 0 1px 0 get-color-level($theme-color, 40)

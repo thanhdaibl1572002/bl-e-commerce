@@ -91,6 +91,26 @@ FilterCheck.displayName = 'FilterCheck'
 
 // =================================================================================================================
 
+export interface IFilterRangeProps {
+    title: string
+    max: number,
+    min: number,
+    onChange: (max: number, min: number) => void
+}
+const FilterRange: FC<IFilterRangeProps> = memo(({
+    title,
+    max,
+    min,
+    onChange,
+}) => {
+    return (
+        <div className={styles._filter__check}>
+            <h4>{title}</h4>
+        </div>
+    )
+})
+FilterRange.displayName = 'FilterRange'
+
 interface IProductFilter {
 
 }
@@ -133,6 +153,35 @@ const ProductFilter: FC<IProductFilter> = ({
                     { label: '128 GB', value: '128' },
                     { label: '256 GB', value: '256' },
                     { label: '512 GB', value: '512' },
+                ], [])}   
+                onChange={values => console.log(values)}     
+            />
+            <FilterCheck
+                title={'Hãng'}
+                options={useMemo(() => [
+                    { label: 'Apple', value: 'Apple' },
+                    { label: 'Samsung', value: 'Samsung' },
+                    { label: 'Xiaomi', value: 'Xiaomi' },
+                    { label: 'Oppo', value: 'Oppo' },
+                    { label: 'Vivo', value: 'Vivo' },
+                ], [])}   
+                onChange={values => console.log(values)}     
+            />
+            {/* <FilterRange 
+                title={'Giá tiền'}
+                min={0}
+                max={100}
+                onChange={(max, min) => console.log(max, min)}
+            /> */}
+            <FilterCheck
+                title={'Tiêu chí khác'}
+                options={useMemo(() => [
+                    { label: 'Giảm giá', value: 'Giảm giá' },
+                    { label: 'Nổi bật', value: 'Nổi bật' },
+                    { label: 'Hỗ trợ 5G', value: 'Hỗ trợ 5G' },
+                    { label: 'Kháng nước', value: 'Kháng nước' },
+                    { label: 'Sạc nhanh', value: 'Sạc nhanh' },
+                    { label: 'Live stream', value: 'Live stream' },
                 ], [])}   
                 onChange={values => console.log(values)}     
             />

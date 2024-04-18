@@ -27,6 +27,7 @@
         ._buttons
             justify-content: space-between
             align-items: center
+            grid-column: 1 / -1
 
         ._filter__image
             flex-direction: column
@@ -39,7 +40,7 @@
                 li
                     cursor: pointer
                     position: relative
-                    border-radius: 7px
+                    border-radius: 5px
                     overflow: hidden
                     @media ( max-width: 650px )
                         width: calc( (100% / 3) - 10px )
@@ -57,12 +58,12 @@
 
                     span, ._active
                         position: absolute
-                        width: 100%
+                        width: calc( 100% - 6px )
                         height: 27px
-                        bottom: 0
-                        left: 0
+                        bottom: 3px
+                        left: 3px
                         background: transparent
-                        font-size: 13.5px
+                        font-size: 13px
                         font-weight: 400
                         text-transform: capitalize
                         justify-content: center
@@ -70,6 +71,7 @@
                         color: $white-color
                         backdrop-filter: blur(2.5px)
                         transition: 0.2s
+                        border-radius: 5px
 
                     ._active
                         background: $theme-color

@@ -18,7 +18,7 @@ const sampleCategories = [
   {
     link: '#',
     imageSrc: '/images/category-2.jpeg',
-    title: 'Máy tính xách tay',
+    title: 'Laptop',
   },
   {
     link: '#',
@@ -38,7 +38,7 @@ const sampleCategories = [
   {
     link: '#',
     imageSrc: '/images/category-6.jpeg',
-    title: 'Phụ kiện máy tính',
+    title: 'Phụ kiện Laptop',
   },
 ]
 

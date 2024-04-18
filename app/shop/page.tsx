@@ -7,6 +7,7 @@ import ProductGrid from '@/components/pages/store/shop/ProductGrid'
 import ProductFilter from '@/components/pages/store/shop/ProductFilter'
 import ProductTag from '@/components/pages/store/shop/ProductTag'
 import ProductCategory from '@/components/pages/store/shop/ProductCategory'
+import ProductBrand from '@/components/pages/store/shop/ProductBrand'
 
 const sampleCategories = [
   {
@@ -39,7 +40,54 @@ const sampleCategories = [
     imageSrc: '/images/category-6.jpeg',
     title: 'Phụ kiện máy tính',
   },
-];
+]
+
+const sampleBrands = [
+  {
+    link: '#',
+    imageSrc: '/images/brand-1.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-2.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-3.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-4.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-5.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-6.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-7.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-8.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-9.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-10.png',
+  },
+  {
+    link: '#',
+    imageSrc: '/images/brand-11.png',
+  },
+]
 
 interface IShopProps {
 
@@ -58,14 +106,15 @@ const Shop: FC<IShopProps> = ({
       <section className={styles._top}>
         <h2>Danh mục</h2>
         <ProductCategory categories={sampleCategories} />
+        <h2>Thương hiệu</h2>
+        <ProductBrand brands={sampleBrands} />
       </section>
       <section className={styles._bottom}>
         <h2>Sản phẩm</h2>
         <div className={styles._content}>
-          <div className={styles._content__left}>
+          {/* <div className={styles._content__left}>
             <ProductFilter />
-            <ProductTag />
-          </div>
+          </div> */}
           <div className={styles._content__right}>
             <ProductGrid />
           </div>

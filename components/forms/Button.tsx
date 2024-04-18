@@ -1,9 +1,13 @@
 'use client'
-import { ButtonHTMLAttributes, FC, ReactElement, ReactNode, MouseEvent, useState, useRef, useEffect, useCallback, memo } from 'react'
+import { FC, ReactElement, ReactNode, MouseEvent, useState, useRef, useCallback, memo, CSSProperties } from 'react'
 import styles from '@/components/forms/button.module.sass'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { getColorLevel, whiteColor } from '@/variables/variables'
 import { useRouter } from 'next/navigation'
+
+interface ButtonCssProperties extends CSSProperties {
+    '--animate-duration': string
+}
 
 export interface IButtonProps {
     width?: number | string
@@ -60,39 +64,36 @@ const Button: FC<IButtonProps> = ({
     const buttonRef = useRef<HTMLButtonElement>(null)
     const bubbleRef = useRef<HTMLSpanElement>(null)
 
-    useEffect(() => {
-        if (bubbleRef.current) {
-            bubbleRef.current.style.setProperty('--animate-duration', `${animateDuration}ms`)
-        }
-    }, [animateDuration, bubbles])
-
     const handleClick = useCallback(
         async (event: MouseEvent<HTMLButtonElement>): Promise<void> => {
             const rect = event.currentTarget.getBoundingClientRect()
             const x: number = event.clientX - rect.left
             const y: number = event.clientY - rect.top
             setBubbles([...bubbles, { x, y }])
-            setTimeout(() => setBubbles(bubbles.slice(1)),animateDuration)
+            setTimeout(() => setBubbles(bubbles.slice(1)), animateDuration)
             onClick && onClick(event)
             link && router.push(link)
         },
-        [onClick, bubbles,animateDuration]
+        [bubbles, animateDuration, onClick, link, router]
     )
+
+    const buttonStyles: ButtonCssProperties = {
+        width: width,
+        height: height,
+        padding: padding,
+        gap: gap,
+        border: border,
+        borderRadius: borderRadius,
+        background: background,
+        boxShadow: boxShadow,
+        flexDirection: iconPosition === 'left' ? 'row' : 'row-reverse',
+        '--animate-duration': `${animateDuration}ms`
+    }
 
     return (
         <button
             className={styles._container}
-            style={{
-                width: width,
-                height: height,
-                padding: padding,
-                gap: gap,
-                border: border,
-                borderRadius: borderRadius,
-                background: background,
-                boxShadow: boxShadow,
-                flexDirection: iconPosition === 'left' ? 'row' : 'row-reverse',
-            }}
+            style={buttonStyles}
             onClick={handleClick}
             ref={buttonRef}
         >

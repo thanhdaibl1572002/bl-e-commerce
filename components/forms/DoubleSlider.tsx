@@ -61,8 +61,8 @@ const DoubleSlider: FC<DoubleSliderProps> = ({
   labelTextWeight,
   labelBorder,
   labelBorderRadius = 3,
-  currencyLocales = 'en-US',
-  currencyCode = 'USD',
+  currencyLocales,
+  currencyCode,
   onChange
 }) => {
   const [leftValue, setLeftValue] = useState<number>(values[0])

@@ -3,8 +3,11 @@ import { FC, memo, useMemo, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from 'react-i18next'
-import { getColorLevel, themeColors, themeGradientColors } from '@/variables/variables'
+import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
 import DoubleSlider from '@/components/forms/DoubleSlider'
+import ThemeButton from '@/components/themes/ThemeButton'
+import { PiArrowClockwise, PiArrowClockwiseLight, PiFunnel, PiHandbag } from 'react-icons/pi'
+import Button from '@/components/forms/Button'
 
 export interface IFilterImageProps {
     title: string
@@ -189,7 +192,7 @@ const ProductFilter: FC<IProductFilter> = ({
                 title={'Giá tiền'}
                 min={0}
                 max={100000}
-                values={[10000, 90000]}
+                values={[0, 100000]}
                 onChange={values => console.log(values)}
             />
             <FilterCheck
@@ -204,6 +207,32 @@ const ProductFilter: FC<IProductFilter> = ({
                 ], [])}   
                 onChange={values => console.log(values)}     
             />
+            <div className={styles._buttons}>
+                <Button
+                    width={70}
+                    height={40}
+                    textSize={14.5}
+                    text={'Xóa'}
+                    textColor={themeColors[theme]}
+                    icon={<PiArrowClockwise />}
+                    iconSize={21}
+                    iconColor={themeColors[theme]}
+                    background={whiteColor}
+                    animateDuration={500}
+                    border={`1px solid ${getColorLevel(themeColors[theme], 10)}`}
+                    bubbleColor={themeColors[theme]}
+                />
+                <ThemeButton
+                    theme={theme}
+                    width={70}
+                    height={40}
+                    textSize={14.5}
+                    text={'Lọc'}
+                    icon={<PiFunnel />}
+                    iconSize={21}
+                    animateDuration={500}
+                />
+            </div>
         </div>
     )
 }

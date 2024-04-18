@@ -209,10 +209,10 @@ const ProductFilter: FC<IProductFilter> = ({
             />
             <div className={styles._buttons}>
                 <Button
-                    width={70}
+                    width={105}
                     height={40}
                     textSize={14.5}
-                    text={'Xóa'}
+                    text={'Đặt Lại'}
                     textColor={themeColors[theme]}
                     icon={<PiArrowClockwise />}
                     iconSize={21}
@@ -224,10 +224,10 @@ const ProductFilter: FC<IProductFilter> = ({
                 />
                 <ThemeButton
                     theme={theme}
-                    width={70}
+                    width={105}
                     height={40}
                     textSize={14.5}
-                    text={'Lọc'}
+                    text={'Áp Dụng'}
                     icon={<PiFunnel />}
                     iconSize={21}
                     animateDuration={500}

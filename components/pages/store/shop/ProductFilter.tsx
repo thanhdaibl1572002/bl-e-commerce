@@ -3,7 +3,8 @@ import { FC, memo, useMemo, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from 'react-i18next'
-import { themeColors } from '@/variables/variables'
+import { getColorLevel, themeColors, themeGradientColors } from '@/variables/variables'
+import DoubleSlider from '@/components/forms/DoubleSlider'
 
 export interface IFilterImageProps {
     title: string
@@ -95,17 +96,31 @@ export interface IFilterRangeProps {
     title: string
     max: number,
     min: number,
-    onChange: (max: number, min: number) => void
+    values: [number, number]
+    onChange: (values: [number, number]) => void
 }
 const FilterRange: FC<IFilterRangeProps> = memo(({
     title,
     max,
     min,
+    values,
     onChange,
 }) => {
+    const { theme } = useAppSelector(state => state.theme)
     return (
         <div className={styles._filter__check}>
             <h4>{title}</h4>
+            <DoubleSlider 
+                min={min}
+                max={max}
+                values={values}
+                onChange={onChange}
+                labelTextSize={14}
+                thumbBorderRadius={3}
+                thumbBorder={`2px solid ${themeColors[theme]}`}
+                trackBackground={getColorLevel(themeColors[theme], 10)}
+                progressBackground={themeGradientColors[theme]}
+            />
         </div>
     )
 })
@@ -119,7 +134,10 @@ const ProductFilter: FC<IProductFilter> = ({
 
 }) => {
     const { theme } = useAppSelector(state => state.theme)
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
+    
+    // i18n.language
+
     return (
         <div className={styles[`_container__${theme}`]}>
             <FilterImage 
@@ -167,12 +185,13 @@ const ProductFilter: FC<IProductFilter> = ({
                 ], [])}   
                 onChange={values => console.log(values)}     
             />
-            {/* <FilterRange 
+            <FilterRange 
                 title={'Giá tiền'}
                 min={0}
-                max={100}
-                onChange={(max, min) => console.log(max, min)}
-            /> */}
+                max={100000}
+                values={[10000, 90000]}
+                onChange={values => console.log(values)}
+            />
             <FilterCheck
                 title={'Tiêu chí khác'}
                 options={useMemo(() => [

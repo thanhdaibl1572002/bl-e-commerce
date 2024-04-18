@@ -1,3 +1,44 @@
 @import ../../variables/variables
 
 ._container
+    flex-direction: column
+    position: relative
+    row-gap: 20px
+    
+    ._number
+        justify-content: space-between
+        
+        span
+            width: fit-content
+            align-items: center
+
+    ._range
+        position: relative
+        border-radius: 30px
+
+        ._progress
+            height: 100%
+            position: absolute
+
+        input[type="range"]
+            width: 100%
+            background: transparent
+            position: absolute
+            top: 50%
+            left: 0
+            transform: translateY(-50%)
+            appearance: none
+            pointer-events: none
+                
+            &::-webkit-slider-thumb
+                width: var(--thumb-size)
+                height: var(--thumb-size)
+                background: var(--thumb-background)
+                border: var(--thumb-border)
+                border-radius: var(--thumb-border-radius)
+                appearance: none
+                cursor: pointer
+                pointer-events: auto
+
+                
+

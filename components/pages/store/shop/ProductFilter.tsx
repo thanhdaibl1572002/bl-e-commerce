@@ -3,7 +3,7 @@ import { FC, memo, useMemo, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from 'react-i18next'
-import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
+import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, redGradientColor, themeColors, themeGradientColors, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
 import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
 import { PiArrowClockwise, PiArrowClockwiseLight, PiFunnel, PiHandbag } from 'react-icons/pi'
@@ -119,8 +119,8 @@ const FilterRange: FC<IFilterRangeProps> = memo(({
                 values={values}
                 onChange={onChange}
                 labelTextSize={14}
-                thumbSize={22}
-                thumbBorder={`3px solid ${themeColors[theme]}`}
+                thumbSize={25}
+                thumbBorder={`2px solid ${themeColors[theme]}`}
                 trackBackground={getColorLevel(themeColors[theme], 10)}
                 progressBackground={themeGradientColors[theme]}
             />
@@ -128,6 +128,48 @@ const FilterRange: FC<IFilterRangeProps> = memo(({
     )
 })
 FilterRange.displayName = 'FilterRange'
+
+// =================================================================================================================
+
+export interface IFilterColorProps {
+    title: string
+    options: Array<{
+        code: string
+        value: string
+    }>,
+    onChange: (selectedValues: string[]) => void
+}
+const FilterColor: FC<IFilterColorProps> = memo(({
+    title,
+    options,
+    onChange,
+}) => {
+    const [selectedValues, setSelectedValues] = useState<string[]>([])
+    const handleSelect = (value: string): void => {
+        const updatedValues = selectedValues.includes(value)
+            ? selectedValues.filter(val => val !== value)
+            : [...selectedValues, value]
+        setSelectedValues(updatedValues)
+        onChange(updatedValues)
+    }
+    return (
+        <div className={styles._filter__color}>
+            <h4>{title}</h4>
+            <ul>
+                {options && options.length > 0 && options.map((option, index) => (
+                    <li 
+                        key={index} 
+                        onClick={() => handleSelect(option.value)}
+                        className={selectedValues.includes(option.value) ? styles._active : ''}
+                    >
+                        <span style={{ background: option.code }}></span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
+})
+FilterColor.displayName = 'FilterColor'
 
 interface IProductFilter {
 
@@ -194,6 +236,18 @@ const ProductFilter: FC<IProductFilter> = ({
                 max={100000}
                 values={[0, 100000]}
                 onChange={values => console.log(values)}
+            />
+             <FilterColor
+                title={'Màu sắc'}
+                options={useMemo(() => [
+                    { code: redGradientColor, value: 'Giảm giá' },
+                    { code: greenGradientColor, value: 'Nổi bật' },
+                    { code: blueGradientColor, value: 'Hỗ trợ 5G' },
+                    { code: yellowGradientColor, value: 'Kháng nước' },
+                    { code: blackGradientColor, value: 'Sạc nhanh' },
+                    { code: whiteGradientColor, value: 'Live stream' },
+                ], [])}   
+                onChange={values => console.log(values)}     
             />
             <FilterCheck
                 title={'Tiêu chí khác'}

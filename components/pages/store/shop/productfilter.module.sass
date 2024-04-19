@@ -101,3 +101,30 @@
                     color: $white-color
                     background: $theme-gradient-color
                     box-shadow: 0 0 5px 0 get-color-level($theme-color, 30)
+
+        ._filter__color
+            flex-direction: column
+            row-gap: 20px           
+            ul
+                width: 100%
+                flex-wrap: wrap
+                gap: 15px
+
+                li, ._active
+                    cursor: pointer
+                    position: relative
+                    overflow: hidden
+                    width: 35px
+                    height: 35px
+                    border-radius: 50%
+
+                    span
+                        width: 100%
+                        height: 100%
+                        border-radius: 50%
+                        transition: 0.1s
+                        box-shadow: 0 0 1.5px 0 get-color-level($theme-color, 30)
+
+                ._active
+                    padding: 3px
+                    border: 2px dashed $theme-color

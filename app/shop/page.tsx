@@ -48,47 +48,47 @@ const sampleCategories = [
 const sampleBrands = [
   {
     name: 'xiaomi',
-    imageSrc: '/images/brand-1.png',
+    imageSrc: '/images/brand-1-removebg-preview.png',
   },
   {
     name: 'apple',
-    imageSrc: '/images/brand-2.png',
+    imageSrc: '/images/brand-2-removebg-preview.png',
   },
   {
     name: 'samsung',
-    imageSrc: '/images/brand-3.png',
+    imageSrc: '/images/brand-3-removebg-preview.png',
   },
   {
     name: 'vivo',
-    imageSrc: '/images/brand-4.png',
+    imageSrc: '/images/brand-4-removebg-preview.png',
   },
   {
     name: 'oppo',
-    imageSrc: '/images/brand-5.png',
+    imageSrc: '/images/brand-5-removebg-preview.png',
   },
   {
     name: 'asus',
-    imageSrc: '/images/brand-6.png',
+    imageSrc: '/images/brand-6-removebg-preview.png',
   },
   {
     name: 'acer',
-    imageSrc: '/images/brand-7.png',
+    imageSrc: '/images/brand-7-removebg-preview.png',
   },
   {
     name: 'msi',
-    imageSrc: '/images/brand-8.png',
+    imageSrc: '/images/brand-8-removebg-preview.png',
   },
   {
     name: 'dell',
-    imageSrc: '/images/brand-9.png',
+    imageSrc: '/images/brand-9-removebg-preview.png',
   },
   {
     name:'lenovo',
-    imageSrc: '/images/brand-10.png',
+    imageSrc: '/images/brand-10-removebg-preview.png',
   },
   {
     name:'anker',
-    imageSrc: '/images/brand-11.png',
+    imageSrc: '/images/brand-11-removebg-preview.png',
   },
 ]
 

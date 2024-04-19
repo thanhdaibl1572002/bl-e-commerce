@@ -129,7 +129,7 @@ const Shop: FC<IShopProps> = ({
               iconColor={themeColors[theme]}
               background={whiteColor}
               animateDuration={400}
-              border={`1px solid ${getColorLevel(themeColors[theme], 10)}`}
+              boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
               bubbleColor={themeColors[theme]}
               onClick={() => {
                 if (filterRef.current) {
@@ -145,7 +145,7 @@ const Shop: FC<IShopProps> = ({
               iconColor={themeColors[theme]}
               background={whiteColor}
               animateDuration={400}
-              border={`1px solid ${getColorLevel(themeColors[theme], 10)}`}
+              boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
               bubbleColor={themeColors[theme]}
               onClick={() => {
                 if (filterRef.current) {

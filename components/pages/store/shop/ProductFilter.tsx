@@ -274,7 +274,7 @@ const ProductFilter: FC<IProductFilter> = ({
                     iconColor={themeColors[theme]}
                     background={whiteColor}
                     animateDuration={500}
-                    border={`1px solid ${getColorLevel(themeColors[theme], 10)}`}
+                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
                     bubbleColor={themeColors[theme]}
                 />
                 <ThemeButton
@@ -286,6 +286,7 @@ const ProductFilter: FC<IProductFilter> = ({
                     icon={<PiFunnel />}
                     iconSize={21}
                     animateDuration={500}
+                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
                 />
             </div>
         </div>

@@ -4,12 +4,12 @@ import styles from '@/app/shop/shop.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from '@/languages'
 import ProductGrid from '@/components/pages/store/shop/ProductGrid'
-import ProductFilter from '@/components/pages/store/shop/ProductFilter'
+import ProductFilter, { IProductFilterProps } from '@/components/pages/store/shop/ProductFilter'
 import ProductTag from '@/components/pages/store/shop/ProductTag'
 import ProductCategory from '@/components/pages/store/shop/ProductCategory'
 import ProductBrand from '@/components/pages/store/shop/ProductBrand'
 import Button from '@/components/forms/Button'
-import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
+import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, redGradientColor, themeColors, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
 import { PiFunnel } from 'react-icons/pi'
 
 const sampleCategories = [
@@ -92,6 +92,82 @@ const sampleBrands = [
   },
 ]
 
+const sampleFilters: IProductFilterProps['filters'] = [
+  { 
+    type: 'image', 
+    title: 'Nhu Cầu',  
+    name: 'demand',
+    imageOptions: [
+      { src: '/images/filter-1.jpeg', label: 'Chơi game', value: 'game' },
+      { src: '/images/filter-2.jpeg', label: 'Chụp ảnh', value: 'camera' },
+      { src: '/images/filter-3.jpeg', label: 'Pin khủng', value: 'battery' },
+      { src: '/images/filter-4.jpeg', label: 'Xem phim', value: 'screen' },
+    ],
+  },
+  { 
+    type: 'range', 
+    title: 'Giá tiền',  
+    name: 'price',
+    rangeOptions: {
+      min: 0,
+      max: 100000,
+      values: [0, 100000],
+    }
+  },
+  { 
+    type: 'color', 
+    title: 'Màu sắc',  
+    name: 'color',
+    colorOptions: [
+      { code: redGradientColor, value: 'Đỏ' },
+      { code: greenGradientColor, value: 'Xanh lá' },
+      { code: blueGradientColor, value: 'Xanh dương' },
+      { code: yellowGradientColor, value: 'Vàng' },
+      { code: blackGradientColor, value: 'Đen' },
+      { code: whiteGradientColor, value: 'Trắng' },
+    ],
+  },
+  { 
+    type: 'check', 
+    title: 'Bộ nhớ RAM',  
+    name: 'ram',
+    checkOptions:  [
+      { label: '2 GB', value: '2' },
+      { label: '4 GB', value: '4' },
+      { label: '6 GB', value: '6' },
+      { label: '8 GB', value: '8' },
+      { label: '12 GB', value: '12' },
+      { label: '16 GB', value: '16' },
+    ],
+  },
+  { 
+    type: 'check', 
+    title: 'Bộ nhớ ROM',  
+    name: 'rom',
+    checkOptions:  [
+      { label: '16 GB', value: '16' },
+      { label: '32 GB', value: '32' },
+      { label: '64 GB', value: '64' },
+      { label: '128 GB', value: '128' },
+      { label: '256 GB', value: '256' },
+      { label: '512 GB', value: '512' },
+    ],
+  },
+  { 
+    type: 'check', 
+    title: 'Tiêu chí khác',  
+    name: 'other',
+    checkOptions:  [
+      { label: 'Giảm giá', value: 'Giảm giá' },
+      { label: 'Nổi bật', value: 'Nổi bật' },
+      { label: 'Hỗ trợ 5G', value: 'Hỗ trợ 5G' },
+      { label: 'Kháng nước', value: 'Kháng nước' },
+      { label: 'Sạc nhanh', value: 'Sạc nhanh' },
+      { label: 'Live stream', value: 'Live stream' },
+    ],
+  },
+]
+
 interface IShopProps {
 
 }
@@ -120,7 +196,7 @@ const Shop: FC<IShopProps> = ({
         <h2>Sản phẩm</h2>
         <div className={styles._content}>
           <div className={styles._filter} ref={filterRef}>
-            <ProductFilter />
+            <ProductFilter filters={sampleFilters} applyButton='Áp Dụng' resetButton='Đặt Lại'/>
           </div>
           <div className={styles._grid}>
             <ProductGrid />

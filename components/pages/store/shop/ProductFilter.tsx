@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, memo, useMemo, useState } from 'react'
+import { FC, memo, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { useAppSelector } from '@/redux'
-import { useTranslation } from 'react-i18next'
-import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, redGradientColor, themeColors, themeGradientColors, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
+import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
 import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
 import { PiArrowClockwise, PiFunnel } from 'react-icons/pi'
@@ -79,8 +78,8 @@ const FilterCheck: FC<IFilterCheckProps> = memo(({
             <h4>{title}</h4>
             <ul>
                 {options && options.length > 0 && options.map((option, index) => (
-                    <li 
-                        key={index} 
+                    <li
+                        key={index}
                         onClick={() => handleSelect(option.value)}
                         className={selectedValues.includes(option.value) ? styles._active : ''}
                     >
@@ -113,7 +112,7 @@ const FilterRange: FC<IFilterRangeProps> = memo(({
     return (
         <div className={styles._filter__check}>
             <h4>{title}</h4>
-            <DoubleSlider 
+            <DoubleSlider
                 min={min}
                 max={max}
                 values={values}
@@ -158,8 +157,8 @@ const FilterColor: FC<IFilterColorProps> = memo(({
             <h4>{title}</h4>
             <ul>
                 {options && options.length > 0 && options.map((option, index) => (
-                    <li 
-                        key={index} 
+                    <li
+                        key={index}
                         onClick={() => handleSelect(option.value)}
                         className={selectedValues.includes(option.value) ? styles._active : ''}
                     >
@@ -172,123 +171,108 @@ const FilterColor: FC<IFilterColorProps> = memo(({
 })
 FilterColor.displayName = 'FilterColor'
 
-interface IProductFilter {
-
+export interface IProductFilterProps {
+    applyButton?: string
+    resetButton?: string
+    filters: Array<{
+        type: 'image' | 'check' | 'range' | 'color'
+        title: string
+        name: string
+        imageOptions?: IFilterImageProps['options']
+        checkOptions?: IFilterCheckProps['options']
+        colorOptions?: IFilterColorProps['options']
+        rangeOptions?: {
+            max: IFilterRangeProps['max']
+            min: IFilterRangeProps['min']
+            values: IFilterRangeProps['values']
+        }
+    }>
 }
 
-const ProductFilter: FC<IProductFilter> = ({
-
+const ProductFilter: FC<IProductFilterProps> = ({
+    applyButton,
+    resetButton,
+    filters,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
-    const { t, i18n } = useTranslation()
-    
-    // i18n.language
 
     return (
         <div className={styles[`_container__${theme}`]}>
-            <FilterImage 
-                title={'Nhu cầu'}
-                options={useMemo(() => [
-                    { src: '/images/filter-1.jpeg', label: 'Chơi game', value: 'game' },
-                    { src: '/images/filter-2.jpeg', label: 'Chụp ảnh', value: 'camera' },
-                    { src: '/images/filter-3.jpeg', label: 'Pin khủng', value: 'battery' },
-                    { src: '/images/filter-4.jpeg', label: 'Xem phim', value: 'screen' },
-                ], [])}   
-                onChange={values => console.log(values)}       
-            />
-            <FilterCheck
-                title={'Bộ nhớ RAM'}
-                options={useMemo(() => [
-                    { label: '2 GB', value: '2' },
-                    { label: '4 GB', value: '4' },
-                    { label: '6 GB', value: '6' },
-                    { label: '8 GB', value: '8' },
-                    { label: '12 GB', value: '12' },
-                    { label: '16 GB', value: '16' },
-                ], [])}   
-                onChange={values => console.log(values)}     
-            />
-            <FilterCheck
-                title={'Bộ nhớ ROM'}
-                options={useMemo(() => [
-                    { label: '16 GB', value: '16' },
-                    { label: '32 GB', value: '32' },
-                    { label: '64 GB', value: '64' },
-                    { label: '128 GB', value: '128' },
-                    { label: '256 GB', value: '256' },
-                    { label: '512 GB', value: '512' },
-                ], [])}   
-                onChange={values => console.log(values)}     
-            />
-            <FilterCheck
-                title={'Hãng'}
-                options={useMemo(() => [
-                    { label: 'Apple', value: 'Apple' },
-                    { label: 'Samsung', value: 'Samsung' },
-                    { label: 'Xiaomi', value: 'Xiaomi' },
-                    { label: 'Oppo', value: 'Oppo' },
-                    { label: 'Vivo', value: 'Vivo' },
-                ], [])}   
-                onChange={values => console.log(values)}     
-            />
-            <FilterRange 
-                title={'Giá tiền'}
-                min={0}
-                max={100000}
-                values={[0, 100000]}
-                onChange={values => console.log(values)}
-            />
-             <FilterColor
-                title={'Màu sắc'}
-                options={useMemo(() => [
-                    { code: redGradientColor, value: 'Giảm giá' },
-                    { code: greenGradientColor, value: 'Nổi bật' },
-                    { code: blueGradientColor, value: 'Hỗ trợ 5G' },
-                    { code: yellowGradientColor, value: 'Kháng nước' },
-                    { code: blackGradientColor, value: 'Sạc nhanh' },
-                    { code: whiteGradientColor, value: 'Live stream' },
-                ], [])}   
-                onChange={values => console.log(values)}     
-            />
-            <FilterCheck
-                title={'Tiêu chí khác'}
-                options={useMemo(() => [
-                    { label: 'Giảm giá', value: 'Giảm giá' },
-                    { label: 'Nổi bật', value: 'Nổi bật' },
-                    { label: 'Hỗ trợ 5G', value: 'Hỗ trợ 5G' },
-                    { label: 'Kháng nước', value: 'Kháng nước' },
-                    { label: 'Sạc nhanh', value: 'Sạc nhanh' },
-                    { label: 'Live stream', value: 'Live stream' },
-                ], [])}   
-                onChange={values => console.log(values)}     
-            />
-            <div className={styles._buttons}>
-                <Button
-                    width={105}
-                    height={40}
-                    textSize={14.5}
-                    text={'Đặt Lại'}
-                    textColor={themeColors[theme]}
-                    icon={<PiArrowClockwise />}
-                    iconSize={21}
-                    iconColor={themeColors[theme]}
-                    background={whiteColor}
-                    animateDuration={500}
-                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                    bubbleColor={themeColors[theme]}
-                />
-                <ThemeButton
-                    theme={theme}
-                    width={105}
-                    height={40}
-                    textSize={14.5}
-                    text={'Áp Dụng'}
-                    icon={<PiFunnel />}
-                    iconSize={21}
-                    animateDuration={500}
-                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
-                />
-            </div>
+            {filters && filters.length > 0 && filters.map((filter, index) => {
+                switch (filter.type) {
+                    case 'image':
+                        return (
+                            <FilterImage
+                                key={index}
+                                title={filter.title}
+                                options={filter.imageOptions!}
+                                onChange={values => console.log(values)}
+                            />
+                        )
+                    case 'check':
+                        return (
+                            <FilterCheck
+                                key={index}
+                                title={filter.title}
+                                options={filter.checkOptions!}
+                                onChange={values => console.log(values)}
+                            />
+                        )
+                    case 'range':
+                        return (
+                            <FilterRange
+                                key={index}
+                                title={filter.title}
+                                min={filter.rangeOptions!.min}
+                                max={filter.rangeOptions!.max}
+                                values={[filter.rangeOptions!.values[0], filter.rangeOptions!.values[1]]}
+                                onChange={values => console.log(values)}
+                            />
+                        )
+                    case 'color':
+                        return (
+                            <FilterColor
+                                key={index}
+                                title={filter.title}
+                                options={filter.colorOptions!}
+                                onChange={values => console.log(values)}
+                            />
+                        )
+                }
+            })}
+            {(applyButton || resetButton) && (
+                <div className={styles._buttons}>
+                    {resetButton && (
+                        <Button
+                            width={105}
+                            height={40}
+                            textSize={14.5}
+                            text={resetButton}
+                            textColor={themeColors[theme]}
+                            icon={<PiArrowClockwise />}
+                            iconSize={21}
+                            iconColor={themeColors[theme]}
+                            background={whiteColor}
+                            animateDuration={500}
+                            boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                            bubbleColor={themeColors[theme]}
+                        />
+                    )}
+                    {applyButton && (
+                        <ThemeButton
+                            theme={theme}
+                            width={105}
+                            height={40}
+                            textSize={14.5}
+                            text={applyButton}
+                            icon={<PiFunnel />}
+                            iconSize={21}
+                            animateDuration={500}
+                            boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
+                        />
+                    )}
+                </div>
+            )}
         </div>
     )
 }

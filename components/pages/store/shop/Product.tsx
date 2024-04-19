@@ -3,10 +3,12 @@ import styles from '@/components/pages/store/shop/product.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from 'react-i18next'
 import Image from 'next/image'
-import { IoStarSharp } from 'react-icons/io5'
 import Link from 'next/link'
+import { IoStarSharp } from 'react-icons/io5'
 import ThemeButton from '@/components/themes/ThemeButton'
-import { PiHandbag } from 'react-icons/pi'
+import { PiHandbag, PiHeartStraightLight } from 'react-icons/pi'
+import Button from '@/components/forms/Button'
+import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
 
 interface IProduct {
     imageSrc: string
@@ -60,16 +62,32 @@ const Product: FC<IProduct> = ({
                         <li key={index}>{feature}</li>
                     ))}
                 </ol>
-                <ThemeButton
-                    theme={theme}
-                    width={'100%'}
-                    height={40}
-                    textSize={14.5}
-                    text={'Thêm Giỏ Hàng'}
-                    icon={<PiHandbag />}
-                    iconSize={22}
-                    animateDuration={800}
-                />
+                <div className={styles._buttons}>
+                    <ThemeButton
+                        theme={theme}
+                        width={'fit-content'}
+                        height={40}
+                        textSize={14.5}
+                        text={'Giỏ Hàng'}
+                        icon={<PiHandbag />}
+                        iconSize={22}
+                        animateDuration={500}
+                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
+                        onClick={e => e.preventDefault()}
+                    />
+                    <Button
+                        width={40}
+                        height={40}
+                        icon={<PiHeartStraightLight />}
+                        iconSize={24}
+                        iconColor={themeColors[theme]}
+                        background={whiteColor}
+                        animateDuration={300}
+                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                        bubbleColor={themeColors[theme]}
+                        onClick={e => e.preventDefault()}
+                    />
+                </div>
             </div>
         </Link>
     )

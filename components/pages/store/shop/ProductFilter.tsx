@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, redGradientColor, themeColors, themeGradientColors, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
 import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
-import { PiArrowClockwise, PiArrowClockwiseLight, PiFunnel, PiHandbag } from 'react-icons/pi'
+import { PiArrowClockwise, PiFunnel } from 'react-icons/pi'
 import Button from '@/components/forms/Button'
 
 export interface IFilterImageProps {
@@ -39,7 +39,7 @@ const FilterImage: FC<IFilterImageProps> = memo(({
             <ul>
                 {options && options.length > 0 && options.map((option, index) => (
                     <li key={index} onClick={() => handleSelect(option.value)}>
-                        <img src={option.src} alt={option.alt} />
+                        <img loading='lazy' src={option.src} alt={option.alt} />
                         <span className={selectedValues.includes(option.value) ? styles._active : ''}>
                             {option.label}
                         </span>

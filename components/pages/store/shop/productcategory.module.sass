@@ -17,37 +17,34 @@
                 grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
 
                 li 
-                    a 
-                        width: 100%
-                        img
-                            width: 100% !important
-                            height: 100% !important
-                        h4
-                            font-size: 12.5px !important
+                    width: 100%
+                    img
+                        width: 100% !important
+                        height: 100% !important
+                    h4
+                        font-size: 12.5px !important
 
             li
                 justify-content: center
                 align-items: center
-                a
-                    flex-direction: column
-                    align-items: center
-                    row-gap: 10px
-
-                    &:hover
-                        h4
-                            color: $theme-color
-
-                    img
-                        border-radius: 5px
-                        width: 120px
-                        height: 120px
-
+                flex-direction: column
+                row-gap: 10px
+                cursor: pointer
+                &:hover
                     h4
-                        font-size: 14.5px
-                        font-weight: 500
-                        text-transform: capitalize
-                        transition: 0.2s
-                        white-space: nowrap
+                        color: $theme-color
+
+                img
+                    border-radius: 5px
+                    width: 120px
+                    height: 120px
+
+                h4
+                    font-size: 14.5px
+                    font-weight: 500
+                    text-transform: capitalize
+                    transition: 0.2s
+                    white-space: nowrap
 
 
 

@@ -14,32 +14,32 @@ import { PiFunnel } from 'react-icons/pi'
 
 const sampleCategories = [
   {
-    link: '#',
+    name: 'Điện thoại',
     imageSrc: '/images/category-1.jpeg',
     title: 'Điện thoại',
   },
   {
-    link: '#',
+    name: 'Laptop',
     imageSrc: '/images/category-2.jpeg',
     title: 'Laptop',
   },
   {
-    link: '#',
+    name: 'Máy tính bảng',
     imageSrc: '/images/category-3.jpeg',
     title: 'Máy tính bảng',
   },
   {
-    link: '#',
+    name: 'Đồng hồ',
     imageSrc: '/images/category-4.jpeg',
     title: 'Đồng hồ',
   },
   {
-    link: '#',
+    name: 'Phụ kiện điện thoại',
     imageSrc: '/images/category-5.jpeg',
     title: 'Phụ kiện điện thoại',
   },
   {
-    link: '#',
+    name: 'Phụ kiện Laptop',
     imageSrc: '/images/category-6.jpeg',
     title: 'Phụ kiện Laptop',
   },
@@ -47,47 +47,47 @@ const sampleCategories = [
 
 const sampleBrands = [
   {
-    link: '#',
+    name: 'xiaomi',
     imageSrc: '/images/brand-1.png',
   },
   {
-    link: '#',
+    name: 'apple',
     imageSrc: '/images/brand-2.png',
   },
   {
-    link: '#',
+    name: 'samsung',
     imageSrc: '/images/brand-3.png',
   },
   {
-    link: '#',
+    name: 'vivo',
     imageSrc: '/images/brand-4.png',
   },
   {
-    link: '#',
+    name: 'oppo',
     imageSrc: '/images/brand-5.png',
   },
   {
-    link: '#',
+    name: 'asus',
     imageSrc: '/images/brand-6.png',
   },
   {
-    link: '#',
+    name: 'acer',
     imageSrc: '/images/brand-7.png',
   },
   {
-    link: '#',
+    name: 'msi',
     imageSrc: '/images/brand-8.png',
   },
   {
-    link: '#',
+    name: 'dell',
     imageSrc: '/images/brand-9.png',
   },
   {
-    link: '#',
+    name:'lenovo',
     imageSrc: '/images/brand-10.png',
   },
   {
-    link: '#',
+    name:'anker',
     imageSrc: '/images/brand-11.png',
   },
 ]
@@ -118,43 +118,6 @@ const Shop: FC<IShopProps> = ({
       </section>
       <section className={styles._products}>
         <h2>Sản phẩm</h2>
-        <div className={styles._tool}>
-          <div></div>
-          <div>
-            <Button
-              width={38}
-              height={38}
-              icon={<PiFunnel />}
-              iconSize={21}
-              iconColor={themeColors[theme]}
-              background={whiteColor}
-              animateDuration={400}
-              boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-              bubbleColor={themeColors[theme]}
-              onClick={() => {
-                if (filterRef.current) {
-                  filterRef.current.style.left = '0'
-                }
-              }}
-            />
-            <Button
-              width={38}
-              height={38}
-              icon={<PiFunnel />}
-              iconSize={21}
-              iconColor={themeColors[theme]}
-              background={whiteColor}
-              animateDuration={400}
-              boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-              bubbleColor={themeColors[theme]}
-              onClick={() => {
-                if (filterRef.current) {
-                  filterRef.current.style.left = '0'
-                }
-              }}
-            />
-          </div>
-        </div>
         <div className={styles._content}>
           <div className={styles._filter} ref={filterRef}>
             <ProductFilter />

@@ -119,8 +119,9 @@ const FilterRange: FC<IFilterRangeProps> = memo(({
                 values={values}
                 onChange={onChange}
                 labelTextSize={14}
-                thumbSize={25}
+                thumbSize={20}
                 thumbBorder={`2px solid ${themeColors[theme]}`}
+                trackHeight={2}
                 trackBackground={getColorLevel(themeColors[theme], 10)}
                 progressBackground={themeGradientColors[theme]}
             />

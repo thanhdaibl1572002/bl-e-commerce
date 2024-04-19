@@ -1,5 +1,5 @@
 'use client'
-import { FC } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styles from '@/app/shop/shop.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from '@/languages'
@@ -8,6 +8,9 @@ import ProductFilter from '@/components/pages/store/shop/ProductFilter'
 import ProductTag from '@/components/pages/store/shop/ProductTag'
 import ProductCategory from '@/components/pages/store/shop/ProductCategory'
 import ProductBrand from '@/components/pages/store/shop/ProductBrand'
+import Button from '@/components/forms/Button'
+import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
+import { PiFunnel } from 'react-icons/pi'
 
 const sampleCategories = [
   {
@@ -101,21 +104,62 @@ const Shop: FC<IShopProps> = ({
   const { currency } = useAppSelector(state => state.currency)
   const { t } = useTranslation()
 
+  const filterRef = useRef<HTMLDivElement>(null)
+
   return (
     <main className={styles[`_container__${theme}`]}>
-      <section className={styles._top}>
+      <section className={styles._categories}>
         <h2>Danh mục</h2>
         <ProductCategory categories={sampleCategories} />
+      </section>
+      <section className={styles._brands}>
         <h2>Thương hiệu</h2>
         <ProductBrand brands={sampleBrands} />
       </section>
-      <section className={styles._bottom}>
+      <section className={styles._products}>
         <h2>Sản phẩm</h2>
+        <div className={styles._tool}>
+          <div></div>
+          <div>
+            <Button
+              width={38}
+              height={38}
+              icon={<PiFunnel />}
+              iconSize={21}
+              iconColor={themeColors[theme]}
+              background={whiteColor}
+              animateDuration={400}
+              border={`1px solid ${getColorLevel(themeColors[theme], 10)}`}
+              bubbleColor={themeColors[theme]}
+              onClick={() => {
+                if (filterRef.current) {
+                  filterRef.current.style.left = '0'
+                }
+              }}
+            />
+            <Button
+              width={38}
+              height={38}
+              icon={<PiFunnel />}
+              iconSize={21}
+              iconColor={themeColors[theme]}
+              background={whiteColor}
+              animateDuration={400}
+              border={`1px solid ${getColorLevel(themeColors[theme], 10)}`}
+              bubbleColor={themeColors[theme]}
+              onClick={() => {
+                if (filterRef.current) {
+                  filterRef.current.style.left = '0'
+                }
+              }}
+            />
+          </div>
+        </div>
         <div className={styles._content}>
-          {/* <div className={styles._content__left}>
+          <div className={styles._filter} ref={filterRef}>
             <ProductFilter />
-          </div> */}
-          <div className={styles._content__right}>
+          </div>
+          <div className={styles._grid}>
             <ProductGrid />
           </div>
         </div>

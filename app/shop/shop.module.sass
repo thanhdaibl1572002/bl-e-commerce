@@ -13,7 +13,7 @@
         @media ( max-width: 650px )
             padding: 50px 10px
 
-        ._top, ._bottom
+        ._categories, ._brands, ._products
             flex-direction: column
             row-gap: 30px
             
@@ -22,28 +22,36 @@
                 font-weight: 500
                 text-transform: uppercase
 
-        ._bottom
+        ._products
+            ._tool
+                justify-content: space-between
+                padding: 10px
+                background: $white-color
+                border-radius: 8px
+                border: 1px solid get-color-level($theme-color, 5)
+
             ._content
                 width: 100%
                 column-gap: 20px
 
-                ._content__left
+                ._filter
                     width: 300px
                     flex-direction: column
                     background: $white-color
                     border: 1px solid get-color-level($theme-color, 5)
                     border-radius: 10px
                     height: fit-content
+                    transition: 0.2s
                     @media ( max-width: 1000px )
                         position: fixed
                         top: 0
-                        left: 0
+                        left: -100%
                         width: 100vw
                         height: 100vh
                         z-index: 1000
                         overflow-y: scroll
 
-                ._content__right
+                ._grid
                     width: calc( 100% - 320px )
                     @media ( max-width: 1000px )
                         width: 100%

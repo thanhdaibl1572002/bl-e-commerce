@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
-import { useAppSelector } from '@/redux'
+import { Theme } from '@/redux/slices/themeSlice'
 import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
+import { PiArrowClockwise, PiFunnel } from 'react-icons/pi'
 import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
-import { PiArrowClockwise, PiFunnel } from 'react-icons/pi'
 import Button from '@/components/forms/Button'
+import { useAppSelector } from '@/redux'
 
 export interface IFilterImageProps {
     title: string
@@ -43,7 +44,7 @@ const FilterImage: FC<IFilterImageProps> = memo(({
             <ul>
                 {options && options.length > 0 && options.map((option, index) => (
                     <li key={index} onClick={() => handleSelect(option.value)}>
-                        <img loading='lazy' src={option.src} alt={option.alt} />
+                        <img src={option.src} alt={option.alt} />
                         <span className={selectedValues.includes(option.value) ? styles._active : ''}>
                             {option.label}
                         </span>
@@ -112,7 +113,8 @@ export interface IFilterRangeProps {
     onChange: (values: [number, number, string | null, string | null]) => void
     reset?: string,
     currencyLocales?: string
-    currencyCode?: string
+    currencyCode?: string,
+    theme: Theme
 }
 const FilterRange: FC<IFilterRangeProps> = memo(({
     title,
@@ -123,10 +125,8 @@ const FilterRange: FC<IFilterRangeProps> = memo(({
     reset,
     currencyLocales,
     currencyCode,
+    theme,
 }) => {
-
-    const { theme } = useAppSelector(state => state.theme)
-
     return (
         <div className={styles._filter__check}>
             <h4>{title}</h4>
@@ -215,7 +215,7 @@ export interface IProductFilterProps {
             values: IFilterRangeProps['values']
         }
     }>
-    onFilterValues: (values: { [key: string]: string[] | [number, number, string | null, string | null] }) => void
+    onFilter: (values: { [key: string]: string[] | [number, number, string | null, string | null] }) => void
 }
 
 const ProductFilter: FC<IProductFilterProps> = ({
@@ -224,7 +224,7 @@ const ProductFilter: FC<IProductFilterProps> = ({
     currencyLocales,
     currencyCode,
     filters,
-    onFilterValues,
+    onFilter,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
 
@@ -247,6 +247,12 @@ const ProductFilter: FC<IProductFilterProps> = ({
             filterObjectRef.current = {}
         }
     }
+
+    const handleApply = (): void => {
+        if (Object.keys(filterObjectRef.current).length > 0) {
+            onFilter(filterObjectRef.current)
+        }
+    } 
 
     return (
         <div className={styles[`_container__${theme}`]}>
@@ -284,6 +290,7 @@ const ProductFilter: FC<IProductFilterProps> = ({
                                 currencyLocales={currencyLocales}
                                 currencyCode={currencyCode}
                                 reset={reset}
+                                theme={theme}
                             />
                         )
                     case 'color':
@@ -327,7 +334,7 @@ const ProductFilter: FC<IProductFilterProps> = ({
                         iconSize={21}
                         animateDuration={500}
                         boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
-                        onClick={() => onFilterValues(filterObjectRef.current)}
+                        onClick={handleApply}
                     />
                 )}
             </div>

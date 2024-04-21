@@ -110,8 +110,8 @@ const sampleFilters: IProductFilterProps['filters'] = [
     name: 'price',
     rangeOptions: {
       min: 0,
-      max: 100000,
-      values: [0, 100000],
+      max: 1000000000,
+      values: [0, 1000000000],
     }
   },
   { 
@@ -198,7 +198,7 @@ const Shop: FC<IShopProps> = ({
               filters={sampleFilters} 
               applyButton='Áp Dụng' 
               resetButton='Đặt Lại'
-              onFilterValues={values => console.log(values)}
+              onFilter={values => console.log(values)}
               currencyLocales={currency.locales}
               currencyCode={currency.code}
             />

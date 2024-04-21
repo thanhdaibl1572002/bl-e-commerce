@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, memo, useState } from 'react'
+import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { useAppSelector } from '@/redux'
 import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
@@ -15,15 +15,17 @@ export interface IFilterImageProps {
         alt?: string
         label: string
         value: string
-    }>,
+    }>
     onChange: (selectedValues: string[]) => void
+    reset?: string
 }
-
 const FilterImage: FC<IFilterImageProps> = memo(({
     title,
     options,
     onChange,
+    reset,
 }) => {
+
     const [selectedValues, setSelectedValues] = useState<string[]>([])
     const handleSelect = (value: string): void => {
         const updatedValues = selectedValues.includes(value)
@@ -32,6 +34,9 @@ const FilterImage: FC<IFilterImageProps> = memo(({
         setSelectedValues(updatedValues)
         onChange(updatedValues)
     }
+
+    useEffect(() => setSelectedValues([]), [reset])
+
     return (
         <div className={styles._filter__image}>
             <h4>{title}</h4>
@@ -48,9 +53,9 @@ const FilterImage: FC<IFilterImageProps> = memo(({
         </div>
     )
 })
+
 FilterImage.displayName = 'FilterImage'
 
-// =================================================================================================================
 
 export interface IFilterCheckProps {
     title: string
@@ -59,12 +64,15 @@ export interface IFilterCheckProps {
         value: string
     }>,
     onChange: (selectedValues: string[]) => void
+    reset?: string
 }
 const FilterCheck: FC<IFilterCheckProps> = memo(({
     title,
     options,
     onChange,
+    reset,
 }) => {
+
     const [selectedValues, setSelectedValues] = useState<string[]>([])
     const handleSelect = (value: string): void => {
         const updatedValues = selectedValues.includes(value)
@@ -73,6 +81,9 @@ const FilterCheck: FC<IFilterCheckProps> = memo(({
         setSelectedValues(updatedValues)
         onChange(updatedValues)
     }
+
+    useEffect(() => setSelectedValues([]), [reset])
+
     return (
         <div className={styles._filter__check}>
             <h4>{title}</h4>
@@ -92,14 +103,16 @@ const FilterCheck: FC<IFilterCheckProps> = memo(({
 })
 FilterCheck.displayName = 'FilterCheck'
 
-// =================================================================================================================
 
 export interface IFilterRangeProps {
     title: string
     max: number,
     min: number,
     values: [number, number]
-    onChange: (values: [number, number]) => void
+    onChange: (values: [number, number, string | null, string | null]) => void
+    reset?: string,
+    currencyLocales?: string
+    currencyCode?: string
 }
 const FilterRange: FC<IFilterRangeProps> = memo(({
     title,
@@ -107,8 +120,13 @@ const FilterRange: FC<IFilterRangeProps> = memo(({
     min,
     values,
     onChange,
+    reset,
+    currencyLocales,
+    currencyCode,
 }) => {
+
     const { theme } = useAppSelector(state => state.theme)
+
     return (
         <div className={styles._filter__check}>
             <h4>{title}</h4>
@@ -116,20 +134,22 @@ const FilterRange: FC<IFilterRangeProps> = memo(({
                 min={min}
                 max={max}
                 values={values}
-                onChange={onChange}
+                onChange={values => onChange([...values, currencyLocales || null, currencyCode || null])}
                 labelTextSize={14}
                 thumbSize={20}
                 thumbBorder={`2px solid ${themeColors[theme]}`}
                 trackHeight={2}
                 trackBackground={getColorLevel(themeColors[theme], 10)}
                 progressBackground={themeGradientColors[theme]}
+                currencyLocales={currencyLocales}
+                currencyCode={currencyCode}
+                reset={reset}
             />
         </div>
     )
 })
 FilterRange.displayName = 'FilterRange'
 
-// =================================================================================================================
 
 export interface IFilterColorProps {
     title: string
@@ -138,12 +158,15 @@ export interface IFilterColorProps {
         value: string
     }>,
     onChange: (selectedValues: string[]) => void
+    reset?: string
 }
 const FilterColor: FC<IFilterColorProps> = memo(({
     title,
     options,
     onChange,
+    reset,
 }) => {
+
     const [selectedValues, setSelectedValues] = useState<string[]>([])
     const handleSelect = (value: string): void => {
         const updatedValues = selectedValues.includes(value)
@@ -152,6 +175,9 @@ const FilterColor: FC<IFilterColorProps> = memo(({
         setSelectedValues(updatedValues)
         onChange(updatedValues)
     }
+
+    useEffect(() => setSelectedValues([]), [reset])
+
     return (
         <div className={styles._filter__color}>
             <h4>{title}</h4>
@@ -172,8 +198,10 @@ const FilterColor: FC<IFilterColorProps> = memo(({
 FilterColor.displayName = 'FilterColor'
 
 export interface IProductFilterProps {
-    applyButton?: string
+    applyButton: string
     resetButton?: string
+    currencyLocales?: string
+    currencyCode?: string
     filters: Array<{
         type: 'image' | 'check' | 'range' | 'color'
         title: string
@@ -187,14 +215,38 @@ export interface IProductFilterProps {
             values: IFilterRangeProps['values']
         }
     }>
+    onFilterValues: (values: { [key: string]: string[] | [number, number, string | null, string | null] }) => void
 }
 
 const ProductFilter: FC<IProductFilterProps> = ({
     applyButton,
     resetButton,
+    currencyLocales,
+    currencyCode,
     filters,
+    onFilterValues,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
+
+    const filterObjectRef = useRef<{ [key: string]: string[] | [number, number, string | null, string | null] }>({})
+    const [reset, setReset] = useState<string>(new Date().getTime().toString())
+
+    const handleChange = (name: string, values: string[] | [number, number, string | null, string | null]): void => {
+        if (values.length > 0) {
+            const newFilterObject = { ...filterObjectRef.current, [name]: values }
+            filterObjectRef.current = newFilterObject
+        } else {
+            const { [name]: values, ...newFilterObject } = filterObjectRef.current
+            filterObjectRef.current = newFilterObject
+        }
+    }
+
+    const handleReset = (): void => {
+        if (Object.keys(filterObjectRef.current).length > 0) {
+            setReset(new Date().getTime().toString())
+            filterObjectRef.current = {}
+        }
+    }
 
     return (
         <div className={styles[`_container__${theme}`]}>
@@ -206,7 +258,8 @@ const ProductFilter: FC<IProductFilterProps> = ({
                                 key={index}
                                 title={filter.title}
                                 options={filter.imageOptions!}
-                                onChange={values => console.log(values)}
+                                onChange={values => handleChange(filter.name, values)}
+                                reset={reset}
                             />
                         )
                     case 'check':
@@ -215,7 +268,8 @@ const ProductFilter: FC<IProductFilterProps> = ({
                                 key={index}
                                 title={filter.title}
                                 options={filter.checkOptions!}
-                                onChange={values => console.log(values)}
+                                onChange={values => handleChange(filter.name, values)}
+                                reset={reset}
                             />
                         )
                     case 'range':
@@ -226,7 +280,10 @@ const ProductFilter: FC<IProductFilterProps> = ({
                                 min={filter.rangeOptions!.min}
                                 max={filter.rangeOptions!.max}
                                 values={[filter.rangeOptions!.values[0], filter.rangeOptions!.values[1]]}
-                                onChange={values => console.log(values)}
+                                onChange={values => handleChange(filter.name, values)}
+                                currencyLocales={currencyLocales}
+                                currencyCode={currencyCode}
+                                reset={reset}
                             />
                         )
                     case 'color':
@@ -235,46 +292,47 @@ const ProductFilter: FC<IProductFilterProps> = ({
                                 key={index}
                                 title={filter.title}
                                 options={filter.colorOptions!}
-                                onChange={values => console.log(values)}
+                                onChange={values => handleChange(filter.name, values)}
+                                reset={reset}
                             />
                         )
                 }
             })}
-            {(applyButton || resetButton) && (
-                <div className={styles._buttons}>
-                    {resetButton && (
-                        <Button
-                            width={105}
-                            height={40}
-                            textSize={14.5}
-                            text={resetButton}
-                            textColor={themeColors[theme]}
-                            icon={<PiArrowClockwise />}
-                            iconSize={21}
-                            iconColor={themeColors[theme]}
-                            background={whiteColor}
-                            animateDuration={500}
-                            boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                            bubbleColor={themeColors[theme]}
-                        />
-                    )}
-                    {applyButton && (
-                        <ThemeButton
-                            theme={theme}
-                            width={105}
-                            height={40}
-                            textSize={14.5}
-                            text={applyButton}
-                            icon={<PiFunnel />}
-                            iconSize={21}
-                            animateDuration={500}
-                            boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
-                        />
-                    )}
-                </div>
-            )}
+            <div className={styles._buttons}>
+                {resetButton && (
+                    <Button
+                        width={105}
+                        height={40}
+                        textSize={14.5}
+                        text={resetButton}
+                        textColor={themeColors[theme]}
+                        icon={<PiArrowClockwise />}
+                        iconSize={21}
+                        iconColor={themeColors[theme]}
+                        background={whiteColor}
+                        animateDuration={500}
+                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                        bubbleColor={themeColors[theme]}
+                        onClick={handleReset}
+                    />
+                )}
+                {applyButton && (
+                    <ThemeButton
+                        theme={theme}
+                        width={105}
+                        height={40}
+                        textSize={14.5}
+                        text={applyButton}
+                        icon={<PiFunnel />}
+                        iconSize={21}
+                        animateDuration={500}
+                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
+                        onClick={() => onFilterValues(filterObjectRef.current)}
+                    />
+                )}
+            </div>
         </div>
     )
 }
 
-export default ProductFilter
+export default memo(ProductFilter)

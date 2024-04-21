@@ -1,5 +1,5 @@
 'use client'
-import { ChangeEvent, FC, memo, useState, CSSProperties } from 'react'
+import { ChangeEvent, FC, memo, useState, CSSProperties, useEffect } from 'react'
 import styles from '@/components/forms/doubleslider.module.sass'
 import { blueColor, getColorLevel, whiteColor } from '@/variables/variables'
 
@@ -35,6 +35,7 @@ interface DoubleSliderProps {
   labelBorderRadius?: number,
   currencyLocales?: string
   currencyCode?: string
+  reset?: string
   onChange: (values: [number, number]) => void
 }
 
@@ -63,6 +64,7 @@ const DoubleSlider: FC<DoubleSliderProps> = ({
   labelBorderRadius = 3,
   currencyLocales,
   currencyCode,
+  reset,
   onChange
 }) => {
   const [leftValue, setLeftValue] = useState<number>(values[0])
@@ -101,6 +103,11 @@ const DoubleSlider: FC<DoubleSliderProps> = ({
   const formaRightValue = currencyLocales && currencyCode 
   ? new Intl.NumberFormat(currencyLocales, { style: 'currency', currency: currencyCode }).format(rightValue)
   : rightValue
+
+  useEffect(() => {
+    setLeftValue(values[0])
+    setRightValue(values[1])
+  }, [reset, values])
 
   return (
     <div className={styles._container}>

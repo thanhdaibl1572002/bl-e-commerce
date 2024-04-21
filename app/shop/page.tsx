@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useRef } from 'react'
+import { FC, useCallback, useEffect, useMemo, useRef } from 'react'
 import styles from '@/app/shop/shop.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from '@/languages'
@@ -180,8 +180,6 @@ const Shop: FC<IShopProps> = ({
   const { currency } = useAppSelector(state => state.currency)
   const { t } = useTranslation()
 
-  const filterRef = useRef<HTMLDivElement>(null)
-
   return (
     <main className={styles[`_container__${theme}`]}>
       <section className={styles._categories}>
@@ -195,8 +193,15 @@ const Shop: FC<IShopProps> = ({
       <section className={styles._products}>
         <h2>Sản phẩm</h2>
         <div className={styles._content}>
-          <div className={styles._filter} ref={filterRef}>
-            <ProductFilter filters={sampleFilters} applyButton='Áp Dụng' resetButton='Đặt Lại'/>
+          <div className={styles._filter}>
+            <ProductFilter 
+              filters={sampleFilters} 
+              applyButton='Áp Dụng' 
+              resetButton='Đặt Lại'
+              onFilterValues={values => console.log(values)}
+              currencyLocales={currency.locales}
+              currencyCode={currency.code}
+            />
           </div>
           <div className={styles._grid}>
             <ProductGrid />

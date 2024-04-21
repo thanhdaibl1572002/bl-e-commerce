@@ -11,8 +11,10 @@ interface CurrencyState {
 
 const initialState: CurrencyState = {
     currency: {
-        locales: 'vi-VN',
-        code: 'VND',
+        // locales: 'vi-VN',
+        // code: 'VND',
+        locales: 'en-US',
+        code: 'USD',
     }
 }
 

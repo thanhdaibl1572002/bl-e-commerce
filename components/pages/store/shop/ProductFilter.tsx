@@ -44,7 +44,7 @@ const FilterImage: FC<IFilterImageProps> = memo(({
             <ul>
                 {options && options.length > 0 && options.map((option, index) => (
                     <li key={index} onClick={() => handleSelect(option.value)}>
-                        <img src={option.src} alt={option.alt} />
+                        <img loading='lazy' src={option.src} alt={option.alt} />
                         <span className={selectedValues.includes(option.value) ? styles._active : ''}>
                             {option.label}
                         </span>

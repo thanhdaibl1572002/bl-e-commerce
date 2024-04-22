@@ -54,8 +54,22 @@
                         width: 100%
                         justify-content: space-between
                         align-items: center
-                        @media ( max-width: 1000px )
+                        padding: 10px
+                        background: $white-color
+                        border: 1px solid get-color-level($theme-color, 5)
+                        border-radius: 10px
+
+                        ._tool__left
+                            column-gap: 8px
+
+                        ._tool__right
+                            column-gap: 8px
                             
+                            ._open__filter
+                                display: none
+                                @media ( max-width: 1000px )
+                                    display: flex
+
 
 
                     @media ( max-width: 1000px )

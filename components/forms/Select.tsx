@@ -1,7 +1,13 @@
 'use client'
-import { FC, ReactElement, ReactNode, memo, useEffect, useRef, useState } from 'react'
+import { CSSProperties, FC, ReactElement, ReactNode, memo, useEffect, useRef, useState } from 'react'
 import styles from '@/components/forms/select.module.sass'
 import { IoChevronDownOutline, IoGlobeOutline } from 'react-icons/io5'
+
+interface SelectItemCssProperties extends CSSProperties {
+  '--item-hover-background': string
+  '--item-hover-text-color': string
+  '--item-hover-icon-color': string
+}
 
 interface Option {
   label: string
@@ -37,7 +43,7 @@ export interface SelectProps {
   itemIconColor?: string
   itemArrowSize?: number
   itemArrowColor?: string
-  itemHoverColor?: string
+  itemHoverBackground?: string
   itemHoverTextColor?: string
   itemHoverIconColor?: string
   listMaxHeight?: number
@@ -72,6 +78,9 @@ const Select: FC<SelectProps> = ({
   itemTextWeight,
   itemIconSize = 20,
   itemIconColor = 'rgb(39, 142, 255)',
+  itemHoverBackground = 'rgba(39, 142, 255, 0.15)',
+  itemHoverTextColor = 'rgb(39, 142, 255)',
+  itemHoverIconColor = 'rgb(39, 142, 255)',
   listMaxHeight = 210,
   listBackground,
   listBorder = '1px solid rgba(39, 142, 255, 0.15)',
@@ -103,6 +112,18 @@ const Select: FC<SelectProps> = ({
     setSelectedValue(value)
     onChange(value)
     setIsOpen(false)
+  }
+
+  const itemStyles: SelectItemCssProperties = {
+    minHeight: itemHeight,
+    background: itemBackground,
+    padding: padding,
+    fontSize: itemTextSize,
+    fontWeight: itemTextWeight,
+    color: itemTextColor,
+    '--item-hover-background': itemHoverBackground,
+    '--item-hover-text-color': itemHoverTextColor,
+    '--item-hover-icon-color': itemHoverIconColor,
   }
 
   return (
@@ -163,14 +184,7 @@ const Select: FC<SelectProps> = ({
           {options.map(option => (
             <li
               key={option.value}
-              style={{
-                minHeight: itemHeight,
-                background: itemBackground,
-                padding: padding,
-                fontSize: itemTextSize,
-                fontWeight: itemTextWeight,
-                color: itemTextColor,
-              }}
+              style={itemStyles}
               onClick={() => handleSelect(option.value)}
             >
               {option.icon && (

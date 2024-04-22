@@ -10,6 +10,7 @@ interface ButtonCssProperties extends CSSProperties {
 }
 
 export interface IButtonProps {
+    className?: string
     width?: number | string
     height?: number | string
     padding?: number
@@ -34,6 +35,7 @@ export interface IButtonProps {
 }
 
 const Button: FC<IButtonProps> = ({
+    className,
     width,
     height,
     padding = 10,
@@ -92,7 +94,7 @@ const Button: FC<IButtonProps> = ({
 
     return (
         <button
-            className={styles._container}
+            className={className ? styles[`_container`].concat(' ' + className) : styles._container}
             style={buttonStyles}
             onClick={handleClick}
             ref={buttonRef}

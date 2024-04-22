@@ -330,37 +330,33 @@ const ProductFilter: FC<IProductFilterProps> = ({
                 })}
             </div>
             <div className={styles._bottom}>
-                {resetButton && (
-                    <Button
-                        width={105}
-                        height={40}
-                        textSize={14.5}
-                        text={resetButton}
-                        textColor={themeColors[theme]}
-                        icon={<PiArrowClockwise />}
-                        iconSize={21}
-                        iconColor={themeColors[theme]}
-                        background={whiteColor}
-                        animateDuration={500}
-                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                        bubbleColor={themeColors[theme]}
-                        onClick={handleReset}
-                    />
-                )}
-                {applyButton && (
-                    <ThemeButton
-                        theme={theme}
-                        width={105}
-                        height={40}
-                        textSize={14.5}
-                        text={applyButton}
-                        icon={<PiFunnel />}
-                        iconSize={21}
-                        animateDuration={500}
-                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
-                        onClick={handleApply}
-                    />
-                )}
+                <Button
+                    width={105}
+                    height={40}
+                    textSize={14.5}
+                    text={resetButton}
+                    textColor={themeColors[theme]}
+                    icon={<PiArrowClockwise />}
+                    iconSize={21}
+                    iconColor={themeColors[theme]}
+                    background={whiteColor}
+                    animateDuration={500}
+                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                    bubbleColor={themeColors[theme]}
+                    onClick={handleReset}
+                />
+                <ThemeButton
+                    theme={theme}
+                    width={105}
+                    height={40}
+                    textSize={14.5}
+                    text={applyButton}
+                    icon={<PiFunnel />}
+                    iconSize={21}
+                    animateDuration={500}
+                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}
+                    onClick={handleApply}
+                />
             </div>
         </div>
     )

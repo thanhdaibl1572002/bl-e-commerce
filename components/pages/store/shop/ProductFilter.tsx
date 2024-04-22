@@ -264,57 +264,72 @@ const ProductFilter: FC<IProductFilterProps> = ({
 
     return (
         <div className={styles[`_container__${theme}`]} ref={filterRef}>
-            <div className={styles._close} onClick={handleClose}><PiX /></div>
-            {filters && filters.length > 0 && filters.map((filter, index) => {
-                switch (filter.type) {
-                    case 'image':
-                        return (
-                            <FilterImage
-                                key={index}
-                                title={filter.title}
-                                options={filter.imageOptions!}
-                                onChange={values => handleChange(filter.name, values)}
-                                reset={reset}
-                            />
-                        )
-                    case 'check':
-                        return (
-                            <FilterCheck
-                                key={index}
-                                title={filter.title}
-                                options={filter.checkOptions!}
-                                onChange={values => handleChange(filter.name, values)}
-                                reset={reset}
-                            />
-                        )
-                    case 'range':
-                        return (
-                            <FilterRange
-                                key={index}
-                                title={filter.title}
-                                min={filter.rangeOptions!.min}
-                                max={filter.rangeOptions!.max}
-                                values={[filter.rangeOptions!.values[0], filter.rangeOptions!.values[1]]}
-                                onChange={values => handleChange(filter.name, values)}
-                                currencyLocales={currencyLocales}
-                                currencyCode={currencyCode}
-                                reset={reset}
-                                theme={theme}
-                            />
-                        )
-                    case 'color':
-                        return (
-                            <FilterColor
-                                key={index}
-                                title={filter.title}
-                                options={filter.colorOptions!}
-                                onChange={values => handleChange(filter.name, values)}
-                                reset={reset}
-                            />
-                        )
-                }
-            })}
-            <div className={styles._buttons}>
+            <div className={styles._top}>
+                <Button
+                    width={35}
+                    height={35}
+                    icon={<PiX />}
+                    iconSize={22}
+                    iconColor={themeColors[theme]}
+                    background={whiteColor}
+                    animateDuration={300}
+                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                    bubbleColor={themeColors[theme]}
+                    onClick={handleClose}
+                />
+            </div>
+            <div className={styles._center}>
+                {filters && filters.length > 0 && filters.map((filter, index) => {
+                    switch (filter.type) {
+                        case 'image':
+                            return (
+                                <FilterImage
+                                    key={index}
+                                    title={filter.title}
+                                    options={filter.imageOptions!}
+                                    onChange={values => handleChange(filter.name, values)}
+                                    reset={reset}
+                                />
+                            )
+                        case 'check':
+                            return (
+                                <FilterCheck
+                                    key={index}
+                                    title={filter.title}
+                                    options={filter.checkOptions!}
+                                    onChange={values => handleChange(filter.name, values)}
+                                    reset={reset}
+                                />
+                            )
+                        case 'range':
+                            return (
+                                <FilterRange
+                                    key={index}
+                                    title={filter.title}
+                                    min={filter.rangeOptions!.min}
+                                    max={filter.rangeOptions!.max}
+                                    values={[filter.rangeOptions!.values[0], filter.rangeOptions!.values[1]]}
+                                    onChange={values => handleChange(filter.name, values)}
+                                    currencyLocales={currencyLocales}
+                                    currencyCode={currencyCode}
+                                    reset={reset}
+                                    theme={theme}
+                                />
+                            )
+                        case 'color':
+                            return (
+                                <FilterColor
+                                    key={index}
+                                    title={filter.title}
+                                    options={filter.colorOptions!}
+                                    onChange={values => handleChange(filter.name, values)}
+                                    reset={reset}
+                                />
+                            )
+                    }
+                })}
+            </div>
+            <div className={styles._bottom}>
                 {resetButton && (
                     <Button
                         width={105}

@@ -5,18 +5,16 @@
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
     ._container__#{$name}
         width: 300px
-        flex-direction: column
         background: $white-color
+        flex-direction: column
         border: 1px solid get-color-level($theme-color, 5)
         border-radius: 10px
         transition: 0.2s
         height: fit-content
-        padding: 20px
-        display: grid
-        gap: 40px
         position: relative
+
         @media ( max-width: 1000px )
-            position: absolute
+            position: fixed
             top: 0
             left: 0
             width: 100vw
@@ -24,133 +22,133 @@
             z-index: 1000
             border: none
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))
-            padding: 40px 10px
-            overflow-y: scroll
-
-            ._close
-                display: flex !important
+            padding: 0 10px
 
         @media ( max-width: 350px )
             grid-template-columns: repeat(auto-fit, minmax(100%, 1fr))
 
-        ._close
-            position: absolute
-            top: 10px
-            right: 10px
-            font-size: 28px
-            cursor: pointer
-            color: $theme-color
-            display: none
-            
-        h4
-            font-size: 17px
-            font-weight: 500
-            text-transform: uppercase
+        ._top
+            justify-content: flex-end
+            align-items: center
+            padding: 10px 0
 
-        ._buttons
+        ._bottom
             justify-content: space-between
             align-items: center
             grid-column: 1 / -1
-
-        ._filter__image
+            padding: 10px 0
+            
+        ._center
+            width: 100%
+            height: fit-content
             flex-direction: column
-            row-gap: 20px            
-            ul
-                width: 100%
-                flex-wrap: wrap
-                gap: 15px
+            gap: 40px
+            display: grid
+            overflow-y: scroll
+            h4
+                font-size: 17px
+                font-weight: 500
+                text-transform: uppercase
 
-                li
-                    cursor: pointer
-                    position: relative
-                    border-radius: 5px
-                    overflow: hidden
-                    @media ( max-width: 650px )
-                        width: calc( (100% / 3) - 10px )
-                    @media ( max-width: 350px )
-                        width: calc( 50% - 7.5px )
+            ._filter__image
+                flex-direction: column
+                row-gap: 20px            
+                ul
+                    width: 100%
+                    flex-wrap: wrap
+                    gap: 15px
 
-                    img
-                        
-                        width: 121px
-                        height: 121px
+                    li
+                        cursor: pointer
+                        position: relative
+                        border-radius: 5px
+                        overflow: hidden
                         @media ( max-width: 650px )
-                            width: 100%
-                            height: fit-content
-                        
+                            width: calc( (100% / 3) - 10px )
+                        @media ( max-width: 350px )
+                            width: calc( 50% - 7.5px )
 
-                    span, ._active
-                        position: absolute
-                        width: calc( 100% - 6px )
-                        height: 27px
-                        bottom: 3px
-                        left: 3px
-                        background: transparent
-                        font-size: 13px
-                        font-weight: 400
-                        text-transform: capitalize
+                        img
+                            
+                            width: 121px
+                            height: 121px
+                            @media ( max-width: 650px )
+                                width: 100%
+                                height: fit-content
+                            
+
+                        span, ._active
+                            position: absolute
+                            width: calc( 100% - 6px )
+                            height: 27px
+                            bottom: 3px
+                            left: 3px
+                            background: transparent
+                            font-size: 13px
+                            font-weight: 400
+                            text-transform: capitalize
+                            justify-content: center
+                            align-items: center
+                            color: $white-color
+                            backdrop-filter: blur(2.5px)
+                            transition: 0.1s
+                            border-radius: 5px
+
+                        ._active
+                            background: $theme-color
+                            font-weight: 500
+
+            ._filter__check
+                flex-direction: column
+                row-gap: 20px           
+                ul
+                    width: 100%
+                    flex-wrap: wrap
+                    gap: 15px
+
+                    li, ._active
+                        cursor: pointer
+                        position: relative
+                        overflow: hidden
+                        font-size: 13.5px
+                        padding: 9px 16px
+                        border-radius: 30px
+                        color: $black-color
+                        background: $white-color
+                        box-shadow: 0px 1px 1.5px 0 get-color-level($theme-color, 10)
                         justify-content: center
                         align-items: center
-                        color: $white-color
-                        backdrop-filter: blur(2.5px)
+                        column-gap: 5px
                         transition: 0.1s
-                        border-radius: 5px
 
                     ._active
-                        background: $theme-color
-                        font-weight: 500
+                        color: $white-color
+                        background: $theme-gradient-color
+                        box-shadow: 0px 1px 1.5px 0 get-color-level($theme-color, 30)
 
-        ._filter__check
-            flex-direction: column
-            row-gap: 20px           
-            ul
-                width: 100%
-                flex-wrap: wrap
-                gap: 15px
+            ._filter__color
+                flex-direction: column
+                row-gap: 20px           
+                ul
+                    width: 100%
+                    flex-wrap: wrap
+                    gap: 15px
 
-                li, ._active
-                    cursor: pointer
-                    position: relative
-                    overflow: hidden
-                    font-size: 13.5px
-                    padding: 9px 16px
-                    border-radius: 30px
-                    color: $black-color
-                    background: $white-color
-                    box-shadow: 0px 1px 1.5px 0 get-color-level($theme-color, 10)
-                    justify-content: center
-                    align-items: center
-                    column-gap: 5px
-                    transition: 0.1s
-
-                ._active
-                    color: $white-color
-                    background: $theme-gradient-color
-                    box-shadow: 0px 1px 1.5px 0 get-color-level($theme-color, 30)
-
-        ._filter__color
-            flex-direction: column
-            row-gap: 20px           
-            ul
-                width: 100%
-                flex-wrap: wrap
-                gap: 15px
-
-                li, ._active
-                    cursor: pointer
-                    position: relative
-                    overflow: hidden
-                    width: 35px
-                    height: 35px
-                    border-radius: 50%
-                    transition: 0.05s
-
-                    span
-                        width: 100%
-                        height: 100%
+                    li, ._active
+                        cursor: pointer
+                        position: relative
+                        overflow: hidden
+                        width: 35px
+                        height: 35px
                         border-radius: 50%
-                        box-shadow: 0 0 1.5px 0 get-color-level($theme-color, 30)
+                        transition: 0.05s
 
-                ._active
-                    padding: 2px
-                    border: 2px dashed $theme-color
+                        span
+                            width: 100%
+                            height: 100%
+                            border-radius: 50%
+                            box-shadow: 0 0 1.5px 0 get-color-level($theme-color, 30)
+
+                    ._active
+                        padding: 2px
+                        border: 2px dashed $theme-color

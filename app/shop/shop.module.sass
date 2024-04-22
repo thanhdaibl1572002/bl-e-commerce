@@ -39,7 +39,7 @@
                     @media ( max-width: 1000px )
                         position: fixed
                         top: 0
-                        left: 0
+                        left: -100%
                         width: 100vw
                         height: 100vh
                         z-index: 1000
@@ -47,5 +47,16 @@
 
                 ._grid
                     width: calc( 100% - 320px )
+                    flex-direction: column
+                    row-gap: 20px
+
+                    ._tool
+                        width: 100%
+                        justify-content: space-between
+                        align-items: center
+                        @media ( max-width: 1000px )
+                            
+
+
                     @media ( max-width: 1000px )
                         width: 100%

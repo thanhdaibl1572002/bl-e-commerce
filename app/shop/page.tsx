@@ -10,7 +10,7 @@ import ProductCategory from '@/components/pages/store/shop/ProductCategory'
 import ProductBrand from '@/components/pages/store/shop/ProductBrand'
 import Button from '@/components/forms/Button'
 import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, redGradientColor, themeColors, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
-import { PiFunnel } from 'react-icons/pi'
+import { PiFaders } from 'react-icons/pi'
 
 const sampleCategories = [
   {
@@ -83,19 +83,19 @@ const sampleBrands = [
     imageSrc: '/images/brand-9-removebg-preview.png',
   },
   {
-    name:'lenovo',
+    name: 'lenovo',
     imageSrc: '/images/brand-10-removebg-preview.png',
   },
   {
-    name:'anker',
+    name: 'anker',
     imageSrc: '/images/brand-11-removebg-preview.png',
   },
 ]
 
 const sampleFilters: IProductFilterProps['filters'] = [
-  { 
-    type: 'image', 
-    title: 'Nhu Cầu',  
+  {
+    type: 'image',
+    title: 'Nhu Cầu',
     name: 'demand',
     imageOptions: [
       { src: '/images/filter-1.jpeg', label: 'Chơi game', value: 'game' },
@@ -104,9 +104,9 @@ const sampleFilters: IProductFilterProps['filters'] = [
       { src: '/images/filter-4.jpeg', label: 'Xem phim', value: 'screen' },
     ],
   },
-  { 
-    type: 'range', 
-    title: 'Giá tiền',  
+  {
+    type: 'range',
+    title: 'Giá tiền',
     name: 'price',
     rangeOptions: {
       min: 0,
@@ -114,9 +114,9 @@ const sampleFilters: IProductFilterProps['filters'] = [
       values: [0, 1000000000],
     }
   },
-  { 
-    type: 'color', 
-    title: 'Màu sắc',  
+  {
+    type: 'color',
+    title: 'Màu sắc',
     name: 'color',
     colorOptions: [
       { code: redGradientColor, value: 'Đỏ' },
@@ -127,11 +127,11 @@ const sampleFilters: IProductFilterProps['filters'] = [
       { code: whiteGradientColor, value: 'Trắng' },
     ],
   },
-  { 
-    type: 'check', 
-    title: 'Bộ nhớ RAM',  
+  {
+    type: 'check',
+    title: 'Bộ nhớ RAM',
     name: 'ram',
-    checkOptions:  [
+    checkOptions: [
       { label: '2 GB', value: '2' },
       { label: '4 GB', value: '4' },
       { label: '6 GB', value: '6' },
@@ -140,11 +140,11 @@ const sampleFilters: IProductFilterProps['filters'] = [
       { label: '16 GB', value: '16' },
     ],
   },
-  { 
-    type: 'check', 
-    title: 'Bộ nhớ ROM',  
+  {
+    type: 'check',
+    title: 'Bộ nhớ ROM',
     name: 'rom',
-    checkOptions:  [
+    checkOptions: [
       { label: '16 GB', value: '16' },
       { label: '32 GB', value: '32' },
       { label: '64 GB', value: '64' },
@@ -153,11 +153,11 @@ const sampleFilters: IProductFilterProps['filters'] = [
       { label: '512 GB', value: '512' },
     ],
   },
-  { 
-    type: 'check', 
-    title: 'Tiêu chí khác',  
+  {
+    type: 'check',
+    title: 'Tiêu chí khác',
     name: 'other',
-    checkOptions:  [
+    checkOptions: [
       { label: 'Giảm giá', value: 'Giảm giá' },
       { label: 'Nổi bật', value: 'Nổi bật' },
       { label: 'Hỗ trợ 5G', value: 'Hỗ trợ 5G' },
@@ -180,6 +180,16 @@ const Shop: FC<IShopProps> = ({
   const { currency } = useAppSelector(state => state.currency)
   const { t } = useTranslation()
 
+  const filterRef = useRef<HTMLDivElement>(null)
+
+  const handleFilterOpen = (): void => {
+    filterRef.current && (filterRef.current.style.left = '0')
+  }
+
+  const handleFilterClose = (): void => {
+    filterRef.current && (filterRef.current.style.left = '-100%')
+  }
+
   return (
     <main className={styles[`_container__${theme}`]}>
       <section className={styles._categories}>
@@ -193,17 +203,37 @@ const Shop: FC<IShopProps> = ({
       <section className={styles._products}>
         <h2>Sản phẩm</h2>
         <div className={styles._content}>
-          <div className={styles._filter}>
-            <ProductFilter 
-              filters={sampleFilters} 
-              applyButton='Áp Dụng' 
+          <div className={styles._filter} ref={filterRef}>
+            <ProductFilter
+              filters={sampleFilters}
+              applyButton='Áp Dụng'
               resetButton='Đặt Lại'
-              onFilter={values => console.log(values)}
               currencyLocales={currency.locales}
               currencyCode={currency.code}
+              onFilter={values => console.log(values)}
+              onClose={handleFilterClose}
             />
           </div>
           <div className={styles._grid}>
+            <div className={styles._tool}>
+              <div className={styles._tool__left}>
+
+              </div>
+              <div className={styles._tool__right}>
+                <Button
+                  width={40}
+                  height={40}
+                  icon={<PiFaders />}
+                  iconSize={24}
+                  iconColor={themeColors[theme]}
+                  background={whiteColor}
+                  animateDuration={300}
+                  boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                  bubbleColor={themeColors[theme]}
+                  onClick={handleFilterOpen}
+                />
+              </div>
+            </div>
             <ProductGrid />
           </div>
         </div>

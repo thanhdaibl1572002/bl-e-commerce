@@ -3,7 +3,7 @@ import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { Theme } from '@/redux/slices/themeSlice'
 import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
-import { PiArrowClockwise, PiFunnel } from 'react-icons/pi'
+import { PiArrowClockwise, PiFunnel, PiX } from 'react-icons/pi'
 import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
 import Button from '@/components/forms/Button'
@@ -216,6 +216,7 @@ export interface IProductFilterProps {
         }
     }>
     onFilter: (values: { [key: string]: string[] | [number, number, string | null, string | null] }) => void
+    onClose: () => void
 }
 
 const ProductFilter: FC<IProductFilterProps> = ({
@@ -225,6 +226,7 @@ const ProductFilter: FC<IProductFilterProps> = ({
     currencyCode,
     filters,
     onFilter,
+    onClose,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
 
@@ -254,8 +256,11 @@ const ProductFilter: FC<IProductFilterProps> = ({
         }
     } 
 
+    const handleClose = (): void => onClose()
+
     return (
         <div className={styles[`_container__${theme}`]}>
+            <span className={styles._close} onClick={handleClose}><PiX /></span>
             {filters && filters.length > 0 && filters.map((filter, index) => {
                 switch (filter.type) {
                     case 'image':

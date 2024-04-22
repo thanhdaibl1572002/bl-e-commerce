@@ -52,21 +52,40 @@
 
                     ._tool
                         width: 100%
-                        justify-content: space-between
-                        align-items: center
+                        flex-direction: column
+                        row-gap: 20px
 
                         ._tool__left
-                            column-gap: 8px
+                            width: 100%
+                            
 
                         ._tool__right
-                            column-gap: 8px
+                            width: 100%
+                            justify-content: space-between
+                            align-items: center
+                            @media ( max-width: 500px )
+                                flex-direction: column-reverse
+                                row-gap: 20px
+
+                            ._numbers
+                                font-size: 14px
+                                column-gap: 5px
+                                strong
+                                    font-weight: 500
+                                @media ( max-width: 500px )
+                                    width: 100%
+                                    justify-content: flex-end
+
+                            ._actions
+                                column-gap: 8px
+                                @media ( max-width: 500px )
+                                    width: 100%
+                                    justify-content: space-between
                             
-                            ._open__filter
-                                display: none
-                                @media ( max-width: 1000px )
-                                    display: flex
-
-
+                                ._open__filter
+                                    display: none
+                                    @media ( max-width: 1000px )
+                                        display: flex
 
                     @media ( max-width: 1000px )
                         width: 100%

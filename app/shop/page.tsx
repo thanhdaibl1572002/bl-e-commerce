@@ -218,46 +218,49 @@ const Shop: FC<IShopProps> = ({
           <div className={styles._grid}>
             <div className={styles._tool}>
               <div className={styles._tool__left}>
-
+                <ProductTag />
               </div>
               <div className={styles._tool__right}>
-                <Select 
-                  width={190}
-                  height={40}
-                  selectedBackground={whiteColor}
-                  selectedTextSize={13.5}
-                  selectedArrowColor={themeColors[theme]}
-                  selectedBorder={'none'}
-                  selectedBoxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                  listBackground={whiteColor}
-                  listBorder={'none'}
-                  listBoxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                  itemTextSize={13.5}
-                  itemHoverBackground={getColorLevel(themeColors[theme], 8)}
-                  itemHoverTextColor={themeColors[theme]}
-                  itemHoverIconColor={themeColors[theme]}
-                  options={[
-                    { label: 'Mới nhất', value: 'Mới nhất' },
-                    { label: 'Giá thấp đến cao', value: 'Giá thấp đến cao' },
-                    { label: 'Giá cao đến thấp', value: 'Giá cao đến thấp' },
-                    { label: 'Đánh giá thấp đến cao', value: 'Đánh giá thấp đến cao' },
-                    { label: 'Đánh giá cao đến thấp', value: 'Đánh giá cao đến thấp' },
-                  ]}
-                  onChange={value => console.log(value)}
-                />
-                <Button
-                  className={styles._open__filter}
-                  width={40}
-                  height={40}
-                  icon={<PiFaders />}
-                  iconSize={24}
-                  iconColor={themeColors[theme]}
-                  background={whiteColor}
-                  animateDuration={300}
-                  boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                  bubbleColor={themeColors[theme]}
-                  onClick={handleFilterOpen}
-                />
+                <span className={styles._numbers}>Hiển thị <strong>1 - 12 / 32</strong> sản phẩm</span>
+                <div className={styles._actions}>
+                  <Select
+                    width={190}
+                    height={40}
+                    selectedBackground={whiteColor}
+                    selectedTextSize={13.5}
+                    selectedArrowColor={themeColors[theme]}
+                    selectedBorder={'none'}
+                    selectedBoxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                    listBackground={whiteColor}
+                    listBorder={'none'}
+                    listBoxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                    itemTextSize={13.5}
+                    itemHoverBackground={getColorLevel(themeColors[theme], 8)}
+                    itemHoverTextColor={themeColors[theme]}
+                    itemHoverIconColor={themeColors[theme]}
+                    options={[
+                      { label: 'Mới nhất', value: 'Mới nhất' },
+                      { label: 'Giá thấp đến cao', value: 'Giá thấp đến cao' },
+                      { label: 'Giá cao đến thấp', value: 'Giá cao đến thấp' },
+                      { label: 'Đánh giá thấp đến cao', value: 'Đánh giá thấp đến cao' },
+                      { label: 'Đánh giá cao đến thấp', value: 'Đánh giá cao đến thấp' },
+                    ]}
+                    onChange={value => console.log(value)}
+                  />
+                  <Button
+                    className={styles._open__filter}
+                    width={40}
+                    height={40}
+                    icon={<PiFaders />}
+                    iconSize={24}
+                    iconColor={themeColors[theme]}
+                    background={whiteColor}
+                    animateDuration={300}
+                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                    bubbleColor={themeColors[theme]}
+                    onClick={handleFilterOpen}
+                  />
+                </div>
               </div>
             </div>
             <ProductGrid />

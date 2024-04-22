@@ -251,19 +251,33 @@ const ProductFilter: FC<IProductFilterProps> = ({
     }
 
     const handleApply = (): void => {
-        if (Object.keys(filterObjectRef.current).length > 0) {
-            onFilter(filterObjectRef.current)
-        }
+        Object.keys(filterObjectRef.current).length > 0 && onFilter(filterObjectRef.current)
     }
 
     const handleClose = (): void => {
-        if (filterRef.current) {
-            filterRef.current.style.left = '-100%'
-        }
+        filterRef.current && (filterRef.current.style.left = '-100%')
+    }
+
+    const handleOpen = (): void => {
+        filterRef.current && (filterRef.current.style.left = '0')
     }
 
     return (
         <div className={styles[`_container__${theme}`]} ref={filterRef}>
+            <div className={styles._open}>
+                <Button
+                    width={40}
+                    height={40}
+                    icon={<PiFaders />}
+                    iconSize={25}
+                    iconColor={themeColors[theme]}
+                    background={whiteColor}
+                    animateDuration={300}
+                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                    bubbleColor={themeColors[theme]}
+                    onClick={handleOpen}
+                />
+            </div>
             <div className={styles._top}>
                 <Button
                     width={35}

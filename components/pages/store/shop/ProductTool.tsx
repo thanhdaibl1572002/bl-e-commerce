@@ -46,19 +46,7 @@ const ProductTool: FC<IProductTool> = ({
                 </div>
             </div>
             <div className={styles._tool__right}>
-                <div className={styles._filter}>
-                    <Button
-                        width={40}
-                        height={40}
-                        icon={<PiFaders />}
-                        iconSize={24}
-                        iconColor={themeColors[theme]}
-                        background={whiteColor}
-                        animateDuration={300}
-                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                        bubbleColor={themeColors[theme]}
-                    />
-                </div>
+                
             </div>
         </div>
     )

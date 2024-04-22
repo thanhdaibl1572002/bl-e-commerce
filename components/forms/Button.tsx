@@ -1,8 +1,8 @@
 'use client'
-import { FC, ReactElement, ReactNode, MouseEvent, useState, useRef, useCallback, memo, CSSProperties } from 'react'
+import { FC, ReactElement, ReactNode, MouseEvent, useState, useRef, useCallback, memo, CSSProperties, useLayoutEffect } from 'react'
 import styles from '@/components/forms/button.module.sass'
 import { AiOutlineLoading } from 'react-icons/ai'
-import { getColorLevel, whiteColor } from '@/variables/variables'
+import { getColorLevel } from '@/variables/variables'
 import { useRouter } from 'next/navigation'
 
 interface ButtonCssProperties extends CSSProperties {
@@ -10,7 +10,6 @@ interface ButtonCssProperties extends CSSProperties {
 }
 
 export interface IButtonProps {
-    className?: string
     width?: number | string
     height?: number | string
     padding?: number
@@ -35,7 +34,6 @@ export interface IButtonProps {
 }
 
 const Button: FC<IButtonProps> = ({
-    className,
     width,
     height,
     padding = 10,
@@ -89,12 +87,12 @@ const Button: FC<IButtonProps> = ({
         background: background,
         boxShadow: boxShadow,
         flexDirection: iconPosition === 'left' ? 'row' : 'row-reverse',
-        '--animate-duration': `${animateDuration}ms`
+        '--animate-duration': `${animateDuration}ms`,
     }
 
     return (
         <button
-            className={className ? styles[`_container`].concat(' ' + className) : styles._container}
+            className={styles._container}
             style={buttonStyles}
             onClick={handleClick}
             ref={buttonRef}

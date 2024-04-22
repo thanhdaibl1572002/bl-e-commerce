@@ -12,6 +12,7 @@ import Button from '@/components/forms/Button'
 import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, redGradientColor, themeColors, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
 import { PiFaders } from 'react-icons/pi'
 import Select from '@/components/forms/Select'
+import ProductTool from '@/components/pages/store/shop/ProductTool'
 
 const sampleCategories = [
   {
@@ -169,6 +170,20 @@ const sampleFilters: IProductFilterProps['filters'] = [
   },
 ]
 
+
+const sampleTags = [
+  { label: 'Bàn phím', value: 'Bàn phím' },
+  { label: 'Chuột', value: 'Chuột' },
+  { label: 'Màn hình vi tính', value: 'Màn hình vi tính' },
+  { label: 'Tai nghe', value: 'Tai nghe' },
+  { label: 'Loa bluetooth', value: 'Loa bluetooth' },
+  { label: 'Ốp lưng', value: 'Ốp lưng' },
+  { label: 'Camera', value: 'Camera' },
+  { label: 'Gậy sellfie', value: 'Gậy sellfie' },
+  { label: 'Giá đỡ điện thoại', value: 'Giá đỡ điện thoại' },
+  { label: 'Micro', value: 'Micro' },
+]
+
 interface IShopProps {
 
 }
@@ -204,65 +219,20 @@ const Shop: FC<IShopProps> = ({
       <section className={styles._products}>
         <h2>Sản phẩm</h2>
         <div className={styles._content}>
-          <div className={styles._filter} ref={filterRef}>
-            <ProductFilter
-              filters={sampleFilters}
-              applyButton='Áp Dụng'
-              resetButton='Đặt Lại'
-              currencyLocales={currency.locales}
-              currencyCode={currency.code}
-              onFilter={values => console.log(values)}
-              onClose={handleFilterClose}
-            />
-          </div>
+          <ProductFilter
+            filters={sampleFilters}
+            applyButton='Áp Dụng'
+            resetButton='Đặt Lại'
+            currencyLocales={currency.locales}
+            currencyCode={currency.code}
+            onFilter={values => console.log(values)}
+          />
           <div className={styles._grid}>
-            <div className={styles._tool}>
-              <div className={styles._tool__left}>
-                <ProductTag />
-              </div>
-              <div className={styles._tool__right}>
-                <span className={styles._numbers}>Hiển thị <strong>1 - 12 / 32</strong> sản phẩm</span>
-                <div className={styles._actions}>
-                  <Select
-                    width={190}
-                    height={40}
-                    selectedBackground={whiteColor}
-                    selectedTextSize={13.5}
-                    selectedArrowColor={themeColors[theme]}
-                    selectedBorder={'none'}
-                    selectedBoxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                    listBackground={whiteColor}
-                    listBorder={'none'}
-                    listBoxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                    itemTextSize={13.5}
-                    itemHoverBackground={getColorLevel(themeColors[theme], 8)}
-                    itemHoverTextColor={themeColors[theme]}
-                    itemHoverIconColor={themeColors[theme]}
-                    options={[
-                      { label: 'Mới nhất', value: 'Mới nhất' },
-                      { label: 'Giá thấp đến cao', value: 'Giá thấp đến cao' },
-                      { label: 'Giá cao đến thấp', value: 'Giá cao đến thấp' },
-                      { label: 'Đánh giá thấp đến cao', value: 'Đánh giá thấp đến cao' },
-                      { label: 'Đánh giá cao đến thấp', value: 'Đánh giá cao đến thấp' },
-                    ]}
-                    onChange={value => console.log(value)}
-                  />
-                  <Button
-                    className={styles._open__filter}
-                    width={40}
-                    height={40}
-                    icon={<PiFaders />}
-                    iconSize={24}
-                    iconColor={themeColors[theme]}
-                    background={whiteColor}
-                    animateDuration={300}
-                    boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                    bubbleColor={themeColors[theme]}
-                    onClick={handleFilterOpen}
-                  />
-                </div>
-              </div>
-            </div>
+            <ProductTag 
+               options={sampleTags}
+               onChange={value => console.log(value)}
+            />
+            <ProductTool />
             <ProductGrid />
           </div>
         </div>

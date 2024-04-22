@@ -3,7 +3,7 @@ import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { Theme } from '@/redux/slices/themeSlice'
 import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
-import { PiArrowClockwise, PiFunnel, PiX } from 'react-icons/pi'
+import { PiArrowClockwise, PiFaders, PiFunnel, PiX } from 'react-icons/pi'
 import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
 import Button from '@/components/forms/Button'
@@ -216,7 +216,6 @@ export interface IProductFilterProps {
         }
     }>
     onFilter: (values: { [key: string]: string[] | [number, number, string | null, string | null] }) => void
-    onClose: () => void
 }
 
 const ProductFilter: FC<IProductFilterProps> = ({
@@ -226,12 +225,13 @@ const ProductFilter: FC<IProductFilterProps> = ({
     currencyCode,
     filters,
     onFilter,
-    onClose,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
 
     const filterObjectRef = useRef<{ [key: string]: string[] | [number, number, string | null, string | null] }>({})
     const [reset, setReset] = useState<string>(new Date().getTime().toString())
+
+    const filterRef = useRef<HTMLDivElement>(null)
 
     const handleChange = (name: string, values: string[] | [number, number, string | null, string | null]): void => {
         if (values.length > 0) {
@@ -254,13 +254,17 @@ const ProductFilter: FC<IProductFilterProps> = ({
         if (Object.keys(filterObjectRef.current).length > 0) {
             onFilter(filterObjectRef.current)
         }
-    } 
+    }
 
-    const handleClose = (): void => onClose()
+    const handleClose = (): void => {
+        if (filterRef.current) {
+            filterRef.current.style.left = '-100%'
+        }
+    }
 
     return (
-        <div className={styles[`_container__${theme}`]}>
-            <span className={styles._close} onClick={handleClose}><PiX /></span>
+        <div className={styles[`_container__${theme}`]} ref={filterRef}>
+            <div className={styles._close} onClick={handleClose}><PiX /></div>
             {filters && filters.length > 0 && filters.map((filter, index) => {
                 switch (filter.type) {
                     case 'image':

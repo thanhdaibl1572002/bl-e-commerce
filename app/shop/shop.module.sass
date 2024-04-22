@@ -27,64 +27,11 @@
             ._content
                 width: 100%
                 column-gap: 20px
-
-                ._filter
-                    width: 300px
-                    flex-direction: column
-                    background: $white-color
-                    border: 1px solid get-color-level($theme-color, 5)
-                    border-radius: 10px
-                    height: fit-content
-                    transition: 0.2s
-                    @media ( max-width: 1000px )
-                        position: fixed
-                        top: 0
-                        left: -100%
-                        width: 100vw
-                        height: 100vh
-                        z-index: 1000
-                        overflow-y: scroll
-
+                
                 ._grid
                     width: calc( 100% - 320px )
                     flex-direction: column
                     row-gap: 20px
-
-                    ._tool
-                        width: 100%
-                        flex-direction: column
-                        row-gap: 20px
-
-                        ._tool__left
-                            width: 100%
-                            
-
-                        ._tool__right
-                            width: 100%
-                            justify-content: space-between
-                            align-items: center
-                            @media ( max-width: 500px )
-                                flex-direction: column-reverse
-                                row-gap: 20px
-
-                            ._numbers
-                                font-size: 14px
-                                column-gap: 5px
-                                strong
-                                    font-weight: 500
-                                @media ( max-width: 500px )
-                                    width: 100%
-
-                            ._actions
-                                column-gap: 8px
-                                @media ( max-width: 500px )
-                                    width: 100%
-                                    justify-content: space-between
-                            
-                                ._open__filter
-                                    display: none
-                                    @media ( max-width: 1000px )
-                                        display: flex
 
                     @media ( max-width: 1000px )
                         width: 100%

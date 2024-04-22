@@ -1,0 +1,19 @@
+@import ../../../../variables/variables
+
+
+@each $name, $theme-color in $theme-colors
+    $theme-gradient-color: map-get($theme-gradient-colors, $name)
+    ._container__#{$name}
+        width: 100%
+        justify-content: space-between
+        align-items: center
+
+        ._tool__left
+
+        ._tool__right
+
+            ._filter
+                display: none
+                @media ( max-width: 1000px )
+                    display: flex
+                    

@@ -9,7 +9,7 @@
             gap: 10px
             flex-wrap: wrap
 
-            li
+            li, ._active
                 cursor: pointer
                 overflow: hidden
                 font-size: 13.5px
@@ -23,3 +23,8 @@
                 column-gap: 5px
                 transition: 0.1s
                 white-space: nowrap
+
+            ._active
+                color: $white-color
+                background: $theme-gradient-color
+                box-shadow: 0px 1px 1.5px 0 get-color-level($theme-color, 30)

@@ -3,7 +3,7 @@ import { FC, memo, useEffect, useRef, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { Theme } from '@/redux/slices/themeSlice'
 import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
-import { PiArrowClockwise, PiFaders, PiFunnel, PiX } from 'react-icons/pi'
+import { PiArrowClockwise, PiFaders, PiX } from 'react-icons/pi'
 import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
 import Button from '@/components/forms/Button'
@@ -365,7 +365,7 @@ const ProductFilter: FC<IProductFilterProps> = ({
                     height={40}
                     textSize={14.5}
                     text={applyButton}
-                    icon={<PiFunnel />}
+                    icon={<PiFaders />}
                     iconSize={21}
                     animateDuration={500}
                     boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 30)}`}

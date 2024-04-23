@@ -182,6 +182,10 @@ const sampleTags = [
   { label: 'Gậy sellfie', value: 'Gậy sellfie' },
   { label: 'Giá đỡ điện thoại', value: 'Giá đỡ điện thoại' },
   { label: 'Micro', value: 'Micro' },
+  { label: 'USB', value: 'USB' },
+  { label: 'Cáp sạc', value: 'Cáp sạc' },
+  { label: 'Củ sạc', value: 'Củ sạc' },
+  { label: 'Sạc dự phòng', value: 'Sạc dự phòng' },
 ]
 
 interface IShopProps {

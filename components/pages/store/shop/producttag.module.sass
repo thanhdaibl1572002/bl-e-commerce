@@ -4,6 +4,8 @@
 @each $name, $theme-color in $theme-colors
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
     ._container__#{$name}
+        flex-direction: column
+        row-gap: 10px
         
         ul
             gap: 10px
@@ -23,6 +25,8 @@
                 column-gap: 5px
                 transition: 0.1s
                 white-space: nowrap
+                &:last-child
+                    padding: 0
 
             ._active
                 color: $white-color

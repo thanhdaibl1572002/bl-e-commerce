@@ -1,6 +1,9 @@
 import { FC, memo, useState } from 'react'
 import styles from '@/components/pages/store/shop/producttag.module.sass'
 import { useAppSelector } from '@/redux'
+import { IoAddOutline } from 'react-icons/io5'
+import Button from '@/components/forms/Button'
+import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
 
 interface IProductTag {
     options: Array<{
@@ -40,6 +43,23 @@ const ProductTag: FC<IProductTag> = ({
                         {option.label}
                     </li>
                 ))}
+                <li>
+                    <Button
+                        width={'fit-content'}
+                        height={35}
+                        borderRadius={'30px'}
+                        text={'Thêm thẻ mới'}
+                        textSize={14}
+                        textColor={themeColors[theme]}
+                        icon={<IoAddOutline />}
+                        iconSize={20}
+                        iconColor={themeColors[theme]}
+                        background={whiteColor}
+                        animateDuration={400}
+                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
+                        bubbleColor={themeColors[theme]}
+                    />
+                </li>
             </ul>
         </div>
     )

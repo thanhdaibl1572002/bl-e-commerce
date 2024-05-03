@@ -8,6 +8,7 @@ import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
 import Button from '@/components/forms/Button'
 import { useAppSelector } from '@/redux'
+import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
 export interface IFilterImageProps {
     title: string
@@ -215,7 +216,6 @@ export interface IProductFilterProps {
             values: IFilterRangeProps['values']
         }
     }>
-    onFilter: (values: { [key: string]: string[] | [number, number, string | null, string | null] }) => void
 }
 
 const ProductFilter: FC<IProductFilterProps> = ({
@@ -224,11 +224,13 @@ const ProductFilter: FC<IProductFilterProps> = ({
     currencyLocales,
     currencyCode,
     filters,
-    onFilter,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
 
+    const { productDispatch } = useProductContext()
+
     const filterObjectRef = useRef<{ [key: string]: string[] | [number, number, string | null, string | null] }>({})
+
     const [reset, setReset] = useState<string>(new Date().getTime().toString())
 
     const filterRef = useRef<HTMLDivElement>(null)
@@ -247,11 +249,14 @@ const ProductFilter: FC<IProductFilterProps> = ({
         if (Object.keys(filterObjectRef.current).length > 0) {
             setReset(new Date().getTime().toString())
             filterObjectRef.current = {}
+            productDispatch({ type: 'FILTER/RESET' })
         }
     }
 
     const handleApply = (): void => {
-        Object.keys(filterObjectRef.current).length > 0 && onFilter(filterObjectRef.current)
+        if (Object.keys(filterObjectRef.current).length > 0) {
+            productDispatch({ type: 'FILTER/APPLY', payload: filterObjectRef.current })
+        }
     }
 
     const handleClose = (): void => {

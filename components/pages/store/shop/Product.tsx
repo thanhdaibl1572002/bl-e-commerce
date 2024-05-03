@@ -9,6 +9,7 @@ import ThemeButton from '@/components/themes/ThemeButton'
 import { PiHandbag, PiHeartStraightLight } from 'react-icons/pi'
 import Button from '@/components/forms/Button'
 import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
+import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
 interface IProduct {
     imageSrc: string
@@ -20,7 +21,6 @@ interface IProduct {
     currentPrice: number
     originalPrice: number
     features: Array<string>
-    mode?: 'grid' | 'list'
 }
 
 const Product: FC<IProduct> = ({
@@ -33,18 +33,18 @@ const Product: FC<IProduct> = ({
     currentPrice,
     originalPrice,
     features,
-    mode='grid'
 }) => {
     const { theme } = useAppSelector(state => state.theme)
     const { currency } = useAppSelector(state => state.currency)
     const { t } = useTranslation()
+    const { productState } = useProductContext()
 
     const formatCurrentPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(currentPrice)
 
     const formatOriginalPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(originalPrice)
 
     return (
-        <Link href={'#'} className={styles[`_container__${mode}__${theme}`]}>
+        <Link href={'#'} className={styles[`_container__${productState.productView}__${theme}`]}>
             <div className={styles._top}>
                 <Image src={imageSrc} alt='' width={180} height={180} />
                 {discountPercentage && <span>-{discountPercentage}%</span>}

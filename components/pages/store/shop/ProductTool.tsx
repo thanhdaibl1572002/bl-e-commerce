@@ -4,17 +4,15 @@ import { useAppSelector } from '@/redux'
 import Select from '@/components/forms/Select'
 import Button from '@/components/forms/Button'
 import { whiteColor, themeColors, getColorLevel } from '@/variables/variables'
-import { PiArrowClockwise, PiFaders, PiListDashes } from 'react-icons/pi'
+import { PiArrowClockwise, PiListDashes } from 'react-icons/pi'
 import { IoGridOutline } from 'react-icons/io5'
+import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
-interface IProductTool {
+interface IProductTool {}
 
-}
-
-const ProductTool: FC<IProductTool> = ({
-
-}) => {
+const ProductTool: FC<IProductTool> = ({}) => {
     const { theme } = useAppSelector(state => state.theme)
+    const { productDispatch } = useProductContext()
 
     return (
         <div className={styles[`_container__${theme}`]}>
@@ -42,7 +40,7 @@ const ProductTool: FC<IProductTool> = ({
                             { label: 'Đánh giá thấp đến cao', value: 'Đánh giá thấp đến cao' },
                             { label: 'Đánh giá cao đến thấp', value: 'Đánh giá cao đến thấp' },
                         ]}
-                        onChange={value => console.log(value)}
+                        onChange={value => productDispatch({ type: 'TOOL/SORT', payload: value })}
                     />
                 </div>
             </div>
@@ -57,6 +55,7 @@ const ProductTool: FC<IProductTool> = ({
                     animateDuration={300}
                     boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
                     bubbleColor={themeColors[theme]}
+                    onClick={() => productDispatch({ type: 'TOOL/VIEW', payload: 'grid' })}
                 />
                 <Button
                     width={40}
@@ -68,6 +67,7 @@ const ProductTool: FC<IProductTool> = ({
                     animateDuration={300}
                     boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
                     bubbleColor={themeColors[theme]}
+                    onClick={() => productDispatch({ type: 'TOOL/VIEW', payload: 'list' })}
                 />
                 <Button
                     width={40}
@@ -79,6 +79,7 @@ const ProductTool: FC<IProductTool> = ({
                     animateDuration={300}
                     boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
                     bubbleColor={themeColors[theme]}
+                    onClick={() => productDispatch({ type: 'TOOL/RESET' })}
                 />
             </div>
         </div>

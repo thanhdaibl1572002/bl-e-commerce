@@ -3,6 +3,7 @@ import styles from '@/components/pages/store/shop/productgrid.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from 'react-i18next'
 import Product from '@/components/pages/store/shop/Product'
+import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
 const sampleProducts = [
     {
@@ -147,17 +148,14 @@ const sampleProducts = [
     },
 ]
 
-interface IProductGrid {
-    mode?: 'grid' | 'list'
-}
+interface IProductGrid {}
 
-const ProductGrid: FC<IProductGrid> = ({
-    mode = 'grid'
-}) => {
+const ProductGrid: FC<IProductGrid> = ({}) => {
     const { theme } = useAppSelector(state => state.theme)
     const { t } = useTranslation()
+    const { productState } = useProductContext()
     return (
-        <div className={styles[`_container__${mode}__${theme}`]}>
+        <div className={styles[`_container__${productState.productView}__${theme}`]}>
             {sampleProducts.map((product, index) => (
                 <Product
                     key={index}
@@ -170,7 +168,6 @@ const ProductGrid: FC<IProductGrid> = ({
                     currentPrice={product.currentPrice}
                     originalPrice={product.originalPrice}
                     features={product.features}
-                    mode={mode}
                 />
             ))}
         </div>

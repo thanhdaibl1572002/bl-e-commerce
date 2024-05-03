@@ -5,7 +5,6 @@ import { useAppSelector } from '@/redux'
 import { useTranslation } from '@/languages'
 import ProductGrid from '@/components/pages/store/shop/ProductGrid'
 import ProductFilter, { IProductFilterProps } from '@/components/pages/store/shop/ProductFilter'
-import ProductTag from '@/components/pages/store/shop/ProductTag'
 import ProductCategory from '@/components/pages/store/shop/ProductCategory'
 import ProductBrand from '@/components/pages/store/shop/ProductBrand'
 import Button from '@/components/forms/Button'
@@ -13,6 +12,7 @@ import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColo
 import { PiFaders } from 'react-icons/pi'
 import Select from '@/components/forms/Select'
 import ProductTool from '@/components/pages/store/shop/ProductTool'
+import { ProductProvider } from '@/components/pages/store/shop/ProductContext'
 
 const sampleCategories = [
   {
@@ -200,16 +200,6 @@ const Shop: FC<IShopProps> = ({
   const { currency } = useAppSelector(state => state.currency)
   const { t } = useTranslation()
 
-  const filterRef = useRef<HTMLDivElement>(null)
-
-  const handleFilterOpen = (): void => {
-    filterRef.current && (filterRef.current.style.left = '0')
-  }
-
-  const handleFilterClose = (): void => {
-    filterRef.current && (filterRef.current.style.left = '-100%')
-  }
-
   return (
     <main className={styles[`_container__${theme}`]}>
       <section className={styles._categories}>
@@ -223,22 +213,19 @@ const Shop: FC<IShopProps> = ({
       <section className={styles._products}>
         <h2>Sản phẩm</h2>
         <div className={styles._content}>
-          <ProductFilter
-            filters={sampleFilters}
-            applyButton='Áp Dụng'
-            resetButton='Đặt Lại'
-            currencyLocales={currency.locales}
-            currencyCode={currency.code}
-            onFilter={values => console.log(values)}
-          />
-          <div className={styles._grid}>
-            {/* <ProductTag 
-               options={sampleTags}
-               onChange={value => console.log(value)}
-            /> */}
-            <ProductTool />
-            <ProductGrid mode={'list'}/>
-          </div>
+          <ProductProvider>
+            <ProductFilter
+              filters={sampleFilters}
+              applyButton='Áp Dụng'
+              resetButton='Đặt Lại'
+              currencyLocales={currency.locales}
+              currencyCode={currency.code}
+            />
+            <div className={styles._grid}>
+              <ProductTool />
+              <ProductGrid />
+            </div>
+          </ProductProvider>
         </div>
       </section>
     </main>

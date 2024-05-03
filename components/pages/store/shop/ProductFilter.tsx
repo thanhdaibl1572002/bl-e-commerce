@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, memo, useEffect, useRef, useState } from 'react'
+import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
 import styles from '@/components/pages/store/shop/productfilter.module.sass'
 import { Theme } from '@/redux/slices/themeSlice'
 import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
@@ -8,7 +8,6 @@ import DoubleSlider from '@/components/forms/DoubleSlider'
 import ThemeButton from '@/components/themes/ThemeButton'
 import Button from '@/components/forms/Button'
 import { useAppSelector } from '@/redux'
-import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
 export interface IFilterImageProps {
     title: string
@@ -201,8 +200,6 @@ FilterColor.displayName = 'FilterColor'
 export interface IProductFilterProps {
     applyButton: string
     resetButton?: string
-    currencyLocales?: string
-    currencyCode?: string
     filters: Array<{
         type: 'image' | 'check' | 'range' | 'color'
         title: string
@@ -214,20 +211,22 @@ export interface IProductFilterProps {
             max: IFilterRangeProps['max']
             min: IFilterRangeProps['min']
             values: IFilterRangeProps['values']
+            currencyLocales?: string
+            currencyCode?: string
         }
     }>
+    onApply: (values: { [key: string]: string[] | [number, number, string | null, string | null] }) => void
+    onReset: () => void
 }
 
 const ProductFilter: FC<IProductFilterProps> = ({
     applyButton,
     resetButton,
-    currencyLocales,
-    currencyCode,
     filters,
+    onApply,
+    onReset,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
-
-    const { productDispatch } = useProductContext()
 
     const filterObjectRef = useRef<{ [key: string]: string[] | [number, number, string | null, string | null] }>({})
 
@@ -249,13 +248,13 @@ const ProductFilter: FC<IProductFilterProps> = ({
         if (Object.keys(filterObjectRef.current).length > 0) {
             setReset(new Date().getTime().toString())
             filterObjectRef.current = {}
-            productDispatch({ type: 'FILTER/RESET' })
+            onReset()
         }
     }
 
     const handleApply = (): void => {
         if (Object.keys(filterObjectRef.current).length > 0) {
-            productDispatch({ type: 'FILTER/APPLY', payload: filterObjectRef.current })
+            onApply(filterObjectRef.current)
         }
     }
 
@@ -266,6 +265,8 @@ const ProductFilter: FC<IProductFilterProps> = ({
     const handleOpen = (): void => {
         filterRef.current && (filterRef.current.style.left = '0')
     }
+
+    console.log('Filter re-render')
 
     return (
         <div className={styles[`_container__${theme}`]} ref={filterRef}>
@@ -329,8 +330,8 @@ const ProductFilter: FC<IProductFilterProps> = ({
                                     max={filter.rangeOptions!.max}
                                     values={[filter.rangeOptions!.values[0], filter.rangeOptions!.values[1]]}
                                     onChange={values => handleChange(filter.name, values)}
-                                    currencyLocales={currencyLocales}
-                                    currencyCode={currencyCode}
+                                    currencyLocales={filter.rangeOptions!.currencyLocales}
+                                    currencyCode={filter.rangeOptions!.currencyCode}
                                     reset={reset}
                                     theme={theme}
                                 />

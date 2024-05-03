@@ -1,5 +1,5 @@
 'use client'
-import { FC, useCallback, useEffect, useMemo, useRef } from 'react'
+import { FC } from 'react'
 import styles from '@/app/shop/shop.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from '@/languages'
@@ -7,12 +7,10 @@ import ProductGrid from '@/components/pages/store/shop/ProductGrid'
 import ProductFilter, { IProductFilterProps } from '@/components/pages/store/shop/ProductFilter'
 import ProductCategory from '@/components/pages/store/shop/ProductCategory'
 import ProductBrand from '@/components/pages/store/shop/ProductBrand'
-import Button from '@/components/forms/Button'
-import { blackGradientColor, blueGradientColor, getColorLevel, greenGradientColor, redGradientColor, themeColors, whiteColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
-import { PiFaders } from 'react-icons/pi'
-import Select from '@/components/forms/Select'
+import { blackGradientColor, blueGradientColor, greenGradientColor, redGradientColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
 import ProductTool from '@/components/pages/store/shop/ProductTool'
 import { ProductProvider } from '@/components/pages/store/shop/ProductContext'
+import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
 const sampleCategories = [
   {
@@ -114,6 +112,18 @@ const sampleFilters: IProductFilterProps['filters'] = [
       min: 0,
       max: 1000000000,
       values: [0, 1000000000],
+      currencyLocales: 'vi-VN',
+      currencyCode: 'VND',
+    }
+  },
+  {
+    type: 'range',
+    title: 'Test Range',
+    name: 'price',
+    rangeOptions: {
+      min: 0,
+      max: 100,
+      values: [0, 100],
     }
   },
   {
@@ -188,13 +198,59 @@ const sampleTags = [
   { label: 'Sạc dự phòng', value: 'Sạc dự phòng' },
 ]
 
-interface IShopProps {
-
+const ShopCategories: FC = () => {
+  return (
+    <section className={styles._categories}>
+      <h2>Danh mục</h2>
+      <ProductCategory categories={sampleCategories} />
+    </section>
+  )
 }
 
-const Shop: FC<IShopProps> = ({
+const ShopBrands: FC = () => {
+  return (
+    <section className={styles._brands}>
+      <h2>Thương hiệu</h2>
+      <ProductBrand brands={sampleBrands} />
+    </section>
+  )
+}
 
-}) => {
+const ShopProducts: FC = () => {
+
+  const { productDispatch } = useProductContext()
+
+  const handleApplyFilter = (values: { [key: string]: string[] | [number, number, string | null, string | null] }): void => {
+    productDispatch({ type: 'FILTER/APPLY', payload: values })
+  }
+
+  const handleResetFilter = (): void => {
+    productDispatch({ type: 'FILTER/RESET' })
+  }
+
+  return (
+    <section className={styles._products}>
+      <h2>Sản phẩm</h2>
+      <div className={styles._content}>
+        <ProductFilter
+          filters={sampleFilters}
+          applyButton='Áp Dụng'
+          resetButton='Đặt Lại'
+          onApply={handleApplyFilter}
+          onReset={handleResetFilter}
+        />
+        <div className={styles._grid}>
+          <ProductTool />
+          <ProductGrid 
+            cartButton='Giỏ Hàng' 
+          />
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const Shop: FC = () => {
 
   const { theme } = useAppSelector(state => state.theme)
   const { currency } = useAppSelector(state => state.currency)
@@ -202,32 +258,11 @@ const Shop: FC<IShopProps> = ({
 
   return (
     <main className={styles[`_container__${theme}`]}>
-      <section className={styles._categories}>
-        <h2>Danh mục</h2>
-        <ProductCategory categories={sampleCategories} />
-      </section>
-      <section className={styles._brands}>
-        <h2>Thương hiệu</h2>
-        <ProductBrand brands={sampleBrands} />
-      </section>
-      <section className={styles._products}>
-        <h2>Sản phẩm</h2>
-        <div className={styles._content}>
-          <ProductProvider>
-            <ProductFilter
-              filters={sampleFilters}
-              applyButton='Áp Dụng'
-              resetButton='Đặt Lại'
-              currencyLocales={currency.locales}
-              currencyCode={currency.code}
-            />
-            <div className={styles._grid}>
-              <ProductTool />
-              <ProductGrid />
-            </div>
-          </ProductProvider>
-        </div>
-      </section>
+      <ShopCategories />
+      <ShopBrands />
+      <ProductProvider>
+        <ShopProducts />
+      </ProductProvider>
     </main>
   )
 }

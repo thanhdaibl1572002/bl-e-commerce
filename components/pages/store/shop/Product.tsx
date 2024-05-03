@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import styles from '@/components/pages/store/shop/product.module.sass'
 import { useAppSelector } from '@/redux'
-import { useTranslation } from 'react-i18next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { IoStarSharp } from 'react-icons/io5'
@@ -11,7 +10,7 @@ import Button from '@/components/forms/Button'
 import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
 import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
-interface IProduct {
+export interface IProductProps {
     imageSrc: string
     discountPercentage?: number
     brand: string
@@ -21,9 +20,10 @@ interface IProduct {
     currentPrice: number
     originalPrice: number
     features: Array<string>
+    cartButton?: string
 }
 
-const Product: FC<IProduct> = ({
+const Product: FC<IProductProps> = ({
     imageSrc,
     discountPercentage,
     brand,
@@ -33,10 +33,10 @@ const Product: FC<IProduct> = ({
     currentPrice,
     originalPrice,
     features,
+    cartButton,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
     const { currency } = useAppSelector(state => state.currency)
-    const { t } = useTranslation()
     const { productState } = useProductContext()
 
     const formatCurrentPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(currentPrice)
@@ -70,7 +70,7 @@ const Product: FC<IProduct> = ({
                         width={'fit-content'}
                         height={40}
                         textSize={14.5}
-                        text={'Giỏ Hàng'}
+                        text={cartButton}
                         icon={<PiHandbag />}
                         iconSize={22}
                         animateDuration={500}

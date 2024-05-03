@@ -3,7 +3,14 @@
 
 @each $name, $theme-color in $theme-colors
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
-    ._container__#{$name}
+    ._container__grid__#{$name},
+    ._container__list__#{$name}
+        flex-direction: column
+        background: $white-color
+        padding: 15px 10px
+        border-radius: 10px
+        border: 1px solid get-color-level($theme-color, 5)
+        
         @media ( max-width: 550px )
             ._top
                 img
@@ -25,13 +32,6 @@
                     column-gap: 4px !important
                     span
                         font-size: 11px !important
-
-    ._container__#{$name}
-        flex-direction: column
-        background: $white-color
-        padding: 15px 10px
-        border-radius: 10px
-        border: 1px solid get-color-level($theme-color, 5)
         ._top
             justify-content: center
             align-items: center
@@ -91,3 +91,17 @@
             ._buttons
                 justify-content: space-between
                 align-items: center
+
+    ._container__list__#{$name}
+        flex-direction: row
+        justify-content: space-between
+
+        @media ( max-width: 550px )
+            ._bottom
+                width: calc( 100% - 150px ) !important
+
+        ._top
+            padding: 10px
+
+        ._bottom
+            width: calc( 100% - 200px )

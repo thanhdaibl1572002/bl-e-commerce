@@ -11,6 +11,7 @@ interface IProductTag {
         value: string
     }>
     onChange: (selectedValue: string | null) => void
+    
 }
 
 const ProductTag: FC<IProductTag> = ({
@@ -43,23 +44,6 @@ const ProductTag: FC<IProductTag> = ({
                         {option.label}
                     </li>
                 ))}
-                <li>
-                    <Button
-                        width={'fit-content'}
-                        height={35}
-                        borderRadius={'30px'}
-                        text={'Thêm thẻ mới'}
-                        textSize={14}
-                        textColor={themeColors[theme]}
-                        icon={<IoAddOutline />}
-                        iconSize={20}
-                        iconColor={themeColors[theme]}
-                        background={whiteColor}
-                        animateDuration={400}
-                        boxShadow={`0 1px 1.5px 0 ${getColorLevel(themeColors[theme], 10)}`}
-                        bubbleColor={themeColors[theme]}
-                    />
-                </li>
             </ul>
         </div>
     )

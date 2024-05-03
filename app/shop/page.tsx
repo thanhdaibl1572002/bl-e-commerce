@@ -232,12 +232,12 @@ const Shop: FC<IShopProps> = ({
             onFilter={values => console.log(values)}
           />
           <div className={styles._grid}>
-            <ProductTag 
+            {/* <ProductTag 
                options={sampleTags}
                onChange={value => console.log(value)}
-            />
+            /> */}
             <ProductTool />
-            <ProductGrid />
+            <ProductGrid mode={'list'}/>
           </div>
         </div>
       </section>

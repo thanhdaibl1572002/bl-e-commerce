@@ -19,7 +19,8 @@ interface IProduct {
     ratingCount: number
     currentPrice: number
     originalPrice: number
-    features: string[]
+    features: Array<string>
+    mode?: 'grid' | 'list'
 }
 
 const Product: FC<IProduct> = ({
@@ -32,6 +33,7 @@ const Product: FC<IProduct> = ({
     currentPrice,
     originalPrice,
     features,
+    mode='grid'
 }) => {
     const { theme } = useAppSelector(state => state.theme)
     const { currency } = useAppSelector(state => state.currency)
@@ -42,7 +44,7 @@ const Product: FC<IProduct> = ({
     const formatOriginalPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(originalPrice)
 
     return (
-        <Link href={'#'} className={styles[`_container__${theme}`]}>
+        <Link href={'#'} className={styles[`_container__${mode}__${theme}`]}>
             <div className={styles._top}>
                 <Image src={imageSrc} alt='' width={180} height={180} />
                 {discountPercentage && <span>-{discountPercentage}%</span>}

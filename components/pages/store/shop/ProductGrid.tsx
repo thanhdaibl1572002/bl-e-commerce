@@ -148,16 +148,16 @@ const sampleProducts = [
 ]
 
 interface IProductGrid {
-
+    mode?: 'grid' | 'list'
 }
 
 const ProductGrid: FC<IProductGrid> = ({
-
+    mode = 'grid'
 }) => {
     const { theme } = useAppSelector(state => state.theme)
     const { t } = useTranslation()
     return (
-        <div className={styles[`_container__${theme}`]}>
+        <div className={styles[`_container__${mode}__${theme}`]}>
             {sampleProducts.map((product, index) => (
                 <Product
                     key={index}
@@ -170,6 +170,7 @@ const ProductGrid: FC<IProductGrid> = ({
                     currentPrice={product.currentPrice}
                     originalPrice={product.originalPrice}
                     features={product.features}
+                    mode={mode}
                 />
             ))}
         </div>

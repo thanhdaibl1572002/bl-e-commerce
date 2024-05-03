@@ -3,7 +3,8 @@
 
 @each $name, $theme-color in $theme-colors
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
-    ._container__#{$name}
+    ._container__grid__#{$name},
+    ._container__list__#{$name}
         width: 100%
         display: grid
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
@@ -12,4 +13,7 @@
         @media ( max-width: 550px )
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr))
             gap: 8px
+
+    ._container__list__#{$name}
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr))
             

@@ -179,7 +179,7 @@ interface IProductState {
 }
 
 interface IProductAction {
-    type: 'TOOL/VIEW' | 'TOOL/RESET' | 'TOOL/SORT' | 'FILTER/APPLY' | 'FILTER/RESET'
+    type: 'TOOL/VIEW' | 'TOOL/RESET' | 'TOOL/SORT' | 'FILTER/APPLY' | 'FILTER/RESET' | 'LOADMORE'
     payload?: any
 }
 
@@ -210,6 +210,9 @@ const productReducer = (productState: IProductState, productAction: IProductActi
             return productState
         case 'FILTER/RESET':
             console.log('Reset Filter')
+            return productState
+        case 'LOADMORE':
+            console.log('Load More')
             return productState
     }
 }

@@ -1,47 +1,57 @@
 'use client'
 import { FC } from 'react'
 import styles from '@/app/shop/shop.module.sass'
-import { useAppSelector } from '@/redux'
-import { useTranslation } from '@/languages'
 import ProductGrid from '@/components/pages/store/shop/ProductGrid'
 import ProductFilter, { IProductFilterProps } from '@/components/pages/store/shop/ProductFilter'
 import ProductCategory from '@/components/pages/store/shop/ProductCategory'
 import ProductBrand from '@/components/pages/store/shop/ProductBrand'
-import { blackGradientColor, blueGradientColor, greenGradientColor, redGradientColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
 import ProductTool from '@/components/pages/store/shop/ProductTool'
-import { ProductProvider } from '@/components/pages/store/shop/ProductContext'
-import { useProductContext } from '@/components/pages/store/shop/ProductContext'
+import ProductLoadMore from '@/components/pages/store/shop/ProductLoadMore'
+import { blackGradientColor, blueGradientColor, greenGradientColor, redGradientColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
+import { ProductProvider, useProductContext } from '@/components/pages/store/shop/ProductContext'
+import { useAppSelector } from '@/redux'
+import { useTranslation } from '@/languages'
 
 const sampleCategories = [
   {
     name: 'Điện thoại',
-    imageSrc: '/images/category-1.jpeg',
+    imageSrc: '/images/category-1-removebg-preview.png',
     title: 'Điện thoại',
   },
   {
     name: 'Laptop',
-    imageSrc: '/images/category-2.jpeg',
+    imageSrc: '/images/category-2-removebg-preview.png',
     title: 'Laptop',
   },
   {
     name: 'Máy tính bảng',
-    imageSrc: '/images/category-3.jpeg',
+    imageSrc: '/images/category-3-removebg-preview.png',
     title: 'Máy tính bảng',
   },
   {
     name: 'Đồng hồ',
-    imageSrc: '/images/category-4.jpeg',
+    imageSrc: '/images/category-4-removebg-preview.png',
     title: 'Đồng hồ',
   },
   {
     name: 'Phụ kiện điện thoại',
-    imageSrc: '/images/category-5.jpeg',
+    imageSrc: '/images/category-5-removebg-preview.png',
     title: 'Phụ kiện điện thoại',
   },
   {
     name: 'Phụ kiện Laptop',
-    imageSrc: '/images/category-6.jpeg',
+    imageSrc: '/images/category-6-removebg-preview.png',
     title: 'Phụ kiện Laptop',
+  },
+  {
+    name: 'Ti vi',
+    imageSrc: '/images/category-7-removebg-preview.png',
+    title: 'Ti vi',
+  },
+  {
+    name: 'PC',
+    imageSrc: '/images/category-8-removebg-preview.png',
+    title: 'PC',
   },
 ]
 
@@ -244,6 +254,7 @@ const ShopProducts: FC = () => {
           <ProductGrid 
             cartButton='Giỏ Hàng' 
           />
+          <ProductLoadMore />
         </div>
       </div>
     </section>

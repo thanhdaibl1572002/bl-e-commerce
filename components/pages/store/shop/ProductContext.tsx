@@ -64,7 +64,7 @@ const sampleShopProducts: Array<IProductProps> = [
         discountPercentage: 15,
         brand: 'Samsung',
         name: 'Samsung Galaxy S22 Ultra',
-        rating: 4.5,
+        rating: 4,
         ratingCount: 80,
         currentPrice: 29990000,
         originalPrice: 34990000,
@@ -78,7 +78,49 @@ const sampleShopProducts: Array<IProductProps> = [
         discountPercentage: 10,
         brand: 'Sony',
         name: 'Sony WH-1000XM4 Wireless Headphones',
-        rating: 4.8,
+        rating: 3,
+        ratingCount: 120,
+        currentPrice: 4990000,
+        originalPrice: 5490000,
+        features: [
+            'Industry-leading noise cancellation',
+            '30-hour battery life'
+        ]
+    },
+    {
+        imageSrc: '/images/product-1.png',
+        discountPercentage: 20,
+        brand: 'Apple',
+        name: '2022 Apple iMac with Retina 5K Display',
+        rating: 1,
+        ratingCount: 100,
+        currentPrice: 19900000,
+        originalPrice: 21900000,
+        features: [
+            '27-inch (diagonal) Retina 5K display',
+            'AMD Radeon Pro 5300 graphics'
+        ]
+    },
+    {
+        imageSrc: '/images/product-2.png',
+        discountPercentage: 15,
+        brand: 'Samsung',
+        name: 'Samsung Galaxy S22 Ultra',
+        rating: 2,
+        ratingCount: 80,
+        currentPrice: 29990000,
+        originalPrice: 34990000,
+        features: [
+            '6.8-inch Dynamic AMOLED 2X display',
+            'Exynos 2200 chipset'
+        ]
+    },
+    {
+        imageSrc: '/images/product-3.png',
+        discountPercentage: 10,
+        brand: 'Sony',
+        name: 'Sony WH-1000XM4 Wireless Headphones',
+        rating: 2.5,
         ratingCount: 120,
         currentPrice: 4990000,
         originalPrice: 5490000,
@@ -102,53 +144,11 @@ const sampleShopProducts: Array<IProductProps> = [
         ]
     },
     {
-        imageSrc: '/images/product-2.png',
-        discountPercentage: 15,
-        brand: 'Samsung',
-        name: 'Samsung Galaxy S22 Ultra',
-        rating: 4.5,
-        ratingCount: 80,
-        currentPrice: 29990000,
-        originalPrice: 34990000,
-        features: [
-            '6.8-inch Dynamic AMOLED 2X display',
-            'Exynos 2200 chipset'
-        ]
-    },
-    {
-        imageSrc: '/images/product-3.png',
-        discountPercentage: 10,
-        brand: 'Sony',
-        name: 'Sony WH-1000XM4 Wireless Headphones',
-        rating: 4.8,
-        ratingCount: 120,
-        currentPrice: 4990000,
-        originalPrice: 5490000,
-        features: [
-            'Industry-leading noise cancellation',
-            '30-hour battery life'
-        ]
-    },
-    {
         imageSrc: '/images/product-1.png',
         discountPercentage: 20,
         brand: 'Apple',
         name: '2022 Apple iMac with Retina 5K Display',
-        rating: 5,
-        ratingCount: 100,
-        currentPrice: 19900000,
-        originalPrice: 21900000,
-        features: [
-            '27-inch (diagonal) Retina 5K display',
-            'AMD Radeon Pro 5300 graphics'
-        ]
-    },
-    {
-        imageSrc: '/images/product-1.png',
-        discountPercentage: 20,
-        brand: 'Apple',
-        name: '2022 Apple iMac with Retina 5K Display',
-        rating: 5,
+        rating: 3.2,
         ratingCount: 100,
         currentPrice: 19900000,
         originalPrice: 21900000,
@@ -162,7 +162,7 @@ const sampleShopProducts: Array<IProductProps> = [
         discountPercentage: 15,
         brand: 'Samsung',
         name: 'Samsung Galaxy S22 Ultra',
-        rating: 4.5,
+        rating: 4,
         ratingCount: 80,
         currentPrice: 29990000,
         originalPrice: 34990000,

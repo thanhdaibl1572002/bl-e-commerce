@@ -3,7 +3,7 @@ import styles from '@/components/pages/store/shop/product.module.sass'
 import { useAppSelector } from '@/redux'
 import Image from 'next/image'
 import Link from 'next/link'
-import { IoStarSharp } from 'react-icons/io5'
+import { IoStarHalfSharp, IoStarOutline, IoStarSharp } from 'react-icons/io5'
 import ThemeButton from '@/components/themes/ThemeButton'
 import { PiHandbag, PiHeartStraightLight } from 'react-icons/pi'
 import Button from '@/components/forms/Button'
@@ -53,11 +53,20 @@ const Product: FC<IProductProps> = ({
                 <label>{brand}</label>
                 <h3>{name}</h3>
                 <ul>
-                    {Array.from({ length: rating }, (_, index) => (
-                        <li key={index}><IoStarSharp /></li>
+                    {Array.from({ length: 5 }, (_, index) => (
+                        <li key={index}>
+                            {index < Math.floor(rating) ? (
+                                <IoStarSharp />
+                            ) : index < rating ? (
+                                <IoStarHalfSharp />
+                            ) : (
+                                <IoStarOutline />
+                            )}
+                        </li>
                     ))}
                     <li>({ratingCount})</li>
                 </ul>
+
                 <strong>{formatCurrentPrice}<span>{formatOriginalPrice}</span></strong>
                 <ol>
                     {features && features.length > 0 && features.map((feature, index) => (

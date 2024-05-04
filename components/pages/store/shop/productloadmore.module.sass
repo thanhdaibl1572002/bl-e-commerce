@@ -4,3 +4,5 @@
 @each $name, $theme-color in $theme-colors
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
     ._container__#{$name}
+        width: 100%
+        justify-content: center

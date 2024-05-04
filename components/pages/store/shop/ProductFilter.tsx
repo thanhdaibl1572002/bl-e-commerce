@@ -266,8 +266,6 @@ const ProductFilter: FC<IProductFilterProps> = ({
         filterRef.current && (filterRef.current.style.left = '0')
     }
 
-    console.log('Filter re-render')
-
     return (
         <div className={styles[`_container__${theme}`]} ref={filterRef}>
             <div className={styles._open}>

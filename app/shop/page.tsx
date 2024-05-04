@@ -254,7 +254,9 @@ const ShopProducts: FC = () => {
           <ProductGrid 
             cartButton='Giỏ Hàng' 
           />
-          <ProductLoadMore />
+          <ProductLoadMore 
+            loadMoreButton='Xem Thêm 21 Sản Phẩm'
+          />
         </div>
       </div>
     </section>

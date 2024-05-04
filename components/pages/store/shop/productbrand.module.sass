@@ -5,6 +5,9 @@
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
     ._container__#{$name}
         width: 100%
+        background: $white-color
+        border-radius: 10px
+        border: 1px solid get-color-level($theme-color, 5)
         ul
             width: 100%
             display: grid

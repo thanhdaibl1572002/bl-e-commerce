@@ -127,16 +127,6 @@ const sampleFilters: IProductFilterProps['filters'] = [
     }
   },
   {
-    type: 'range',
-    title: 'Test Range',
-    name: 'price',
-    rangeOptions: {
-      min: 0,
-      max: 100,
-      values: [0, 100],
-    }
-  },
-  {
     type: 'color',
     title: 'Màu sắc',
     name: 'color',

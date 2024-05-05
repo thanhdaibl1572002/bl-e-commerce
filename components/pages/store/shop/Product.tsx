@@ -11,6 +11,7 @@ import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
 import { useProductContext } from '@/components/pages/store/shop/ProductContext'
 
 export interface IProductProps {
+    id: string | number
     imageSrc: string
     discountPercentage?: number
     brand: string
@@ -18,20 +19,18 @@ export interface IProductProps {
     rating: number
     ratingCount: number
     currentPrice: number
-    originalPrice: number
     features: Array<string>
     cartButton?: string
 }
 
 const Product: FC<IProductProps> = ({
     imageSrc,
-    discountPercentage,
+    discountPercentage = 0,
     brand,
     name,
     rating,
     ratingCount,
     currentPrice,
-    originalPrice,
     features,
     cartButton,
 }) => {
@@ -41,13 +40,13 @@ const Product: FC<IProductProps> = ({
 
     const formatCurrentPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(currentPrice)
 
-    const formatOriginalPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(originalPrice)
+    const formatOriginalPrice = new Intl.NumberFormat(currency.locales, { style: 'currency', currency: currency.code }).format(discountPercentage !== 0 ? currentPrice / (1 - discountPercentage / 100) : currentPrice)
 
     return (
         <Link href={'#'} className={styles[`_container__${productState.productView}__${theme}`]}>
             <div className={styles._top}>
                 <Image src={imageSrc} alt='' width={180} height={180} />
-                {discountPercentage && <span>-{discountPercentage}%</span>}
+                {discountPercentage !== 0 && <span>-{discountPercentage}%</span>}
             </div>
             <div className={styles._bottom}>
                 <label>{brand}</label>
@@ -67,7 +66,7 @@ const Product: FC<IProductProps> = ({
                     <li>({ratingCount})</li>
                 </ul>
 
-                <strong>{formatCurrentPrice}<span>{formatOriginalPrice}</span></strong>
+                <strong>{formatCurrentPrice}{discountPercentage !== 0 && <span>{formatOriginalPrice}</span>}</strong>
                 <ol>
                     {features && features.length > 0 && features.map((feature, index) => (
                         <li key={index}>{feature}</li>

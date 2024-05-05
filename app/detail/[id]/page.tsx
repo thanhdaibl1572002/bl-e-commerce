@@ -1,6 +1,6 @@
 'use client'
 import { FC } from 'react'
-import styles from '@/app/shop/[id]/detail.module.sass'
+import styles from '@/app/detail/[id]/detail.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from '@/languages'
 

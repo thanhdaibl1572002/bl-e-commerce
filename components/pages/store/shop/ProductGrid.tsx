@@ -17,7 +17,8 @@ const ProductGrid: FC<IProductGrid> = ({
         <div className={styles[`_container__${productState.productView}__${theme}`]}>
             {productState.products.map((product, index) => (
                 <Product
-                    key={index}
+                    key={product.id}
+                    id={product.id}
                     imageSrc={product.imageSrc}
                     discountPercentage={product.discountPercentage}
                     brand={product.brand}
@@ -25,10 +26,8 @@ const ProductGrid: FC<IProductGrid> = ({
                     rating={product.rating}
                     ratingCount={product.ratingCount}
                     currentPrice={product.currentPrice}
-                    originalPrice={product.originalPrice}
                     features={product.features}
-                    cartButton={cartButton}
-                />
+                    cartButton={cartButton} />
             ))}
         </div>
     )

@@ -10,7 +10,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 5,
         ratingCount: 100,
         currentPrice: 29590000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 4.5,
         ratingCount: 150,
         currentPrice: 4990000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 4,
         ratingCount: 120,
         currentPrice: 7390000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 4,
@@ -43,7 +43,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 4.2,
         ratingCount: 90,
         currentPrice: 11990000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 5,
@@ -54,7 +54,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 3,
         ratingCount: 30,
         currentPrice: 8990000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 6,
@@ -65,7 +65,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 3,
         ratingCount: 600,
         currentPrice: 3490000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 7,
@@ -76,7 +76,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 4,
         ratingCount: 500,
         currentPrice: 5990000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 8,
@@ -87,7 +87,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 4,
         ratingCount: 250,
         currentPrice: 8790000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 9,
@@ -98,7 +98,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 5,
         ratingCount: 150,
         currentPrice: 5040000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 10,
@@ -109,7 +109,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 3.5,
         ratingCount: 400,
         currentPrice: 3190000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 11,
@@ -120,7 +120,7 @@ export const phoneData: Array<IProductProps> = [
         rating: 3,
         ratingCount: 55,
         currentPrice: 2790000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
     {
         id: 12,
@@ -131,6 +131,6 @@ export const phoneData: Array<IProductProps> = [
         rating: 5,
         ratingCount: 21,
         currentPrice: 25490000,
-        features: ['Hỗ trợ 5G', 'Sạc nhanh']
+        features: ['Hỗ trợ 5G', 'Sạc nhanh 90W']
     },
 ]

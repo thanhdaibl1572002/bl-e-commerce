@@ -30,6 +30,7 @@ export interface IButtonProps {
     bubbleColor?: string
     animateDuration?: number
     link?: string
+    className?: string
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 }
 
@@ -54,6 +55,7 @@ const Button: FC<IButtonProps> = ({
     bubbleColor = 'rgb(255, 255, 255)',
     animateDuration = 400,
     link,
+    className,
     onClick
 }) => {
 
@@ -92,7 +94,7 @@ const Button: FC<IButtonProps> = ({
 
     return (
         <button
-            className={styles._container}
+            className={`${styles._container} ${className || ''}`.trim()}
             style={buttonStyles}
             onClick={handleClick}
             ref={buttonRef}

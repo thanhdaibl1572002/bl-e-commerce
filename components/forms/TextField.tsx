@@ -23,12 +23,13 @@ interface TextFieldProps {
   labelIcon?: ReactNode | ReactElement
   labelIconColor?: string
   labelIconSize?: number
-  value?: string
+  value?: string | number
   placeholder?: string
   padding?: string
   textSize?: number
   textWeight?: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900
   textColor?: string
+  textAlign?: 'start' | 'end' | 'left' | 'right' | 'center' | 'justify' | 'match-parent'
   focusBorder?: string
   onChange: (value: string) => void
 }
@@ -41,7 +42,7 @@ const TextField: FC<TextFieldProps> = ({
   borderRadius = 3,
   boxShadow,
   padding = '0 10px',
-  type,
+  type = 'text',
   label,
   labelWidth,
   labelHeight,
@@ -60,10 +61,11 @@ const TextField: FC<TextFieldProps> = ({
   textSize = 15,
   textWeight,
   textColor,
+  textAlign = 'start',
   focusBorder = '1px solid rgb(39, 142, 255)',
   onChange
 }) => {
-  const [inputValue, setInputValue] = useState<string>(value || '')
+  const [inputValue, setInputValue] = useState<string | number>(value || '')
   const textFieldRef = useRef<HTMLDivElement>(null)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -122,6 +124,7 @@ const TextField: FC<TextFieldProps> = ({
           padding: padding,
           fontSize: textSize,
           fontWeight: textWeight,
+          textAlign: textAlign,
           color: textColor,
           borderRadius: borderRadius,
         }}

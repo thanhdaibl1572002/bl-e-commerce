@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC } from 'react'
-import styles from '@/components/pages/store/shop/productcategory.module.sass'
+import styles from '@/app/shop/shopproductcategory.module.sass'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from 'react-i18next'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-interface IProductCategory {
+interface IShopProductCategory {
     categories: Array<{
         name: string
         imageSrc: string
@@ -14,7 +14,7 @@ interface IProductCategory {
     }>
 }
 
-const ProductCategory: FC<IProductCategory> = ({
+const ShopProductCategory: FC<IShopProductCategory> = ({
     categories,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
@@ -37,4 +37,4 @@ const ProductCategory: FC<IProductCategory> = ({
     )
 }
 
-export default ProductCategory
+export default ShopProductCategory

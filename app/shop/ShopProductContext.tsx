@@ -1,11 +1,11 @@
 'use client'
 import { Dispatch, FC, ReactElement, ReactNode, createContext, useContext, useReducer } from 'react'
-import { IProductProps } from '@/components/pages/store/shop/Product'
-import { phoneData } from '@/components/pages/store/shop/data/products'
+import { IShopProductProps } from '@/app/shop/ShopProduct'
+import { phoneData } from '@/app/shop/data/products'
 
 interface IProductState {
     productView: 'grid' | 'list'
-    products: Array<IProductProps>
+    products: Array<IShopProductProps>
 }
 
 interface IProductAction {

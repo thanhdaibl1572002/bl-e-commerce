@@ -1,16 +1,16 @@
 import { FC } from 'react'
-import styles from '@/components/pages/store/shop/product.module.sass'
+import styles from '@/app/shop/shopproduct.module.sass'
 import { useAppSelector } from '@/redux'
 import Image from 'next/image'
 import Link from 'next/link'
-import { IoStarHalfSharp, IoStarOutline, IoStarSharp } from 'react-icons/io5'
 import ThemeButton from '@/components/themes/ThemeButton'
-import { PiHandbag, PiHeartStraightLight } from 'react-icons/pi'
 import Button from '@/components/forms/Button'
+import { IoStarHalfSharp, IoStarOutline, IoStarSharp } from 'react-icons/io5'
+import { PiHandbag, PiHeartStraightLight } from 'react-icons/pi'
 import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
-import { useProductContext } from '@/components/pages/store/shop/ProductContext'
+import { useProductContext } from '@/app/shop/ShopProductContext'
 
-export interface IProductProps {
+export interface IShopProductProps {
     id: string | number
     imageSrc: string
     discountPercentage?: number
@@ -23,7 +23,7 @@ export interface IProductProps {
     cartButton?: string
 }
 
-const Product: FC<IProductProps> = ({
+const ShopProduct: FC<IShopProductProps> = ({
     imageSrc,
     discountPercentage = 0,
     brand,
@@ -103,4 +103,4 @@ const Product: FC<IProductProps> = ({
     )
 }
 
-export default Product
+export default ShopProduct

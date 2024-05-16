@@ -1,14 +1,14 @@
 'use client'
 import { FC } from 'react'
 import styles from '@/app/shop/shop.module.sass'
-import ProductGrid from '@/components/pages/store/shop/ProductGrid'
-import ProductFilter, { IProductFilterProps } from '@/components/pages/store/shop/ProductFilter'
-import ProductCategory from '@/components/pages/store/shop/ProductCategory'
-import ProductBrand from '@/components/pages/store/shop/ProductBrand'
-import ProductTool from '@/components/pages/store/shop/ProductTool'
-import ProductLoadMore from '@/components/pages/store/shop/ProductLoadMore'
+import ShopProductGrid from '@/app/shop/ShopProductGrid'
+import ShopProductFilter, { IShopProductFilterProps } from '@/app/shop/ShopProductFilter'
+import ShopProductCategory from '@/app/shop/ShopProductCategory'
+import ShopProductBrand from '@/app/shop/ShopProductBrand'
+import ShopProductTool from '@/app/shop/ShopProductTool'
+import ShopProductLoadMore from '@/app/shop/ShopProductLoadMore'
 import { blackGradientColor, blueGradientColor, greenGradientColor, redGradientColor, whiteGradientColor, yellowGradientColor } from '@/variables/variables'
-import { ProductProvider, useProductContext } from '@/components/pages/store/shop/ProductContext'
+import { ProductProvider, useProductContext } from '@/app/shop/ShopProductContext'
 import { useAppSelector } from '@/redux'
 import { useTranslation } from '@/languages'
 
@@ -102,7 +102,7 @@ const sampleBrands = [
   },
 ]
 
-const sampleFilters: IProductFilterProps['filters'] = [
+const sampleFilters: IShopProductFilterProps['filters'] = [
   {
     type: 'image',
     title: 'Nhu Cầu',
@@ -180,7 +180,6 @@ const sampleFilters: IProductFilterProps['filters'] = [
   },
 ]
 
-
 const sampleTags = [
   { label: 'Bàn phím', value: 'Bàn phím' },
   { label: 'Chuột', value: 'Chuột' },
@@ -202,7 +201,7 @@ const ShopCategories: FC = () => {
   return (
     <section className={styles._categories}>
       <h2>Danh mục</h2>
-      <ProductCategory categories={sampleCategories} />
+      <ShopProductCategory categories={sampleCategories} />
     </section>
   )
 }
@@ -211,7 +210,7 @@ const ShopBrands: FC = () => {
   return (
     <section className={styles._brands}>
       <h2>Thương hiệu</h2>
-      <ProductBrand brands={sampleBrands} />
+      <ShopProductBrand brands={sampleBrands} />
     </section>
   )
 }
@@ -232,7 +231,7 @@ const ShopProducts: FC = () => {
     <section className={styles._products}>
       <h2>Sản phẩm</h2>
       <div className={styles._content}>
-        <ProductFilter
+        <ShopProductFilter
           filters={sampleFilters}
           applyButton='Áp Dụng'
           resetButton='Đặt Lại'
@@ -240,11 +239,11 @@ const ShopProducts: FC = () => {
           onReset={handleResetFilter}
         />
         <div className={styles._grid}>
-          <ProductTool />
-          <ProductGrid 
+          <ShopProductTool />
+          <ShopProductGrid 
             cartButton='Giỏ Hàng' 
           />
-          <ProductLoadMore 
+          <ShopProductLoadMore 
             loadMoreButton='Xem Thêm 21 Sản Phẩm'
           />
         </div>

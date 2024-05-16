@@ -1,14 +1,14 @@
 import { FC } from 'react'
-import styles from '@/components/pages/store/shop/productgrid.module.sass'
+import styles from '@/app/shop/shopproductgrid.module.sass'
 import { useAppSelector } from '@/redux'
-import Product from '@/components/pages/store/shop/Product'
-import { useProductContext } from '@/components/pages/store/shop/ProductContext'
+import ShopProduct from '@/app/shop/ShopProduct'
+import { useProductContext } from '@/app/shop/ShopProductContext'
 
-interface IProductGrid {
+interface IShopProductGrid {
     cartButton: string
 }
 
-const ProductGrid: FC<IProductGrid> = ({
+const ShopProductGrid: FC<IShopProductGrid> = ({
     cartButton,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
@@ -16,7 +16,7 @@ const ProductGrid: FC<IProductGrid> = ({
     return (
         <div className={styles[`_container__${productState.productView}__${theme}`]}>
             {productState.products.map((product, index) => (
-                <Product
+                <ShopProduct
                     key={product.id}
                     id={product.id}
                     imageSrc={product.imageSrc}
@@ -27,10 +27,11 @@ const ProductGrid: FC<IProductGrid> = ({
                     ratingCount={product.ratingCount}
                     currentPrice={product.currentPrice}
                     features={product.features}
-                    cartButton={cartButton} />
+                    cartButton={cartButton} 
+                />
             ))}
         </div>
     )
 }
 
-export default ProductGrid
+export default ShopProductGrid

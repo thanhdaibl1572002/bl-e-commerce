@@ -1,16 +1,16 @@
 import { FC } from 'react'
-import styles from '@/components/pages/store/shop/productloadmore.module.sass'
-import { useAppSelector } from '@/redux'
-import { useProductContext } from '@/components/pages/store/shop/ProductContext'
+import styles from '@/app/shop/shopproductloadmore.module.sass'
 import Button from '@/components/forms/Button'
 import { getColorLevel, themeColors, whiteColor } from '@/variables/variables'
 import { PiListPlusLight } from 'react-icons/pi'
+import { useAppSelector } from '@/redux'
+import { useProductContext } from '@/app/shop/ShopProductContext'
 
-interface IProductLoadMore {
+interface IShopProductLoadMore {
     loadMoreButton: string
 }
 
-const ProductLoadMore: FC<IProductLoadMore> = ({
+const ShopProductLoadMore: FC<IShopProductLoadMore> = ({
     loadMoreButton,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
@@ -42,4 +42,4 @@ const ProductLoadMore: FC<IProductLoadMore> = ({
     )
 }
 
-export default ProductLoadMore
+export default ShopProductLoadMore

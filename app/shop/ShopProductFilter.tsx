@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { FC, memo, useCallback, useEffect, useRef, useState } from 'react'
-import styles from '@/components/pages/store/shop/productfilter.module.sass'
+import { FC, memo, useEffect, useRef, useState } from 'react'
+import styles from '@/app/shop/shopproductfilter.module.sass'
 import { Theme } from '@/redux/slices/themeSlice'
 import { getColorLevel, themeColors, themeGradientColors, whiteColor } from '@/variables/variables'
 import { PiArrowClockwise, PiFaders, PiX } from 'react-icons/pi'
@@ -197,7 +197,7 @@ const FilterColor: FC<IFilterColorProps> = memo(({
 })
 FilterColor.displayName = 'FilterColor'
 
-export interface IProductFilterProps {
+export interface IShopProductFilterProps {
     applyButton: string
     resetButton?: string
     filters: Array<{
@@ -219,7 +219,7 @@ export interface IProductFilterProps {
     onReset: () => void
 }
 
-const ProductFilter: FC<IProductFilterProps> = ({
+const ShopProductFilter: FC<IShopProductFilterProps> = ({
     applyButton,
     resetButton,
     filters,
@@ -380,4 +380,4 @@ const ProductFilter: FC<IProductFilterProps> = ({
     )
 }
 
-export default memo(ProductFilter)
+export default memo(ShopProductFilter)

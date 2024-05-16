@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { FC } from 'react'
-import styles from '@/components/pages/store/shop/productbrand.module.sass'
+import styles from '@/app/shop/shopproductbrand.module.sass'
 import { useAppSelector } from '@/redux'
-import { useTranslation } from 'react-i18next'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
-interface IProductBrand {
+interface IShopProductBrand {
     brands: Array<{
         name: string
         imageSrc: string
@@ -13,14 +12,11 @@ interface IProductBrand {
     }>
 }
 
-const ProductBrand: FC<IProductBrand> = ({
+const ShopProductBrand: FC<IShopProductBrand> = ({
     brands,
 }) => {
     const { theme } = useAppSelector(state => state.theme)
-    const { t } = useTranslation()
-
     const router = useRouter()
-    const searchParams = useSearchParams()
     
     return (
         <div className={styles[`_container__${theme}`]}>
@@ -35,4 +31,4 @@ const ProductBrand: FC<IProductBrand> = ({
     )
 }
 
-export default ProductBrand
+export default ShopProductBrand

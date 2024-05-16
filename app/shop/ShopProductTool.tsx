@@ -1,16 +1,16 @@
 import { FC, memo } from 'react'
-import styles from '@/components/pages/store/shop/producttool.module.sass'
-import { useAppSelector } from '@/redux'
+import styles from '@/app/shop/shopproducttool.module.sass'
 import Select from '@/components/forms/Select'
 import Button from '@/components/forms/Button'
 import { whiteColor, themeColors, getColorLevel } from '@/variables/variables'
 import { PiArrowClockwise, PiListDashes } from 'react-icons/pi'
 import { IoGridOutline } from 'react-icons/io5'
-import { useProductContext } from '@/components/pages/store/shop/ProductContext'
+import { useAppSelector } from '@/redux'
+import { useProductContext } from '@/app/shop/ShopProductContext'
 
-interface IProductTool {}
+interface IShopProductTool {}
 
-const ProductTool: FC<IProductTool> = ({}) => {
+const ShopProductTool: FC<IShopProductTool> = ({}) => {
     const { theme } = useAppSelector(state => state.theme)
     const { productDispatch } = useProductContext()
 
@@ -86,4 +86,4 @@ const ProductTool: FC<IProductTool> = ({}) => {
     )
 }
 
-export default memo(ProductTool)
+export default memo(ShopProductTool)

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import { FC, useCallback, useRef, useState } from 'react'
 import styles from '@/app/detail/[id]/detailtopslider.module.sass'
@@ -68,7 +69,7 @@ const DetailTopSlider: FC<IDetailTopSliderProps> = ({
         >
           {images && images.length > 0 && images.map((image, index) => (
             <SwiperSlide key={index} className={styles._slide}>
-              <Image width={400} height={400} src={image.src} alt={image.alt || ''} />
+              <img width={400} height={400} src={image.src} alt={image.alt || ''} />
             </SwiperSlide>
           ))}
         </Swiper>

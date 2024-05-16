@@ -51,7 +51,7 @@ const DetailTopSlider: FC<IDetailTopSliderProps> = ({
             clickable: true,
             type: 'bullets',
             dynamicBullets: true,
-            dynamicMainBullets: 3,
+            dynamicMainBullets: 2,
             renderBullet: (index, className) => {
               return `<div class="${className} ${styles._pagination}">
               <img src=${images[index].src} alt=${images[index].alt} />

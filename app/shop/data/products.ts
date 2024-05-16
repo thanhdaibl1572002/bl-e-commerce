@@ -1,6 +1,6 @@
-import { IProductProps } from '@/components/pages/store/shop/Product'
+import { IShopProductProps } from '@/app/shop/ShopProduct'
 
-export const phoneData: Array<IProductProps> = [
+export const phoneData: Array<IShopProductProps> = [
     {
         id: 1,
         imageSrc: '/images/shop/products/phone/i-phone-15-pro-max.png',

@@ -3,3 +3,16 @@
 @each $name, $theme-color in $theme-colors
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
     ._container__#{$name}
+        padding: 20px
+        background: $white-color
+        border-radius: 10px
+        flex-direction: column
+        row-gap: 30px
+
+        ._tab__header
+            width: 100%
+            column-gap: 10px
+
+        ._tab__body
+            width: 100%
+            height: fit-content

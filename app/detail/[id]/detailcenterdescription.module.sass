@@ -3,13 +3,18 @@
 @each $name, $theme-color in $theme-colors
     $theme-gradient-color: map-get($theme-gradient-colors, $name)
     ._container__#{$name}
+        width: 100%
         flex-direction: column
         row-gap: 30px
-        strong
-            font-size: 22px
-            font-weight: 500
-            text-transform: capitalize
-        p
-            font-size: 15px
-            line-height: 22px
-                
+        ._section
+            width: 100%
+            flex-direction: column
+            row-gap: 30px
+            strong
+                font-size: 22px
+                font-weight: 500
+                text-transform: capitalize
+            p
+                font-size: 15px
+                line-height: 22px
+                    
